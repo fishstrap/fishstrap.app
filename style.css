@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 
 body {
-	background: linear-gradient(-45deg, #1A699C, #12496D, #12496E, #0A293F);
+	background: linear-gradient(-45deg, #9c2a89, #3c58e0, #25e3b6, #216dd7);
 	background-size: 400% 400%;
 	animation: gradient 30s ease infinite;
 

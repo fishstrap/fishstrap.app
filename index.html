@@ -9,15 +9,38 @@
 </head>
 <body>
     <div class="content">
-        <img src="https://raw.githubusercontent.com/returnrqt/fishstrap-web/refs/heads/main/img/Logo.png" style="width: 779px; height: 200.571px;" alt="logo"/>
+        <img class="logo" src="https://raw.githubusercontent.com/returnrqt/fishstrap-web/refs/heads/main/img/Logo.png" alt="logo"/>
         <p class="description">
             Fishstrap is a Bloxstrap fork aiming to enhance some of the features.
 
             Found any bugs? Submit an <a href="https://github.com/returnrqt/fishstrap/issues">issue</a> or create bug report in our <a href="https://discord.gg/xSsamjAU84">discord server</a>.
         </p>
-        <button class="download">
-            <img width="64" height="64" src="https://raw.githubusercontent.com/returnrqt/fishstrap-web/refs/heads/main/img/icons8-download-64.png" alt="download--v1"/>Download latest release
+        <button id="downloadButton" class="download">
+            <img width="64" height="64" src="https://raw.githubusercontent.com/returnrqt/fishstrap-web/refs/heads/main/img/icons8-download-64.png" alt="download--v1"/> <p>Download latest release</p>
         </button>
     </div>
+    <script>
+        async function downloadLatest() {
+            try {
+                const response = await fetch(`https://api.github.com/repos/returnrqt/fishstrap/releases/latest`);
+                const data = await response.json();
+            
+                if (response.ok) {
+                    const downloadLinks = data.assets.map(asset => asset.browser_download_url);
+
+                    if (downloadLinks.length > 0) {
+                        window.location.href = downloadLinks[0];
+                    } else {
+                        console.error('Error fetching release data:', data.message);
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            downloadLatest();
+        });
+    </script>
 </body>
 </html>

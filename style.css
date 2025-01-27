@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 
 body {
-	background: linear-gradient(-45deg, #9c2a89, #3c58e0, #25e3b6, #216dd7);
+	background: linear-gradient(-45deg, #9c2a89, #407cff, #4ed9ff, #541dba);
 	background-size: 400% 400%;
-	animation: gradient 30s ease infinite;
+	animation: gradient 15s ease infinite;
 
     font-family: Lexend Deca;
     color: white;
@@ -31,17 +31,7 @@ body {
     box-sizing: border-box;
 }
 
-a:link {
-    color: #ad7abe;
-}
 
-a:visited {
-    color: #ad7abe;
-}
-
-a:hover {
-    color: #dd96bc;
-}
 
 .download {
     font-family: Lexend Deca;
@@ -83,7 +73,7 @@ a:hover {
 	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     
     body {
         justify-content: center;

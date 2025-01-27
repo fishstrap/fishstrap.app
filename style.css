@@ -17,10 +17,13 @@ body {
     overflow: hidden;
 }
 
+.showcase-flex {
+    visibility: none;
+    display: none;
+}
+
 .showcase {
-    max-width: 100%;
     height: auto;
-    max-height: 700px;
     align-items: center;
     justify-content: right;
 }
@@ -39,8 +42,6 @@ body {
     box-sizing: border-box;
 }
 
-
-
 .download {
     font-family: Lexend Deca;
     background-color: #1f497f;
@@ -52,7 +53,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
 }
@@ -65,13 +66,9 @@ body {
 .description {
     font-size: 22px;
     font-style: light;
-    max-width: 80%;
+    max-width: 100%;
     font-weight: 300;
     line-height: normal;
-}
-
-.repo {
-    
 }
 
 @keyframes gradient {
@@ -100,11 +97,66 @@ body {
     .content {
         text-align: center;
         max-width: 90%;
+        flex-direction: column;
+    }
+
+    .showcase-flex {
+        display: flex;
+        visibility: visible;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .showcase {
+        display: none;
+        visibility: hidden;
     }
 
     .download {
         font-size: 1em;
         padding: 10px 15px;
+    }
+}
+
+@media (max-width: 878px) {
+
+    body {
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .description {
+        font-size: 0.9em;
+    }
+    
+    .content {
+        text-align: center;
+        max-width: 90%;
+        flex-direction: column;
+    }
+
+    .download {
+        font-size: 1em;
+        padding: 4px 12px;
+    }
+
+    .showcase {
+        display: flex;
+        visibility: visible;
+        align-items: center;
+        justify-content: center;
+        width: 0%;
+        height: auto;
+        max-width: 20%;
+    }
+
+    .logo {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 80%;
     }
 }
 
@@ -122,6 +174,7 @@ body {
     .content {
         text-align: center;
         max-width: 90%;
+        flex-direction: column;
     }
 
     .download {
@@ -129,9 +182,18 @@ body {
         padding: 4px 12px;
     }
 
-    .logo {
-        width: 80%;
+    .showcase {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
         max-width: 100%;
         max-height: 150px;
+    }
+
+    .logo {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
     }
 }

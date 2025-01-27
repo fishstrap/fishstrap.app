@@ -8,45 +8,44 @@
     <title>Fishstrap</title>
 </head>
 <body>
-    <div class="container">
-        <div class="content">
-            <img class="logo" src="https://raw.githubusercontent.com/returnrqt/fishstrap/refs/heads/main/Images/Bloxstrap-full-dark.png"/>
-            <p class="description">
-                Fishstrap is a Bloxstrap fork aiming to enhance some of the features.
-                <br> <br>
-                Found any bugs? Submit an <a href="https://github.com/returnrqt/fishstrap/issues">issue</a> or create bug report in our <a href="https://discord.gg/xSsamjAU84">discord server</a>.
-                <br> <br>
-                View repository on <a class="repo" href="https://github.com/returnrqt/fishstrap"> Github. </a>
-            </p>
-            <button id="downloadButton" class="download">
-                <img width="64" height="64" src="https://raw.githubusercontent.com/returnrqt/fishstrap-web/refs/heads/main/img/icons8-download-64.png"/> <p>Download latest release</p>
-            </button>
-            <br>
-        </div>
-        <script>
-            async function downloadLatest() {
-                try {
-                    const response = await fetch(`https://api.github.com/repos/returnrqt/fishstrap/releases/latest`);
-                    const data = await response.json();
-                
-                    if (response.ok) {
-                        const downloadLinks = data.assets.map(asset => asset.browser_download_url);
-    
-                        if (downloadLinks.length > 0) {
-                            window.location.href = downloadLinks[0];
-                        } else {
-                            console.error('Error fetching release data:', data.message);
-                        }
-                    }
-                } catch (error) {
-                    console.error('erm how: ', error);
-                }
-            }
-            document.getElementById('downloadButton').addEventListener('click', function() {
-                downloadLatest();
-            });
-        </script>
+    <div class="content">
+        <img class="logo" src="img/Logo.png"/>
+            <!--this is such a hack 😭-->
+            <img class="showcase-flex" src="img/Showcase.png"/>
+         <p class="description">
+            Fishstrap is a Bloxstrap fork aiming to enhance some of the features.
+            <br> 
+            Found any bugs? Submit an <a href="https://github.com/returnrqt/fishstrap/issues">issue</a> or create bug report in our <a href="https://discord.gg/xSsamjAU84">discord server</a>.
+            <br> <br>
+             View repository on <a class="repo" href="https://github.com/returnrqt/fishstrap"> Github. </a>
+           </p>
+        <button id="downloadButton" class="download">
+            <img width="64" height="64" src="https://raw.githubusercontent.com/returnrqt/fishstrap-web/refs/heads/main/img/icons8-download-64.png"/> <p>Download latest release</p>
+        </button>
+        <br>
     </div>
-    <img class="showcase" src="img/Showcase.png" />
+    <img class="showcase" src="img/Showcase.png"/>
 </body>
+<script>
+    async function downloadLatest() {
+        try {
+            const response = await fetch(`https://api.github.com/repos/returnrqt/fishstrap/releases/latest`);
+            const data = await response.json();
+            
+            if (response.ok) {
+                const downloadLinks = data.assets.map(asset => asset.browser_download_url);
+
+                if (downloadLinks.length > 0) {
+                    window.location.href = downloadLinks[0];
+                } else {
+                    console.error('Error fetching release data:', data.message);
+                }                    }
+        } catch (error) {
+            console.error('erm how: ', error);
+        }
+    }
+    document.getElementById('downloadButton').addEventListener('click', function() {
+        downloadLatest();
+    });
+</script>
 </html>

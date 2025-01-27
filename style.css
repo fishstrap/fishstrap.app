@@ -17,6 +17,14 @@ body {
     overflow: hidden;
 }
 
+.showcase {
+    max-width: 100%;
+    height: auto;
+    max-height: 700px;
+    align-items: center;
+    justify-content: right;
+}
+
 .logo {
     max-width: 100%;
     height: auto;
@@ -26,7 +34,7 @@ body {
 
 .content {
     text-align: left;
-    max-width: 50%;
+    max-width: 100%;
     padding: 20px;
     box-sizing: border-box;
 }
@@ -55,10 +63,15 @@ body {
 }
 
 .description {
-    font-size: 24px;
+    font-size: 22px;
     font-style: light;
+    max-width: 80%;
     font-weight: 300;
     line-height: normal;
+}
+
+.repo {
+    
 }
 
 @keyframes gradient {

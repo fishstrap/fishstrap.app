@@ -11,11 +11,11 @@
 	<title> | &nbsp;&nbsp;Home</title>
 </svelte:head>
 
-<div class="content text-xl pointer-events-none text-white flex flex-col w-auto z-100">
-    <Image css="w-175 h-auto z-100 justify-start items-center mb-12" src={logo} alt="logo"/>
-    <p class="pointer-events-auto z-100 justify-start items-center">
+<div class="content text-xl m-4 sm:m-8 md:m-12 justify-center items-center pointer-events-none overflow-hidden text-white flex flex-col w-auto z-100">
+    <Image css="max-w-[80%] sm:max-w-[70%] md:max-w-[60%] xl:max-w-[50%] 2xl:max-w-[40%] h-auto z-100 mb-12" src={logo} alt="logo"/>
+    <p class="text-md sm:text-xl md:text-xl pointer-events-auto z-100 text-center">
         Fishstrap is a Bloxstrap fork aiming to enhance some of the features.
-        <br> 
+        <br> <br>
         Found any bugs? Submit an <Link content="issue" href="https://github.com/returnrqt/fishstrap/issues"/>
         or create bug report in our <Link content="Discord Server" href="https://discord.gg/xSsamjAU84"/>.
         <br> <br>

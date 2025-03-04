@@ -1,6 +1,6 @@
 :root {
     --color-dark: #070640;
-    --color-primary: #635ef8;
+    --color-primary: #42b2ee;
     accent-color: var(--color-primary);
 }
 

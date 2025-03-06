@@ -17,7 +17,7 @@
     <p class="font-medium text-md sm:text-xl md:text-xl pointer-events-auto z-100 text-left">
         Fishstrap is a Bloxstrap fork aiming to enhance some of the features.<br><br>
         Found any bugs? Submit an <Link content="issue" href="https://github.com/returnrqt/fishstrap/issues"/>.<br>
-        Want some mods to spice up your roblox? Join our <Link content="Discord Server" href="https://discord.gg/xSsamjAU84"/>.<br>
+        Want some mods to spice up your roblox? Join our <Link content="Discord Server" href="https://discord.gg/dZJSbgHx8y"/>.<br>
     </p>
     <br>
 

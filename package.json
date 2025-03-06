@@ -17,6 +17,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@fontsource-variable/fira-code": "^5.2.5",
 		"@fontsource/lexend-deca": "^5.1.1",
 		"@tailwindcss/vite": "^4.0.9",
 		"tailwindcss": "^4.0.9"

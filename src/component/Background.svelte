@@ -12,25 +12,25 @@
 </script>
 
 <body class="h-screen w-full flex bg-black items-center justify-center overflow-hidden perspective-[1200px]">
-    <div id="container" class="w-[140rem] blur-[2px] absolute grid grid-rows-40 grid-cols-40 scale-150 aspect-square rotate-x-50 -rotate-y-5 rotate-z-20 -translate-y-50 -translate-x-75
+    <div id="container" class="before:absolute before:inset-0 before:pointer-events-none after:absolute after:inset-0 after:pointer-events-none  w-[140rem] absolute grid grid-rows-40 grid-cols-40 scale-150 aspect-square rotate-x-50 -rotate-y-5 rotate-z-20 -translate-y-50 -translate-x-75
     after:bg-radial after:from-transparent after:from-5% after:to-black after:to-65% after:z-3">
         <div class="tile 
-        border-1
-        duration-1000
-        hover:duration-0
-        border-white/40
-        hover:nth-[2n]:bg-astronaut-blue-300
-        hover:nth-[4n+1]:bg-astronaut-blue-800
-        hover:nth-[4n+3]:bg-astronaut-blue-950
-        hover:nth-[7n]:bg-astronaut-blue-700
-        hover:nth-[7n+3]:bg-astronaut-blue-600
-        hover:nth-[7n+5]:bg-astronaut-blue-900
-        hover:nth-[7n+6]:bg-astronaut-blue-500
-        hover:nth-[11n+1]:bg-astronaut-blue-200
-        hover:nth-[11n+4]:bg-astronaut-blue-600
-        hover:nth-[11n+7]:bg-astronaut-blue-950
-        hover:nth-[11n+10]:bg-astronaut-blue-100
-        hover:transform hover:translate-x-[-7.5px] hover:translate-y-[-7.5px]">
+            border-1
+            duration-1000
+            hover:duration-0
+            border-white/40
+            hover:nth-[2n]:bg-astronaut-blue-300
+            hover:nth-[4n+1]:bg-astronaut-blue-800
+            hover:nth-[4n+3]:bg-astronaut-blue-950
+            hover:nth-[7n]:bg-astronaut-blue-700
+            hover:nth-[7n+3]:bg-astronaut-blue-600
+            hover:nth-[7n+5]:bg-astronaut-blue-900
+            hover:nth-[7n+6]:bg-astronaut-blue-500
+            hover:nth-[11n+1]:bg-astronaut-blue-200
+            hover:nth-[11n+4]:bg-astronaut-blue-600
+            hover:nth-[11n+7]:bg-astronaut-blue-950
+            hover:nth-[11n+10]:bg-astronaut-blue-100
+            hover:transform hover:translate-x-[-7.5px] hover:translate-y-[-7.5px]">
         </div>
     </div>
 </body>

@@ -36,7 +36,7 @@
 
 <Background/>
 
-<div class="justify-center items-center flex pointer-events-none flex-col z-100">
+<div class="justify-center items-center flex pointer-events-none flex-col z-100 backdrop-blur-md px-18 p">
     <div class="text-transparent bg-clip-text text-center bg-gradient-to-r from-astronaut-blue-300 to-astronaut-blue-600">
         <h1 class="text-5xl mb-4 drop-shadow-md">Thank you for downloading Fishstrap!</h1>
         <p class="text-xl opacity-75 mb-12">Your download should begin soon...</p>

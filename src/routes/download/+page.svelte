@@ -1,17 +1,15 @@
 <script>
-    import {onMount} from "svelte"
-    import device from "svelte-device-info"
+    import {onMount} from "svelte";
+    import device from "svelte-device-info";
 
-    import BackgroundTile from "../../component/BackgroundTile.svelte"
+    import BackgroundTile from "../../component/BackgroundTile.svelte";
 
-    let showBackground = true
+    let showBackground = true;
+    let userdevice = device.isTablet || device.isPhone || device.isMobile;
 
     async function downloadLatest() {
-        if (device.IsMobile || device.isPhone || device.isTablet) {
-            console.log("mobile")
-            window.location.href = "https://github.com/returnrqt/fishstrap/";
+        if (location.hostname == "localhost" || location.hostname == "127.0.0.1")
             return;
-        }
         try {
             const response = await fetch(`https://api.github.com/repos/returnrqt/fishstrap/releases/latest`);
             const data = await response.json();
@@ -30,12 +28,14 @@
     }
 
     onMount(() => {
-        if (!location.hostname == "localhost" || !location.hostname == "127.0.0.1")
-            downloadLatest();
-        
-        if (device.isTablet || device.isPhone || device.IsMobile) {
-            showBackground = false; 
+        if (userdevice) {
+            showBackground = false;
+            window.location.href = "https://github.com/returnrqt/fishstrap"
+            return;
         }
+        
+        if (!userdevice)
+            downloadLatest();
     });
 </script>
 

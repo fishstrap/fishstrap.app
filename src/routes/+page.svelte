@@ -4,7 +4,6 @@
     import { fly } from 'svelte/transition';
 
     import BackgroundTile from "../component/BackgroundTile.svelte";
-    import BackgroundGradient from "../component/BackgroundGradient.svelte";
     import Link from "../component/Link.svelte";
     import Image from "../component/Image.svelte";
 

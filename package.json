@@ -1,7 +1,7 @@
 {
 	"name": "fishstrap-site",
 	"private": true,
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
@@ -20,6 +20,8 @@
 		"@fontsource-variable/fira-code": "^5.2.5",
 		"@fontsource/lexend-deca": "^5.1.1",
 		"@tailwindcss/vite": "^4.0.9",
+		"prettier": "^3.5.3",
+		"prettier-plugin-svelte": "^3.3.3",
 		"svelte-device-info": "^1.0.6",
 		"tailwindcss": "^4.0.9"
 	}

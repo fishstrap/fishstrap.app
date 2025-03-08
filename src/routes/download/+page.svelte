@@ -2,16 +2,15 @@
 <script>
     import { onMount } from "svelte";
     import device from "svelte-device-info";
+    import { fly } from "svelte/transition";
+
 
     import BackgroundTile from "../../component/BackgroundTile.svelte";
 
     let showBackground = true;
     let userdevice = device.isTablet || device.isPhone || device.isMobile;
 
-    async function downloadLatest() {
-        if (location.hostname == "localhost" || location.hostname == "127.0.0.1")
-            return;
-
+    async function downloadLatest() { 
         try {
             const response = await fetch(
                 `https://api.github.com/repos/returnrqt/fishstrap/releases/latest`,

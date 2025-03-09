@@ -101,11 +101,11 @@
         <div
             class="text-transparent bg-clip-text text-center bg-gradient-to-r from-astronaut-blue-300 to-astronaut-blue-600">
             <p class="text-md opacity-100 mt-2">
-                Downloads: {totalDownloads} Stars: {stars}
+                Downloads: { totalDownloads == null ? '?' : totalDownloads} Stars: { stars == null ? '?' : stars }
             </p>
         </div>
 
-        <div class="mt-8">
+        <div class="mt-4">
             <p class="text-sm align-bottom opacity-75">
                 View the repository on <Link
                     content="Github"

@@ -4,7 +4,6 @@
     import device from "svelte-device-info";
     import { fly } from "svelte/transition";
 
-
     import BackgroundTile from "../../component/BackgroundTile.svelte";
 
     let showBackground = true;

@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+    --color-astronaut-blue-50: #f1f8fe;
+    --color-astronaut-blue-100: #e2f1fc;
+    --color-astronaut-blue-200: #bee3f9;
+    --color-astronaut-blue-300: #84cdf5;
+    --color-astronaut-blue-400: #42b2ee;
+    --color-astronaut-blue-500: #1a99dd;
+    --color-astronaut-blue-600: #0d7abc;
+    --color-astronaut-blue-700: #0c6198;
+    --color-astronaut-blue-800: #0e537e;
+    --color-astronaut-blue-900: #114467;
+    --color-astronaut-blue-950: #0c2c45;
+}
+
+/* fira-code-latin-wght-normal */
+@font-face {
+    font-family: "Fira Code Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300 700;
+    src: url(@fontsource-variable/fira-code/files/fira-code-latin-wght-normal.woff2)
+        format("woff2-variations");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* lexend-deca-latin-300-normal */
+@font-face {
+    font-family: "Lexend Deca";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300;
+    src:
+        url(@fontsource/lexend-deca/files/lexend-deca-latin-300-normal.woff)
+            format("woff"),
+        url(@fontsource/lexend-deca/files/lexend-deca-latin-300-normal.woff2)
+            format("woff2");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Lexend Deca", monospace;
+}

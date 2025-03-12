@@ -1,18 +1,5 @@
-# sv
-
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
+# Fishstrap Website
+This repository stores the code for the Fishstrap website. Any issues or requests can be made in the issues tab. Pull requests are welcome.
 
 ## Developing
 

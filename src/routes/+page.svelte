@@ -2,15 +2,48 @@
 <script>
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
+    import device from "svelte-device-info";
 
+    import GradientText from "../component/GradientText.svelte";
     import Link from "../component/Link.svelte";
 
     let logo = "img/Logo.png";
     let showcase = "img/Showcase.png";
 
-    let onReady = false;
-    let stars = null;
-    let totalDownloads = null;
+    let onReady = $state(false);
+    let stars = $state(null);
+    let totalDownloads = $state(null);
+
+    let showBackground = true;
+    const mobile = device.isMobile || device.isTablet || device.isPhone;
+
+    async function downloadLatest() {
+        if (mobile) {
+            window.location.href = "https://github.com/returnrqt/fishstrap";
+            return;
+        }
+        
+        try {
+            const response = await fetch(
+                `https://api.github.com/repos/returnrqt/fishstrap/releases/latest`,
+            );
+            const data = await response.json();
+
+            if (response.ok) {
+                const downloadLinks = data.assets.map(
+                    (asset) => asset.browser_download_url,
+                );
+
+                if (downloadLinks.length > 0) {
+                    window.location.href = downloadLinks[0];
+                } else {
+                    console.error("Error fetching release data:", data.message);
+                }
+            }
+        } catch (error) {
+            console.error("erm how: ", error);
+        }
+    }
 
     const fetchData = async () => {
         const repoData = await fetch(
@@ -35,12 +68,48 @@
     onMount(() => {
         onReady = true;
         fetchData();
+
+        const container = document.querySelector("#container"),
+            tile = document.querySelector(".tile");
+
+        for (let i = 0; i < 900; i++) {
+            container.appendChild(tile.cloneNode());
+        }
     });
 </script>
 
 <svelte:head>
     <title>| &nbsp;&nbsp;Home</title>
 </svelte:head>
+
+<div id="background" class="relative">
+    <div
+        class="absolute h-screen top-0 left-0 z-0 w-full bg-black items-center justify-center overflow-hidden perspective-[1200px]">
+        <div
+            id="container"
+            class="opacity-50 before:inset-0 before:pointer-events-none after:inset-0 after:pointer-events-none w-[140rem] absolute grid grid-rows-40 grid-cols-40 scale-200 aspect-square rotate-x-50 -rotate-y-5 rotate-z-20 -translate-y-50 -translate-x-75">
+            <div
+                class="tile
+            border-1
+            duration-1000
+            hover:duration-0
+            border-white/40
+            hover:nth-[2n]:bg-astronaut-blue-300
+            hover:nth-[4n+1]:bg-astronaut-blue-800
+            hover:nth-[4n+3]:bg-astronaut-blue-950
+            hover:nth-[7n]:bg-astronaut-blue-700
+            hover:nth-[7n+3]:bg-astronaut-blue-600
+            hover:nth-[7n+5]:bg-astronaut-blue-900
+            hover:nth-[7n+6]:bg-astronaut-blue-500
+            hover:nth-[11n+1]:bg-astronaut-blue-200
+            hover:nth-[11n+4]:bg-astronaut-blue-600
+            hover:nth-[11n+7]:bg-astronaut-blue-950
+            hover:nth-[11n+10]:bg-astronaut-blue-100
+            hover:transform hover:translate-x-[-7.5px] hover:translate-y-[-7.5px] ease-out">
+            </div>
+        </div>
+    </div>
+</div>
 
 {#if onReady}
     <div
@@ -67,11 +136,9 @@
                 <br />
             </p>
 
-            <br />
-
             <!--thank you Francois for the button!-->
             <div class="flex wrapper pointer-events-auto mt-12 justify-center items-center lg:justify-start">
-                <a id="downloadbutton" href="/download" class="c-btn">
+                <a id="downloadbutton" href="#" onclick="{downloadLatest}" class="c-btn">
                     <span class="c-btn__label">
                         Download &nbsp; | <svg
                             width="24"
@@ -90,12 +157,11 @@
                 </a>
             </div>
 
-            <div
-                class="text-center lg:text-left text-transparent bg-clip-text bg-gradient-to-r from-astronaut-blue-300 to-astronaut-blue-600 z-100">
-                <p class="text-md mt-2">
+            <div class="mt-4">
+                <GradientText>
                     Downloads: {totalDownloads == null ? "?" : totalDownloads} Stars:
                     {stars == null ? "?" : stars}
-                </p>
+                </GradientText>
             </div>
 
             <div class="mt-4">

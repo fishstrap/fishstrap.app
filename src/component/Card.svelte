@@ -8,7 +8,7 @@
     let { user = "John Doe" , amt = "200 USD" , type = "One Time" }: Props = $props();
 </script>
 
-<div class="relative m-4 border border-white/25 rounded-md overflow-hidden">
+<div class="relative shadow-white/10 shadow-2xl m-4 border border-white/25 rounded-md overflow-hidden">
     <div class="absolute inset-0 backdrop-blur-md"></div>
     <div class="absolute inset-0 opacity-10 bg-noise"></div>
     <div class="w-96 relative flex px-12 items-center text-white">

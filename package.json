@@ -13,7 +13,10 @@
 		"@sveltejs/adapter-auto": "^4.0.0",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"cloudflare": "^4.2.0",
+		"dotenv": "^16.5.0",
 		"svelte": "^5.0.0",
+		"typescript": "^5.8.3",
 		"vite": "^6.0.0"
 	},
 	"dependencies": {

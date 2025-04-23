@@ -1,6 +1,7 @@
 <script lang="ts">
     // import Table from "../../component/Table.svelte";
     import GradientText from "../../component/GradientText.svelte";
+    import Link from "../../component/Link.svelte";
     import Card from "../../component/Card.svelte";
 
     import type { PageData } from './$types';
@@ -8,7 +9,7 @@
     import { onMount } from "svelte";
 
     export let data: PageData;
-    let usernames = data.usernames;
+    let usernames: string[] = data.usernames;
     let visibleCards = Array().fill(false);
     onMount(() => {
         usernames.forEach((_, index) => {
@@ -19,20 +20,21 @@
     });
 </script>
 
-<div class="background-gradient flex flex-col justify-start items-start p-12 w-full h-screen custom-scrollbar overflow-y-auto">
+<div class="background-gradient flex flex-col justify-start items-start p-8 w-full h-screen custom-scrollbar overflow-y-auto">
     <span class="text-5xl mb-4">
         <GradientText>Supporters</GradientText>
     </span>
     <span class="text-xl text-gray-300 mb-4">
         These are the people who have financially supported the development of Fishstrap.
+        <br/>
+        <br/>
+        You can support Fishstrap <Link>here</Link>
     </span>
-
-    <hr class="border-t border-white opacity-100 w-full mb-4" />
-
-    <div class="flex flex-row flex-wrap h-screen  w-full pr-4">
+    <div class="mt-4 w-full flex flex-row flex-wrap justify-center xl:justify-start">
+        <hr class="border-t border-white opacity-100 w-full mb-4" />
         {#each usernames as user, i}
             {#if visibleCards[i]}
-                <div in:fly={{ y: 50, duration: 1000, delay: i * 150 }}>
+                <div in:fly={{ y: 50, duration: 800, delay: i * 150 }}>
                     <Card user={user} type={data.types[i]} amt={data.amounts[i]} />
                 </div>
             {/if}

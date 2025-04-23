@@ -4,6 +4,8 @@ import type { PageServerLoad } from "./$types";
 import Cloudflare from "cloudflare";
 
 export const load: PageServerLoad = async () => {
+    //why are these not being loaded as env variables???
+    //because cloudflare fucking sucks.
     const NAMESPACE_ID = "816c131a55574ae28ec62a8d523f5594"
     const ACCOUNT_ID = "30eefef7e7918544a7f40f65e3a23077";
 

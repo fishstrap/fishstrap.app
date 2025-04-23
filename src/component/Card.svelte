@@ -8,20 +8,21 @@
     let { user = "John Doe" , amt = "200 USD" , type = "One Time" }: Props = $props();
 </script>
 
-<div class="relative shadow-white/10 shadow-2xl m-4 border border-white/25 rounded-md overflow-hidden">
+<div class="w-64 relative shadow-white/10 shadow-2xl m-4 border border-white/25 rounded-md overflow-hidden">
     <div class="absolute inset-0 backdrop-blur-md"></div>
     <div class="absolute inset-0 opacity-10 bg-noise"></div>
-    <div class="w-96 relative flex px-12 items-center text-white">
-            <img class="w-12 my-6 h-12 mr-6 rounded-full inline" src="img/User.png" alt="user" />
-            <span class="w-1/3 truncate">
-                {user}
-            </span>
-            <span class="ml-auto">
-                {amt}
-                <br/>
-                <span class="text-sm opacity-50">{type}</span>
-            </span>
-    </div>
+    <div class="text-center relative flex justify-start items-center text-white">
+        <img class="ml-4 my-4 mb-4 w-12 h-12 rounded-full" src="img/User.png" alt="user" />
+        <br/>
+        <span class="text-left w-16 ml-4 truncate">
+            {user}
+        </span>
+        <span class="ml-4">
+            {amt}
+            <br/>
+            <span class="text-sm opacity-50">{type}</span>
+        </span>
+</div>
 </div>
 
 <style>

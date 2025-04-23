@@ -12,7 +12,7 @@
     <div class="absolute inset-0 backdrop-blur-md"></div>
     <div class="absolute inset-0 opacity-10 bg-noise"></div>
     <div class="text-center relative flex justify-start items-center text-white">
-        <img class="ml-4 my-4 mb-4 w-12 h-12 rounded-full" src="img/User.png" alt="user" />
+        <img class="ml-4 my-4 mb-4 w-12 h-12 rounded-full" src="img/User.webp" />
         <br/>
         <span class="text-left w-16 ml-4 truncate">
             {user}

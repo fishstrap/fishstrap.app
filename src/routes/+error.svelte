@@ -30,7 +30,9 @@
                 c0,3.426-2.776,6.202-6.2,6.202S61.357,42.097,61.357,38.671z" />
             </g>
         </svg>
-        <p class="text-2xl text-white font-medium">Whoops! Something went wrong.</p>
+        <p class="text-2xl text-white font-medium">
+            Whoops! Something went wrong.
+        </p>
         <p class="text-lg font-light text-red-400">
             {page.status} | {page.error.message}
         </p>

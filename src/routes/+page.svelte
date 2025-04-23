@@ -6,9 +6,7 @@
 
     import GradientText from "../component/GradientText.svelte";
     import Link from "../component/Link.svelte";
-
-    let logo = "img/Logo.png";
-    let showcase = "img/Showcase.png";
+    import Image from "../component/Image.svelte";
 
     let onReady = $state(false);
     let stars = $state(null);
@@ -22,7 +20,7 @@
             window.location.href = "https://github.com/returnrqt/fishstrap";
             return;
         }
-        
+
         try {
             const response = await fetch(
                 `https://api.github.com/repos/returnrqt/fishstrap/releases/latest`,
@@ -115,30 +113,40 @@
     <div
         in:fly={{ y: -50, duration: 600 }}
         class="text-white pointer-events-none overflow-hidden flex h-screen z-100 justify-center items-center">
-        <div class="z-100 2xl:ml-24 justify-center items-center xl:max-w-1/2 lg:p-12">
-            <img
-                class="max-w-[100%] sm:max-w-[100%] md:max-w-[100%] lg:max-w-[50%] xl:max-w-[100%] 2xl:max-w-[80%] h-auto z-100 mb-12 px-6 lg:px-0 lg:pl-6"
-                src={logo}
-                alt="logo" />
+        <div
+            class="z-100 2xl:ml-24 justify-center items-center xl:max-w-1/2 lg:p-12">
+            <Image
+                delay={500}
+                divclass="max-w-[100%] sm:max-w-[100%] md:max-w-[100%] lg:max-w-[50%] xl:max-w-[100%] 2xl:max-w-[80%] h-auto z-100 mb-12 px-6 lg:px-0 lg:pl-6"
+                src="img/Logo.webp" />
             <p
-                class="font-medium text-md sm:text-xl md:text-xl pointer-events-none z-100 text-center lg:text-left">
+                class="font-medium text-md sm:text-xl md:text-md pointer-events-none z-100 text-center lg:text-left">
                 Fishstrap is a Bloxstrap fork aiming to enhance some of the
                 features.
                 <br />
                 <br />
                 Found any bugs? Submit an <Link
-                    content="issue"
-                    href="https://github.com/returnrqt/fishstrap/issues" />
+                    href="https://github.com/returnrqt/fishstrap/issues">
+                    issue
+                </Link>
                 <br />
                 Want some mods? Join our <Link
                     content="Discord Server"
-                    href="https://discord.gg/dZJSbgHx8y" />
+                    href="https://discord.gg/dZJSbgHx8y">
+                    server
+                </Link>
                 <br />
             </p>
 
             <!--thank you Francois for the button!-->
-            <div class="flex wrapper pointer-events-auto mt-12 justify-center items-center lg:justify-start">
-                <a id="downloadbutton" href="#" onclick="{downloadLatest}" class="c-btn">
+            <div
+                class="flex wrapper pointer-events-auto mt-12 justify-center items-center lg:justify-start">
+                <a
+                    id="downloadbutton"
+                    href="/supporters"
+                    target="_blank"
+                    onclick={downloadLatest}
+                    class="c-btn">
                     <span class="c-btn__label">
                         Download &nbsp; | <svg
                             width="24"
@@ -167,13 +175,17 @@
             <div class="mt-4">
                 <p class="text-sm text-center opacity-75 lg:text-left">
                     View the repository on <Link
-                        content="Github"
-                        href="https://github.com/returnrqt/fishstrap" />
+                        href="https://github.com/returnrqt/fishstrap">
+                        Github
+                    </Link>
                 </p>
             </div>
         </div>
-        <div class="z-100 hidden xl:flex xl:pl-12 2xl:pr-32"> 
-            <img class="max-w-[100%]" src={showcase} alt="showcase" />
+        <div class="z-100 hidden xl:flex xl:pl-12 2xl:pr-32">
+            <Image
+                delay={500}
+                divclass="max-w-[100%]"
+                src="img/Showcase.webp" />
         </div>
     </div>
 {/if}

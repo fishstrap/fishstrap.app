@@ -3,14 +3,13 @@
 import type { PageServerLoad } from "./$types";
 import Cloudflare from "cloudflare";
 
-const NAMESPACE_ID = process.env.NAMESPACE_ID;
-const ACCOUNT_ID = process.env.ACCOUNT_ID;
+export const load: PageServerLoad = async (context) => {
+    const NAMESPACE_ID = context.env.NAMESPACE_ID;
+    const ACCOUNT_ID = context.env.ACCOUNT_ID;
 
-const client = new Cloudflare({
-    apiToken: process.env.API_TOKEN,
-});
-
-export const load: PageServerLoad = async () => {
+    const client = new Cloudflare({
+        apiToken: context.env.API_TOKEN,
+    });
     // create empty arrays
     let usernames: string[] = [];
     let rawTransactionData: Array<any> = [];

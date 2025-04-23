@@ -2,9 +2,6 @@
 
 import type { PageServerLoad } from "./$types";
 import Cloudflare from "cloudflare";
-import { config } from 'dotenv';
-
-config();
 
 const NAMESPACE_ID = process.env.NAMESPACE_ID;
 const ACCOUNT_ID = process.env.ACCOUNT_ID;

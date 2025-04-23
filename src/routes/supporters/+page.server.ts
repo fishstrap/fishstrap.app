@@ -13,8 +13,6 @@ const client = new Cloudflare({
     apiToken: process.env.API_TOKEN,
 });
 
-console.log(process.env.API_TOKEN)
-
 export const load: PageServerLoad = async () => {
     // create empty arrays
     let usernames: string[] = [];

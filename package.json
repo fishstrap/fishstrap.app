@@ -11,10 +11,10 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^4.0.0",
+		"@sveltejs/adapter-cloudflare": "^7.0.1",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
-		"cloudflare": "^4.2.0",
-		"dotenv": "^16.5.0",
+		"concurrently": "^9.1.2",
 		"svelte": "^5.0.0",
 		"typescript": "^5.8.3",
 		"vite": "^6.0.0"
@@ -23,6 +23,8 @@
 		"@fontsource-variable/fira-code": "^5.2.5",
 		"@fontsource/lexend-deca": "^5.1.1",
 		"@tailwindcss/vite": "^4.0.9",
+		"cloudflare": "^4.2.0",
+		"dotenv": "^16.5.0",
 		"prettier": "^3.5.3",
 		"prettier-plugin-svelte": "^3.3.3",
 		"svelte-device-info": "^1.0.6",

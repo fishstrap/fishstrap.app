@@ -35,5 +35,6 @@
 <style>
     .ascii-video-container {
         overflow: hidden;
+        background-size: contain;
     }
 </style>

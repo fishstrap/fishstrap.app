@@ -1,6 +1,5 @@
 /** @format */
 
-// ASCII Video Background for Svelte 5 + Three.js + TypeScript
 import { onMount } from "svelte";
 import * as THREE from "three";
 
@@ -8,27 +7,23 @@ export function createASCIIVideoBackground(
     container: HTMLElement,
     videoPath: string,
 ) {
-    // Scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const renderer = new THREE.WebGLRenderer({ antialias: false });
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
 
-    // Video texture setup
     const video = document.createElement("video");
     video.src = videoPath;
     video.loop = true;
     video.muted = true;
     video.playsInline = true;
 
-    // Create texture from video
     const videoTexture = new THREE.VideoTexture(video);
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
     videoTexture.format = THREE.RGBFormat;
 
-    // Create shader material
     const shaderMaterial = new THREE.ShaderMaterial({
         uniforms: {
             iChannel0: { value: videoTexture },
@@ -192,11 +187,9 @@ export function createASCIIVideoBackground(
         transparent: false,
     });
 
-    // Create a plane to render the shader on
     const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), shaderMaterial);
     scene.add(plane);
 
-    // Handle resize
     const handleResize = () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         shaderMaterial.uniforms.iResolution.value.set(
@@ -207,7 +200,6 @@ export function createASCIIVideoBackground(
 
     window.addEventListener("resize", handleResize);
 
-    // Animation loop
     const clock = new THREE.Clock();
     const animate = () => {
         requestAnimationFrame(animate);
@@ -215,7 +207,6 @@ export function createASCIIVideoBackground(
         renderer.render(scene, camera);
     };
 
-    // Start animation and video
     const start = async () => {
         try {
             await video.play();
@@ -225,7 +216,6 @@ export function createASCIIVideoBackground(
         }
     };
 
-    // Cleanup function
     const destroy = () => {
         window.removeEventListener("resize", handleResize);
         video.pause();

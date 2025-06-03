@@ -143,8 +143,7 @@
                 class="flex wrapper pointer-events-auto mt-12 justify-center items-center lg:justify-start">
                 <a
                     id="downloadbutton"
-                    href="/supporters"
-                    target="_blank"
+                    href=""
                     onclick={downloadLatest}
                     class="c-btn">
                     <span class="c-btn__label">

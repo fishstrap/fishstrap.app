@@ -120,7 +120,7 @@
                 divclass="max-w-[100%] sm:max-w-[100%] md:max-w-[100%] lg:max-w-[50%] xl:max-w-[100%] 2xl:max-w-[80%] h-auto z-100 mb-12 px-6 lg:px-0 lg:pl-6"
                 src="img/Logo.webp" />
             <p
-                class="font-medium text-md sm:text-xl md:text-md pointer-events-none z-100 text-center lg:text-left">
+                class="font-medium text-md sm:text-xl md:text-xl 2xl:text-3xl pointer-events-none z-100 text-center lg:text-left">
                 Fishstrap is a Bloxstrap fork aiming to enhance some of the
                 features.
                 <br />

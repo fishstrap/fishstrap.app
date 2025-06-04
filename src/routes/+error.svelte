@@ -1,13 +1,13 @@
 <!-- @format -->
 <script>
-    import { page } from "$app/stores";
+    import { page } from "$app/state";
 </script>
 
-<div class="flex items-center justify-center min-h-screen">
+<div class="flex items-center justify-center min-h-screen bg-black">
     <div class="text-center flex flex-col items-center justify-center">
         <svg
             class="mb-8"
-            fill="#bee3f9"
+            fill="white"
             version="1.1"
             id="Capa_1"
             xmlns="http://www.w3.org/2000/svg"
@@ -30,10 +30,11 @@
                 c0,3.426-2.776,6.202-6.2,6.202S61.357,42.097,61.357,38.671z" />
             </g>
         </svg>
-        <p class="text-2xl font-medium">Whoops! Something went wrong.</p>
-        <br />
+        <p class="text-2xl text-white font-medium">
+            Whoops! Something went wrong.
+        </p>
         <p class="text-lg font-light text-red-400">
-            {$page.status} | {$page.error.message}
+            {page.status} | {page.error.message}
         </p>
     </div>
 </div>

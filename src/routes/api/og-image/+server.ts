@@ -217,7 +217,7 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
 	// there might be a chance that the region and the country might be the same, but I DO NOT CARE
 	const serverLocation = `${serverCity}, ${serverCountry}, ${serverRegionCode}`;
 
-	const playerCount = serverData.playing > 1000 ? numberFormatter.format(serverData.playing) : serverData.playing;
+	const playerCount = gameData.playing > 1000 ? numberFormatter.format(gameData.playing) : gameData.playing;
 	// const username = userData?.name || "your Friend";
 	const base64GameThumbnail = await urlToBase64(gameThumbnail);
 	// const base64AvatarThumbnail = await urlToBase64(avatarThumbnail);

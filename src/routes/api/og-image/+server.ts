@@ -217,7 +217,7 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
 	// there might be a chance that the region and the country might be the same, but I DO NOT CARE
 	const serverLocation = `${serverCity}, ${serverCountry}, ${serverRegionCode}`;
 
-	const playerCount =  numberFormatter.format(gameData?.playing);
+	const playerCount = serverData.playing > 1000 ? numberFormatter.format(serverData.playing) : serverData.playing;
 	// const username = userData?.name || "your Friend";
 	const base64GameThumbnail = await urlToBase64(gameThumbnail);
 	// const base64AvatarThumbnail = await urlToBase64(avatarThumbnail);
@@ -256,7 +256,7 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
           <text transform="translate(14 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Uptime: </text>
           <text transform="translate(90 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E5FF00" >${serverUptime} Hours</text>
           <text transform="translate(245 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Players: </text>
-          <text transform="translate(320 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${playerCount}</text>
+          <text transform="translate(320 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${playerCount == "NaN" ? "Unknown" : playerCount }</text>
         </g>
         <path d="M768 432L768 0L0 0L0 432L768 432ZM1 431L1 1L767 1L767 431L1 431Z" fill="#808080" fill-rule="evenodd" />
       </g>

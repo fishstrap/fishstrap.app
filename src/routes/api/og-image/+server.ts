@@ -256,7 +256,7 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
           <text transform="translate(14 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Uptime: </text>
           <text transform="translate(90 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E5FF00" >${serverUptime} Hours</text>
           <text transform="translate(245 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Players: </text>
-          <text transform="translate(320 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${playerCount == "NaN" ? "Unknown" : playerCount }</text>
+          <text transform="translate(320 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${playerCount || "???" }</text>
         </g>
         <path d="M768 432L768 0L0 0L0 432L768 432ZM1 431L1 1L767 1L767 431L1 431Z" fill="#808080" fill-rule="evenodd" />
       </g>

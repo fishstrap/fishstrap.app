@@ -34,7 +34,7 @@
 
 <svelte:head>
     {#if ogImageUrl}
-        <meta property="og:title" content="{gameName}!" />
+        <meta property="og:title" content="Join {gameName}!" />
         <meta property="og:description" content={gameDescription} />
         <meta property="og:image" content={ogImageUrl} />
         <meta property="og:type" content="website" />

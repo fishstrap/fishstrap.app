@@ -77,6 +77,17 @@
 </script>
 
 <svelte:head>
+    <meta property="og:image:width" content="907" />
+    <meta property="og:image" content="https://camo.githubusercontent.com/5ec61b02646bdb731aada3906de1b7c3f06620b155140d5599869ad1c8782f9c/68747470733a2f2f7777772e6669736873747261702e6170702f696d672f53686f77636173652e77656270" />
+    <meta property="og:image:height" content="809" />
+    <meta property="og:title" content="Fishstrap" />
+    <meta name="theme-color" content="#42b2ee" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fishstrap" />
+    <meta
+        property="og:description"
+        content="Fishstrap: A better alternative to Roblox." />
+    <meta property="og:url" content="https://fishstrap.app/" />
     <title>| &nbsp;&nbsp;Home</title>
 </svelte:head>
 

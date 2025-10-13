@@ -34,8 +34,8 @@
 
 <svelte:head>
     {#if ogImageUrl}
-        <meta property="og:title" content="Join {gameName}!" />
-        <meta property="og:description" content={gameDescription} />
+        <meta property="og:title" content="Join {gameName || "this Experience"}!" />
+        <meta property="og:description" content={ gameDescription || "This link was generated with Fishstrap." } />
         <meta property="og:image" content={ogImageUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={$page.url.href} />

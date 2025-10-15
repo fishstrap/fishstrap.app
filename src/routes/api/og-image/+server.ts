@@ -13,7 +13,6 @@ export const GET: RequestHandler = async ({ url, platform }) => {
 		// wont be used until we get oauth running (NEVER HAPPENING)
 		// const userData = await fetchUserData(userId);
 		// const avatarThumbnail = await fetchThumbnailData(userId, "AvatarHeadshot", "150x150", true);
-
 		const gameData = await fetchGameData(placeId);
 		const gameThumbnail = await fetchThumbnailData(placeId, "GameThumbnail", "768x432", false);
 		const serverData = await fetchServerData(placeId, gameInstanceId)
@@ -30,17 +29,21 @@ export const GET: RequestHandler = async ({ url, platform }) => {
 			}
 		});
 	} catch (error) {
-		console.error(error)
+		console.error("error: falling to fallback png", error);
 
-		// const fallbackSvg = generateFallbackSVG(placeId, gameInstanceId)
-		// const fallbackBuffer = await svgToPng(fallbackSvg)
+		const pngResponse = await fetch(
+			`${url.origin}/img/Fallback.png`, {
+			method: "GET"
+		});
 
-		// return new Response(fallbackBuffer, {
-		// 	headers: {
-		// 		"Content-Type": "image/png",
-		// 		"Cache-Control": "public, max-age=300"
-		// 	}
-		// })
+		const fallbackBuffer = await pngResponse.arrayBuffer();
+
+		return new Response(fallbackBuffer, {
+			headers: {
+				"Content-Type": "image/png",
+				"Cache-Control": "public, max-age=300"
+			}
+		})
 	}
 }
 
@@ -53,8 +56,7 @@ async function svg2png(svg) {
 				"Content-Type": "image/svg+xml"
 			},
 			body: svg
-		}
-		);
+		});
 
 		if (!pngResponse.ok) throw new Error("failed to fetch png");
 
@@ -258,7 +260,7 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
           <text transform="translate(14 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Uptime: </text>
           <text transform="translate(90 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E5FF00" >${serverUptime} Hours</text>
           <text transform="translate(245 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Player Count: </text>
-          <text transform="translate(320 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${formattedPlayerCount || "???"}</text>
+          <text transform="translate(370 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${formattedPlayerCount || "???"}</text>
         </g>
         <path d="M768 432L768 0L0 0L0 432L768 432ZM1 431L1 1L767 1L767 431L1 431Z" fill="#808080" fill-rule="evenodd" />
       </g>

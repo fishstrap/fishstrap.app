@@ -1,18 +1,19 @@
-import { type RequestHandler } from '@sveltejs/kit';
+import { type RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ url, platform }) => {
-	const placeId = url.searchParams.get('placeId')
-	const gameInstanceId = url.searchParams.get('gameInstanceId')
-	// const userId = url.searchParams.get('userId');
+	const placeId = url.searchParams.get("placeId")
+	const gameInstanceId = url.searchParams.get("gameInstanceId")
+	// const userId = url.searchParams.get("userId");
 
 	if (!placeId) {
-		return new Response('Missing placeId parameter', { status: 400 })
+		return new Response("Missing placeId parameter", { status: 400 })
 	}
 
 	try {
-		// wont be used until we get oauth running
+		// wont be used until we get oauth running (NEVER HAPPENING)
 		// const userData = await fetchUserData(userId);
 		// const avatarThumbnail = await fetchThumbnailData(userId, "AvatarHeadshot", "150x150", true);
+
 		const gameData = await fetchGameData(placeId);
 		const gameThumbnail = await fetchThumbnailData(placeId, "GameThumbnail", "768x432", false);
 		const serverData = await fetchServerData(placeId, gameInstanceId)
@@ -23,9 +24,9 @@ export const GET: RequestHandler = async ({ url, platform }) => {
 
 		return new Response(image as any, {
 			headers: {
-				'Content-Type': 'image/png',
-				'Cache-Control': 'public, max-age=300',
-				'Content-Disposition': 'inline; filename="output.png"'
+				"Content-Type": "image/png",
+				"Cache-Control": "public, max-age=300",
+				"Content-Disposition": "inline; filename='output.png'"
 			}
 		});
 	} catch (error) {
@@ -36,8 +37,8 @@ export const GET: RequestHandler = async ({ url, platform }) => {
 
 		// return new Response(fallbackBuffer, {
 		// 	headers: {
-		// 		'Content-Type': 'image/png',
-		// 		'Cache-Control': 'public, max-age=300'
+		// 		"Content-Type": "image/png",
+		// 		"Cache-Control": "public, max-age=300"
 		// 	}
 		// })
 	}
@@ -46,19 +47,19 @@ export const GET: RequestHandler = async ({ url, platform }) => {
 async function svg2png(svg) {
 	try {
 		const pngResponse = await fetch(
-			'https://gcrazydude.xyz/convert', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'image/svg+xml'
-				},
-				body: svg
-			}
+			"https://gcrazydude.xyz/convert", {
+			method: "POST",
+			headers: {
+				"Content-Type": "image/svg+xml"
+			},
+			body: svg
+		}
 		);
 
-		if (!pngResponse.ok) throw new Error('failed to fetch png');
+		if (!pngResponse.ok) throw new Error("failed to fetch png");
 
 		return pngResponse.arrayBuffer();
-	} catch(error) {
+	} catch (error) {
 		console.error(error);
 	}
 }
@@ -68,14 +69,14 @@ async function fetchServerData(placeId: string, gameInstanceId: string) {
 		const valraResponse = await fetch(
 			`https://apis.rovalra.com/v1/server_details?place_id=${placeId}&server_ids=${gameInstanceId}`,
 			{
-				method: 'GET'
+				method: "GET"
 			}
 		)
 
-		if (!valraResponse.ok) throw new Error('valra your api sucks');
+		if (!valraResponse.ok) throw new Error("valra your api sucks");
 
 		const valraData = await valraResponse.json();
-		if (valraData.servers == null && valraData.servers == '') throw new Error('error: api returned empty data')
+		if (valraData.servers == null && valraData.servers == "") throw new Error("error: api returned empty data")
 		return valraData;
 	} catch (error) {
 		console.error(error);
@@ -85,6 +86,7 @@ async function fetchServerData(placeId: string, gameInstanceId: string) {
 async function fetchThumbnailData(id: string, type: string, size: string, isCircular: boolean) {
 	const data = [
 		{
+			"requestId": Math.random().toString(36).substring(2, 15), // generate a random request ID
 			"targetId": id,
 			"type": type,
 			"size": size,
@@ -97,15 +99,15 @@ async function fetchThumbnailData(id: string, type: string, size: string, isCirc
 		const thumbnailResponse = await fetch(
 			`https://thumbnails.roblox.com/v1/batch`,
 			{
-				method: 'POST',
+				method: "POST",
 				headers: {
-					'User-Agent': 'Mozilla/5.0 (compatible)'
+					"User-Agent": "Mozilla/5.0 (compatible)"
 				},
 				body: JSON.stringify(data)
 			}
 		)
 
-		if (!thumbnailResponse.ok) throw new Error('failed to fetch thumbnail')
+		if (!thumbnailResponse.ok) throw new Error("failed to fetch thumbnail")
 
 		const thumbnailData = await thumbnailResponse.json();
 		const thumbnail = thumbnailData.data?.[0].imageUrl;
@@ -122,17 +124,17 @@ async function fetchThumbnailData(id: string, type: string, size: string, isCirc
 // 			`https://users.roblox.com/v1/users/${userId}`,
 // 			{
 // 				headers: {
-// 					'User-Agent': 'Mozilla/5.0 (compatible; OGImageBot/1.0)'
+// 					"User-Agent": "Mozilla/5.0 (compatible; OGImageBot/1.0)"
 // 				}
 // 			}
 // 		)
 
-// 		if (!userResponse.ok) throw new Error('failed to fetch user data')
+// 		if (!userResponse.ok) throw new Error("failed to fetch user data")
 
 // 		const userData = await userResponse.json();
 // 		return userData;
 // 	} catch (error) {
-// 		console.error('Error fetching game data:', error)
+// 		console.error("Error fetching game data:", error)
 // 		return null
 // 	}
 // }
@@ -143,80 +145,79 @@ async function fetchGameData(placeId: string) {
 			`https://apis.roblox.com/universes/v1/places/${placeId}/universe`,
 			{
 				headers: {
-					'User-Agent': 'Mozilla/5.0 (compatible)'
+					"User-Agent": "Mozilla/5.0 (compatible)"
 				}
 			}
 		)
 
-		if (!universeResponse.ok) throw new Error('failed to fetch universe')
+		if (!universeResponse.ok) throw new Error("failed to fetch universe");
 
-		const universeData = await universeResponse.json()
-		const universeId = universeData.universeId
+		const universeData = await universeResponse.json();
+		const universeId = universeData.universeId;
 
 		const gameResponse = await fetch(
 			`https://games.roblox.com/v1/games?universeIds=${universeId}`,
 			{
 				headers: {
-					'User-Agent': 'Mozilla/5.0 (compatible)'
+					"User-Agent": "Mozilla/5.0 (compatible)"
 				}
 			}
 		)
 
-		if (!gameResponse.ok) throw new Error('failed to fetch game data')
+		if (!gameResponse.ok) throw new Error("failed to fetch game data");
 
 		const gameData = await gameResponse.json()
 		return gameData.data?.[0] || null
 	} catch (error) {
-		console.error('Error fetching game data:', error)
+		console.error("error fetching game data:", error)
 		return null
 	}
 }
 
 async function urlToBase64(url: string | null): Promise<string> {
 	if (!url) {
-		return '';
+		return "";
 	}
 
 	try {
 		const response = await fetch(url);
 		if (!response.ok) {
 			console.error(`http error status: ${response.status}`);
-			return '';
+			return "";
 		}
 
 		const arrayBuffer = await response.arrayBuffer();
 
-		const base64String = Buffer.from(arrayBuffer).toString('base64');
+		const base64String = Buffer.from(arrayBuffer).toString("base64");
 
-		const contentType = response.headers.get('content-type') || 'image/png';
+		const contentType = response.headers.get("content-type") || "image/png";
 		return `data:${contentType};base64,${base64String}`;
 
 	} catch (error) {
 		console.error("error converting url to base64:", error);
-		return '';
+		return "";
 	}
 }
 
 async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: string | null, gameThumbnail: string | null, serverData: any) {
-	// const gameName = gameData?.name || 'Roblox';
-	// const gameDescription = gameData?.description || 'A roblox experience.';
-	const numberFormatter = new Intl.NumberFormat('en-US', {
-		notation: 'compact',
-		compactDisplay: 'short'
+	// const gameName = gameData?.name || "Roblox";
+	// const gameDescription = gameData?.description || "A roblox experience.";
+	const numberFormatter = new Intl.NumberFormat("en-US", {
+		notation: "compact",
+		compactDisplay: "short"
 	});
-	
+
 	const timestamp = new Date(serverData.servers?.[0].first_seen);
 	const now = new Date();
 	const diff = now.getTime() - timestamp.getTime();
 
 	const serverUptime = (diff / 3600000).toFixed(2);
-	const serverRegionCode = serverData.servers?.[0]?.region_code ?? '???';
-	const serverCity = serverData.servers?.[0].city ?? '???';
-	const serverCountry = serverData.servers?.[0].country ?? '???';
-	
+	const serverRegionCode = serverData.servers?.[0]?.region_code ?? "???";
+	const serverCity = serverData.servers?.[0].city ?? "???";
+	const serverCountry = serverData.servers?.[0].country ?? "???";
+
 	// there might be a chance that the region and the country might be the same, but I DO NOT CARE
 	const serverLocation = `${serverCity}, ${serverCountry}, ${serverRegionCode}`;
-
 	const playerCount = gameData.playing > 1000 ? numberFormatter.format(gameData.playing) : gameData.playing;
 	// const username = userData?.name || "your Friend";
 	const base64GameThumbnail = await urlToBase64(gameThumbnail);
@@ -255,8 +256,8 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
           <text transform="translate(160 30)" dominant-baseline="middle" font-family="Inter" font-weight="700" font-size="18" fill="#6FF527" >${serverLocation}</text>
           <text transform="translate(14 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Uptime: </text>
           <text transform="translate(90 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E5FF00" >${serverUptime} Hours</text>
-          <text transform="translate(245 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Players: </text>
-          <text transform="translate(320 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${playerCount || "???" }</text>
+          <text transform="translate(245 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Player Count: </text>
+          <text transform="translate(320 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${playerCount || "???"}</text>
         </g>
         <path d="M768 432L768 0L0 0L0 432L768 432ZM1 431L1 1L767 1L767 431L1 431Z" fill="#808080" fill-rule="evenodd" />
       </g>
@@ -266,11 +267,11 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
 
 function escapeXML(str: string): string {
 	return str
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&apos;')
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;")
+		.replace(/"/g, "&apos;")
 }
 
 async function returnSvg(svg: string) {

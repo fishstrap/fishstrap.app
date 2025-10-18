@@ -71,7 +71,10 @@ async function fetchServerData(placeId: string, gameInstanceId: string) {
 		const valraResponse = await fetch(
 			`https://apis.rovalra.com/v1/server_details?place_id=${placeId}&server_ids=${gameInstanceId}`,
 			{
-				method: "GET"
+				method: "GET",
+				headers: {
+					"User-Agent": "Thumbnail Generation"
+				}
 			}
 		)
 

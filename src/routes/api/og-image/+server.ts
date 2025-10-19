@@ -212,7 +212,8 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
 		compactDisplay: "short"
 	});
 
-	const timestamp = new Date(serverData.servers?.[0].first_seen ?? new Date());
+	const firstSeen = serverData.servers?.[0].first_seen || Date.now()
+	const timestamp = new Date(firstSeen);
 	const now = new Date();
 	const diff = now.getTime() - timestamp.getTime();
 

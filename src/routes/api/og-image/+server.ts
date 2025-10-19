@@ -81,7 +81,6 @@ async function fetchServerData(placeId: string, gameInstanceId: string) {
 		if (!valraResponse.ok) throw new Error("valra your api sucks");
 
 		const valraData = await valraResponse.json();
-		if (!valraData?.servers) throw new Error("error: api returned empty data")
 		return valraData;
 	} catch (error) {
 		console.error(error);
@@ -212,23 +211,36 @@ async function generateSVGImage(gameData: any, gameThumbnail: string | null, ser
 		compactDisplay: "short"
 	});
 
-	let firstSeen = serverData.servers?.[0].first_seen || Date.now();
-	const timestamp = new Date(firstSeen);
-	const now = new Date();
-	const diff = now.getTime() - timestamp.getTime();
+	let firstSeen;
+	let timestamp;
+	let now;
+	let diff;
 
-	const serverUptime = (diff / 3600000).toFixed(2);
-	const serverRegionCode = serverData.servers?.[0].region_code ?? "???";
-	const serverCity = serverData.servers?.[0].city ?? "???";
-	const serverCountry = serverData.servers?.[0].country ?? "???";
+	let serverUptime = "Unkown";
+	let serverRegionCode;
+	let serverCity;
+	let serverCountry;
 
-	// there might be a chance that the region and the country might be the same, but I DO NOT CARE
-	const serverLocation = `${serverCity}, ${serverCountry}, ${serverRegionCode}`;
-	const playerCount = gameData?.playing ?? 0;
-	const formattedPlayerCount = numberFormatter.format(playerCount);
-	// const username = userData?.name || "your Friend";
-	const base64GameThumbnail = await urlToBase64(gameThumbnail);
-	// const base64AvatarThumbnail = await urlToBase64(avatarThumbnail);
+	let serverLocation = "Unknown";
+	let playerCount = 0;
+	let formattedPlayerCount;
+	let base64GameThumbnail;
+
+	if (serverData.servers?.[0]) {
+		firstSeen = serverData.servers?.[0].first_seen || Date.now();
+		timestamp = new Date(firstSeen);
+		now = new Date();
+		diff = now.getTime() - timestamp.getTime();
+		serverUptime = (diff / 3600000).toFixed(2);
+		serverRegionCode = serverData.servers?.[0].region_code ?? "???";
+		serverCity = serverData.servers?.[0].city ?? "???";
+		serverCountry = serverData.servers?.[0].country ?? "???";
+		serverLocation = `${serverCity}, ${serverCountry}, ${serverRegionCode}`;
+	}
+
+	playerCount = gameData?.playing ?? 0;
+	formattedPlayerCount = numberFormatter.format(playerCount);
+	base64GameThumbnail = await urlToBase64(gameThumbnail);
 
 	return `
     <svg width="768" height="432" viewBox="0 0 768 432" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -212,13 +212,13 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
 		compactDisplay: "short"
 	});
 
-	const firstSeen = serverData.servers?.[0].first_seen || Date.now()
-	const timestamp = new Date(firstSeen);
-	const now = new Date();
-	const diff = now.getTime() - timestamp.getTime();
+	// let firstSeen = serverData.servers?.[0].first_seen || Date.now();
+	// const timestamp = new Date(firstSeen);
+	// const now = new Date();
+	// const diff = now.getTime() - timestamp.getTime();
 
-	const serverUptime = (diff / 3600000).toFixed(2);
-	const serverRegionCode = serverData.servers?.[0]?.region_code ?? "???";
+	// const serverUptime = (diff / 3600000).toFixed(2);
+	const serverRegionCode = serverData.servers?.[0].region_code ?? "???";
 	const serverCity = serverData.servers?.[0].city ?? "???";
 	const serverCountry = serverData.servers?.[0].country ?? "???";
 
@@ -262,7 +262,7 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
           <text transform="translate(14 30)" dominant-baseline="middle" font-family="Inter" font-weight="700" font-size="18" fill="#FFFFFF" >Server location: </text>
           <text transform="translate(160 30)" dominant-baseline="middle" font-family="Inter" font-weight="700" font-size="18" fill="#6FF527" >${serverLocation}</text>
           <text transform="translate(14 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Uptime: </text>
-          <text transform="translate(90 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E5FF00" >${serverUptime} Hours</text>
+          <text transform="translate(90 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E5FF00" >Unkown</text>
           <text transform="translate(245 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Player Count: </text>
           <text transform="translate(370 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${formattedPlayerCount || "???"}</text>
         </g>

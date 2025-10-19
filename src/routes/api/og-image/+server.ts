@@ -18,7 +18,7 @@ export const GET: RequestHandler = async ({ url, platform }) => {
 		const serverData = await fetchServerData(placeId, gameInstanceId)
 
 		const image = await svg2png(
-			await generateSVGImage(gameData, placeId, gameInstanceId, gameThumbnail, serverData)
+			await generateSVGImage(gameData, gameThumbnail, serverData)
 		);
 
 		return new Response(image as any, {
@@ -81,7 +81,7 @@ async function fetchServerData(placeId: string, gameInstanceId: string) {
 		if (!valraResponse.ok) throw new Error("valra your api sucks");
 
 		const valraData = await valraResponse.json();
-		if (valraData.servers == null && valraData.servers == "") throw new Error("error: api returned empty data")
+		if (!valraData?.servers) throw new Error("error: api returned empty data")
 		return valraData;
 	} catch (error) {
 		console.error(error);
@@ -204,7 +204,7 @@ async function urlToBase64(url: string | null): Promise<string> {
 	}
 }
 
-async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: string | null, gameThumbnail: string | null, serverData: any) {
+async function generateSVGImage(gameData: any, gameThumbnail: string | null, serverData: any) {
 	// const gameName = gameData?.name || "Roblox";
 	// const gameDescription = gameData?.description || "A roblox experience.";
 	const numberFormatter = new Intl.NumberFormat("en-US", {
@@ -212,12 +212,12 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
 		compactDisplay: "short"
 	});
 
-	// let firstSeen = serverData.servers?.[0].first_seen || Date.now();
-	// const timestamp = new Date(firstSeen);
-	// const now = new Date();
-	// const diff = now.getTime() - timestamp.getTime();
+	let firstSeen = serverData.servers?.[0].first_seen || Date.now();
+	const timestamp = new Date(firstSeen);
+	const now = new Date();
+	const diff = now.getTime() - timestamp.getTime();
 
-	// const serverUptime = (diff / 3600000).toFixed(2);
+	const serverUptime = (diff / 3600000).toFixed(2);
 	const serverRegionCode = serverData.servers?.[0].region_code ?? "???";
 	const serverCity = serverData.servers?.[0].city ?? "???";
 	const serverCountry = serverData.servers?.[0].country ?? "???";
@@ -262,7 +262,7 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
           <text transform="translate(14 30)" dominant-baseline="middle" font-family="Inter" font-weight="700" font-size="18" fill="#FFFFFF" >Server location: </text>
           <text transform="translate(160 30)" dominant-baseline="middle" font-family="Inter" font-weight="700" font-size="18" fill="#6FF527" >${serverLocation}</text>
           <text transform="translate(14 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Uptime: </text>
-          <text transform="translate(90 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E5FF00" >Unkown</text>
+          <text transform="translate(90 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E5FF00" >${serverUptime} Hours</text>
           <text transform="translate(245 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#FFFFFF" >Player Count: </text>
           <text transform="translate(370 55)" font-family="Inter" dominant-baseline="middle" font-weight="700" font-size="18" fill="#E07C19" >${formattedPlayerCount || "???"}</text>
         </g>
@@ -271,16 +271,3 @@ async function generateSVGImage(gameData: any, placeId: string, gameInstanceId: 
 	</svg>
   `
 }
-
-function escapeXML(str: string): string {
-	return str
-		.replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;")
-		.replace(/"/g, "&quot;")
-		.replace(/"/g, "&apos;")
-}
-
-async function returnSvg(svg: string) {
-	return new TextEncoder().encode(svg).buffer;
-};

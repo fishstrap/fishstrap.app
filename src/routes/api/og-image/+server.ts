@@ -211,26 +211,22 @@ async function generateSVGImage(gameData: any, gameThumbnail: string | null, ser
 		compactDisplay: "short"
 	});
 
-	let firstSeen;
-	let timestamp;
-	let now;
-	let diff;
+	let serverUptime: string = "Unknown";
+	let serverRegionCode: string;
+	let serverCity: string;
+	let serverCountry: string;
 
-	let serverUptime = "Unkown";
-	let serverRegionCode;
-	let serverCity;
-	let serverCountry;
-
-	let serverLocation = "Unknown";
-	let playerCount = 0;
+	let serverLocation: string = "Unknown";
+	let playerCount: any = "Unknown";
 	let formattedPlayerCount;
 	let base64GameThumbnail;
 
 	if (serverData.servers?.[0]) {
-		firstSeen = serverData.servers?.[0].first_seen || Date.now();
-		timestamp = new Date(firstSeen);
-		now = new Date();
-		diff = now.getTime() - timestamp.getTime();
+		let firstSeen = serverData.servers?.[0].first_seen || Date.now();
+		let timestamp = new Date(firstSeen);
+		let now = new Date();
+		let diff = now.getTime() - timestamp.getTime();
+		
 		serverUptime = (diff / 3600000).toFixed(2);
 		serverRegionCode = serverData.servers?.[0].region_code ?? "???";
 		serverCity = serverData.servers?.[0].city ?? "???";
@@ -239,7 +235,9 @@ async function generateSVGImage(gameData: any, gameThumbnail: string | null, ser
 	}
 
 	playerCount = gameData?.playing ?? 0;
-	formattedPlayerCount = numberFormatter.format(playerCount);
+	if (playerCount !== "Unknown")
+		formattedPlayerCount = numberFormatter.format(playerCount);
+
 	base64GameThumbnail = await urlToBase64(gameThumbnail);
 
 	return `

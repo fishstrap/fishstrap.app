@@ -82,6 +82,9 @@
 
 <svelte:head>
     <meta property="og:title" content="Fishstrap" />
+    <meta property="og:description" content="Fishstrap is an alternative to the default roblox bootstrapper, based on Bloxstrap." />
+    <meta property="og:image" content="https://github.com/fishstrap/fishstrap/blob/main/Images/Showcase.webp?raw=true" />
+    <meta property="og:type" content="website" />
     <title>| &nbsp;&nbsp;Home</title>
 </svelte:head>
 

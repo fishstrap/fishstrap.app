@@ -82,8 +82,12 @@
 
 <svelte:head>
     <meta property="og:title" content="Fishstrap" />
-    <meta property="og:description" content="Fishstrap is an alternative to the default roblox bootstrapper, based on Bloxstrap." />
-    <meta property="og:image" content="https://github.com/fishstrap/fishstrap/blob/main/Images/Showcase.webp?raw=true" />
+    <meta
+        property="og:description"
+        content="Fishstrap is an alternative to the default roblox bootstrapper, based on Bloxstrap." />
+    <meta
+        property="og:image"
+        content="https://github.com/fishstrap/fishstrap/blob/main/Images/Showcase.webp?raw=true" />
     <meta property="og:type" content="website" />
     <title>| &nbsp;&nbsp;Home</title>
 </svelte:head>
@@ -150,7 +154,9 @@
                             </span>
                         </a>
                     </div>
-                    <span class="font-bold text-md text-white/50" >Or, Install from Winget:</span>
+                    <span class="font-bold text-md text-white/50">
+                        Or, Install from Winget:
+                    </span>
                     <div
                         class="pointer-events-auto mt-4 bg-black font-[consolas] border-1 border-white/10 text-xs sm:text-base md:text-lg 2xl:text-xl p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-3 sm:gap-4">
                         <span class="whitespace-nowrap">
@@ -196,17 +202,17 @@
         {#each Array(1000) as _, i}
             <div
                 class="tile border border-white/25 transition-colors duration-500 ease-out hover:duration-0 hover:-translate-x-1 hover:-translate-y-1
-                {i % 2 === 1 ? 'hover:bg-astronaut-blue-300' : ''}
-                {i % 4 === 1 ? 'hover:bg-astronaut-blue-800' : ''}
-                {i % 4 === 3 ? 'hover:bg-astronaut-blue-950' : ''}
-                {i % 7 === 0 ? 'hover:bg-astronaut-blue-700' : ''}
-                {i % 7 === 3 ? 'hover:bg-astronaut-blue-600' : ''}
-                {i % 7 === 5 ? 'hover:bg-astronaut-blue-900' : ''}
-                {i % 7 === 6 ? 'hover:bg-astronaut-blue-500' : ''}
-                {i % 11 === 1 ? 'hover:bg-astronaut-blue-200' : ''}
-                {i % 11 === 4 ? 'hover:bg-astronaut-blue-600' : ''}
-                {i % 11 === 7 ? 'hover:bg-astronaut-blue-950' : ''}
-                {i % 11 === 10 ? 'hover:bg-astronaut-blue-100' : ''}
+                hover:nth-[2n]:bg-astronaut-blue-300
+                hover:nth-[4n+1]:bg-astronaut-blue-800
+                hover:nth-[4n+3]:bg-astronaut-blue-950
+                hover:nth-[7n]:bg-astronaut-blue-700
+                hover:nth-[7n+3]:bg-astronaut-blue-600
+                hover:nth-[7n+5]:bg-astronaut-blue-900
+                hover:nth-[7n+6]:bg-astronaut-blue-500
+                hover:nth-[11n+1]:bg-astronaut-blue-200
+                hover:nth-[11n+4]:bg-astronaut-blue-600
+                hover:nth-[11n+7]:bg-astronaut-blue-950
+                hover:nth-[11n+10]:bg-astronaut-blue-100
             ">
             </div>
         {/each}

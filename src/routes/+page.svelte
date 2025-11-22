@@ -199,7 +199,7 @@
     {/if}
 
     <div class="tile-grid fixed inset-0 z-0">
-        {#each Array(1000) as _, i}
+        {#each Array(550) as _, i}
             <div
                 class="tile border border-white/25 transition-colors duration-500 ease-out hover:duration-0 hover:-translate-x-1 hover:-translate-y-1
                 hover:nth-[2n]:bg-astronaut-blue-300
@@ -262,22 +262,22 @@
 
     @media (min-width: 1024px) {
         .tile-grid {
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(80px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            grid-template-rows: repeat(auto-fill, minmax(90px, 1fr));
         }
     }
 
     @media (min-width: 2560px) {
         .tile-grid {
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
         }
     }
 
     @media (min-width: 3060px) {
         .tile-grid {
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-rows: repeat(auto-fill, minmax(240px, 1fr));
         }
     }
 </style>

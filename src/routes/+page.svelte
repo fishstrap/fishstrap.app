@@ -81,6 +81,7 @@
 </script>
 
 <svelte:head>
+    <meta property="og:title" content="Fishstrap" />
     <title>| &nbsp;&nbsp;Home</title>
 </svelte:head>
 

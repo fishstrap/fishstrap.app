@@ -192,7 +192,7 @@
     <div class="tile-grid fixed inset-0 z-0">
         {#each Array(1000) as _, i}
             <div
-                class="tile border border-white/5 transition-colors duration-500 ease-out hover:duration-0 hover:-translate-x-1 hover:-translate-y-1
+                class="tile border border-white/25 transition-colors duration-500 ease-out hover:duration-0 hover:-translate-x-1 hover:-translate-y-1
                 {i % 2 === 1 ? 'hover:bg-astronaut-blue-300' : ''}
                 {i % 4 === 1 ? 'hover:bg-astronaut-blue-800' : ''}
                 {i % 4 === 3 ? 'hover:bg-astronaut-blue-950' : ''}

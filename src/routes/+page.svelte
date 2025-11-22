@@ -56,12 +56,12 @@
 
     const fetchData = async () => {
         const repoData = await fetch(
-            `https://api.github.com/repos/returnrqt/fishstrap`,
+            `https://api.github.com/repos/fishstrap/fishstrap`,
         ).then((res) => res.json());
         stars = repoData.stargazers_count;
 
         const releasesData = await fetch(
-            `https://api.github.com/repos/returnrqt/fishstrap/releases`,
+            `https://api.github.com/repos/fishstrap/fishstrap/releases`,
         ).then((res) => res.json());
         totalDownloads = releasesData.reduce(
             (sum, release) =>

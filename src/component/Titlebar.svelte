@@ -13,17 +13,25 @@
             </h1>
         </div>
         <span
-            class="hidden rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/80 sm:block">
+            class="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/80 sm:block">
             v3.1.0.0
         </span>
     </div>
     <div class="flex items-center gap-6">
-        <nav class="hidden items-center gap-6 md:flex">
+        <nav class="items-center gap-6 md:flex">
             <a
                 href="https://github.com/fishstrap/fishstrap"
                 target="_blank"
                 class="text-xs font-medium text-white/70 transition-colors hover:text-white">
                 GitHub
+            </a>
+        </nav>
+        <nav class="items-center gap-6 md:flex">
+            <a
+                href="https://discord.gg/mSpuD4cyAd"
+                target="_blank"
+                class="text-xs font-medium text-white/70 transition-colors hover:text-white">
+                Discord
             </a>
         </nav>
         <button

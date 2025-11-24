@@ -12,39 +12,12 @@
     let onReady = $state(false);
     let stars = $state(null);
     let totalDownloads = $state(null);
+    let downloadUrl = $state(null);
+    let tagName = $state(null);
     let copied = $state(false);
 
     let showBackground = true;
     const mobile = device.isMobile || device.isTablet || device.isPhone;
-
-    async function downloadLatest() {
-        if (mobile) {
-            window.location.href = "https://github.com/fishstrap/fishstrap";
-            return;
-        }
-
-        try {
-            const response = await fetch(
-                `https://api.github.com/repos/fishstrap/fishstrap/releases/latest`,
-            );
-            const data = await response.json();
-
-            if (response.ok) {
-                const downloadLinks = data.assets.map(
-                    (asset) => asset.browser_download_url,
-                );
-
-                if (downloadLinks.length > 0) {
-                    window.location.href = downloadLinks[0];
-                } else {
-                    console.error("Error fetching release data:", data.message);
-                }
-            }
-        } catch (error) {
-            window.location.href =
-                "https://github.com/fishstrap/fishstrap/releases/latest";
-        }
-    }
 
     function copyToClipboard() {
         navigator.clipboard.writeText("winget install Fishstrap.Fishstrap");
@@ -54,29 +27,35 @@
         }, 2000);
     }
 
-    const fetchData = async () => {
-        const repoData = await fetch(
-            `https://api.github.com/repos/fishstrap/fishstrap`,
-        ).then((res) => res.json());
-        stars = repoData.stargazers_count;
-
-        const releasesData = await fetch(
-            `https://api.github.com/repos/fishstrap/fishstrap/releases`,
-        ).then((res) => res.json());
-        totalDownloads = releasesData.reduce(
-            (sum, release) =>
-                sum +
-                release.assets.reduce(
-                    (s, asset) => s + asset.download_count,
-                    0,
-                ),
-            0,
+    async function fetchGithubData() {
+        const repoResponse = await fetch(
+            "https://gcrazydude.xyz/api/fetchGithubData",
         );
-    };
+        const assetResponse = await fetch(
+            "https://gcrazydude.xyz/api/fetchGithubRelease",
+        );
+        
+        if(!repoResponse.ok) {
+            throw new Error("Failed to fetch repo data");
+        }
+        
+        if(!assetResponse.ok) {
+            downloadUrl = "https://github.com/fishstrap/fishstrap/releases/latest";
+            throw new Error("Failed to fetch release data");
+        }
+        
+        const repoData = await repoResponse.json();
+        const assetData = await assetResponse.json();
 
-    onMount(() => {
+        stars = repoData.stars;
+        totalDownloads = repoData.downloads;
+        downloadUrl = assetData.download_url;
+        tagName = assetData.tag_name;
+    }
+
+    onMount(async () => {
         onReady = true;
-        fetchData();
+        await fetchGithubData();
     });
 </script>
 

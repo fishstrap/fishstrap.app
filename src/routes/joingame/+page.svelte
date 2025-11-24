@@ -14,6 +14,7 @@
         gameInstanceId,
         gameName,
         gameDescription,
+        players,
     } = data;
 
     let onReady = $state();
@@ -34,8 +35,13 @@
 
 <svelte:head>
     {#if ogImageUrl}
-        <meta property="og:title" content="Join {gameName || "this Experience"}!" />
-        <meta property="og:description" content={ gameDescription || "This link was generated with Fishstrap." } />
+        <meta
+            property="og:title"
+            content="Join {gameName || 'this Experience'}!" />
+        <meta
+            property="og:description"
+            content={gameDescription ||
+                "This link was generated with Fishstrap."} />
         <meta property="og:image" content={ogImageUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={$page.url.href} />
@@ -74,13 +80,13 @@
                     </div>
                     <div class="w-full inline-flex">
                         <img
-                            src="/img/thumb.png"
+                            src="/img/Player.png"
                             width="16"
                             height="16"
                             alt="thumbnail" />
                         <span
                             class="font-[Builder_Sans_Medium] font-medium text-white text-xs opacity-75 pl-1 pr-3">
-                            84% Rating
+                            {players}
                         </span>
                     </div>
                 </div>

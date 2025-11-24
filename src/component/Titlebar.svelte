@@ -1,6 +1,6 @@
 <!-- @format -->
 <script lang="ts">
-    let { downloadLatest } = $props();
+    let { downloadUrl, tagName } = $props();
 </script>
 
 <header
@@ -13,8 +13,8 @@
             </h1>
         </div>
         <span
-            class="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/80 sm:block">
-            v3.1.0.0
+            class="empty:hidden rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/80 sm:block">
+            {tagName}
         </span>
     </div>
     <div class="flex items-center gap-6">
@@ -34,10 +34,18 @@
                 Discord
             </a>
         </nav>
-        <button
-            onclick={downloadLatest}
+        <nav class="items-center gap-6 md:flex">
+            <a
+                href="https://github.com/fishstrap"
+                target="_blank"
+                class="text-xs font-medium text-white/70 transition-colors hover:text-white">
+                About Us
+            </a>
+        </nav>
+        <a
+            href={downloadUrl}
             class="group relative overflow-hidden rounded-full bg-astronaut-blue-600 px-3 py-1.5 text-xs font-semibold text-white transition-all hover:bg-astronaut-blue-500 hover:shadow-[0_0_20px_-5px_rgba(13,122,188,0.5)] active:scale-95">
             <span class="relative z-10">Download</span>
-        </button>
+        </a>
     </div>
 </header>

@@ -73,7 +73,7 @@
 
 <div
     class="font-['Inter_Variable'] transition-all min-h-screen w-full bg-black relative">
-    <Titlebar {downloadLatest} />
+    <Titlebar {downloadUrl} {tagName} />
 
     {#if onReady}
         <main
@@ -84,14 +84,13 @@
                 <div
                     class="w-full lg:w-1/2 pointer-events-none flex flex-col items-center lg:items-start text-center lg:text-left">
                     <Image
-                        delay={500}
+                        delay={0}
                         divclass="w-3/4 sm:w-1/2 lg:w-3/4 2xl:w-full pointer-events-none h-auto z-100 mb-8 lg:mb-12 2xl:mb-16"
                         src="img/Logo.webp" />
                     <p
                         class="font-medium text-base sm:text-lg md:text-xl 2xl:text-2xl 3xl:text-3xl pointer-events-none z-100 max-w-2xl lg:max-w-none leading-relaxed">
                         Fishstrap is an alternative to the normal Roblox
-                        bootstrapper, with tons of features missing from the
-                        regular app.
+                        bootstrapper, with tons of features that cannot be found in the regular app.
                         <br />
                         <br />
 
@@ -111,11 +110,7 @@
                     <!--thank you Francois for the button!-->
                     <div
                         class="flex wrapper pointer-events-auto mt-12 mb-4 justify-center items-center lg:justify-start">
-                        <a
-                            id="downloadbutton"
-                            href=""
-                            onclick={downloadLatest}
-                            class="c-btn">
+                        <a id="downloadbutton" href={downloadUrl} class="c-btn">
                             <span class="c-btn__label">
                                 Download &nbsp; | <svg
                                     width="24"
@@ -137,7 +132,7 @@
                         Or, Install from Winget:
                     </span>
                     <div
-                        class="pointer-events-auto mt-4 bg-black font-[consolas] border-1 border-white/10 text-xs sm:text-base md:text-lg 2xl:text-xl p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-3 sm:gap-4">
+                        class="pointer-events-auto mt-4 font-[consolas] border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-xs sm:text-base md:text-lg 2xl:text-xl p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-3 sm:gap-4">
                         <span class="whitespace-nowrap">
                             > winget install Fishstrap.Fishstrap
                         </span>
@@ -169,7 +164,7 @@
                 <div
                     class="hidden lg:flex w-1/2 justify-center pointer-events-none">
                     <Image
-                        delay={500}
+                        delay={0}
                         divclass="max-w-full h-auto drop-shadow-2xl"
                         src="img/Showcase.webp" />
                 </div>

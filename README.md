@@ -1,5 +1,6 @@
+Source code for the fishstrap website.
+
 ### Developing
-Configure vars in wrangler.toml, then run:
 ```bash
 npm run dev
 ```

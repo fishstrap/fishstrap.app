@@ -55,7 +55,9 @@
 
     onMount(async () => {
         onReady = true;
-        await fetchGithubData();
+        downloadUrl = "https://github.com/fishstrap/fishstrap/releases/download/v3.0.1.0/Fishstrap-v3.0.1.0.exe";
+        tagName = "v3.0.1.0";
+        // await fetchGithubData();
     });
 </script>
 

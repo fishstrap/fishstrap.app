@@ -35,6 +35,7 @@
 
 <svelte:head>
     {#if ogImageUrl}
+        <title>Join {gameName || 'Experience'}!</title>
         <meta
             property="og:title"
             content="Join {gameName || 'this Experience'}!" />

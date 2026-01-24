@@ -4,10 +4,10 @@
     import { fly } from "svelte/transition";
     import device from "svelte-device-info";
 
-    import GradientText from "../component/GradientText.svelte";
-    import Titlebar from "../component/Titlebar.svelte";
-    import Link from "../component/Link.svelte";
-    import Image from "../component/Image.svelte";
+    import GradientText from "$lib/component/GradientText.svelte";
+    import Titlebar from "$lib/component/Titlebar.svelte";
+    import Link from "$lib/component/Link.svelte";
+    import Image from "$lib/component/Image.svelte";
 
     let onReady = $state(false);
     let stars = $state(null);
@@ -25,32 +25,6 @@
         setTimeout(() => {
             copied = false;
         }, 2000);
-    }
-
-    async function fetchGithubData() {
-        const repoResponse = await fetch(
-            "https://gcrazydude.xyz/api/fetchGithubData",
-        );
-        const assetResponse = await fetch(
-            "https://gcrazydude.xyz/api/fetchGithubRelease",
-        );
-        
-        if(!repoResponse.ok) {
-            throw new Error("Failed to fetch repo data");
-        }
-        
-        if(!assetResponse.ok) {
-            downloadUrl = "https://github.com/fishstrap/fishstrap/releases/latest";
-            throw new Error("Failed to fetch release data");
-        }
-        
-        const repoData = await repoResponse.json();
-        const assetData = await assetResponse.json();
-
-        stars = repoData.stars;
-        totalDownloads = repoData.downloads;
-        downloadUrl = assetData.download_url;
-        tagName = assetData.tag_name;
     }
 
     onMount(async () => {

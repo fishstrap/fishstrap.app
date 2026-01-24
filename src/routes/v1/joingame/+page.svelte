@@ -19,11 +19,13 @@
     let onReady = $state();
 
     onMount(() => {
-        if (placeId === undefined || placeId === null) {
+        if (!placeId) {
             window.location.href = "/";
             return;
         }
+        
         onReady = true;
+        
         if (placeId) {
             setTimeout(() => {
                 window.location.href = `roblox://experiences/start?placeId=${placeId}${gameInstanceId ? `&gameInstanceId=${gameInstanceId}` : ""}${launchData ? `&launchData=${launchData}` : ""}`;

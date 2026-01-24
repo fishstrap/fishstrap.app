@@ -2,7 +2,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { page } from "$app/stores";
-    import Image from "../../component/Image.svelte";
+    import Image from "$lib/component/Image.svelte";
     import { fly } from "svelte/transition";
     let { data } = $props();
 

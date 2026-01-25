@@ -25,7 +25,7 @@ export async function fetchThumbnailData(id: string, type: string, size: string,
     const data = [
         {
             // generate a random request id
-            // i dont even know if we need to add a request id, i just add this cause why not
+            // i dont even know if we need to add a request id, i just add it cause why not
             requestId: Math.random().toString(36).substring(2, 15),
             targetId: id,
             type: type,
@@ -90,11 +90,12 @@ export async function fetchGameData(placeId: string) {
 
         const json = await gameResponse.json() as GameResponse;
         
-        if(!json.data || !Array.isArray(json.data) || json.data.length === 0) {
+        if (!json.data || !Array.isArray(json.data) || json.data.length === 0) {
             console.warn('no game found');
             return null;
         }
         
+        // is there a better way to do this???
         const response: GameData = {
             name: json.data.map(game => game.name).join('\n'),
             description: json.data.map(game => game.description).join('\n'),

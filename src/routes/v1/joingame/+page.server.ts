@@ -1,8 +1,8 @@
 /** @format */
 
 import type { PageServerLoad } from "./$types";
-import { fetchGameData, fetchThumbnailData } from "$lib/ts/roblox";
-import type { GameData } from "$lib/ts/roblox.types";
+import { fetchGameData, fetchThumbnailData } from "$lib/utils/roblox";
+import type { GameData } from "$lib/utils/roblox.types";
 
 export const load: PageServerLoad = async ({ url }) => {
     const placeId = url.searchParams.get("placeId");
@@ -20,11 +20,11 @@ export const load: PageServerLoad = async ({ url }) => {
     }
     
     const gameData = await fetchGameData(placeId) as GameData;
-    const gameName: string = gameData?.name;
-    const gameDescription: string = gameData?.description;
+    const gameName: string = gameData.name;
+    const gameDescription: string = gameData.description;
     
     const formatter = new Intl.NumberFormat("en-US", { notation: "compact" });
-    const players: string = (gameData?.playing != null && !isNaN(gameData.playing)) ? formatter.format(gameData.playing) : "Unknown";
+    const players: string = (gameData.playing != null && !isNaN(gameData.playing)) ? formatter.format(gameData.playing) : "Unknown";
     
     const gameThumbnail: string = await fetchThumbnailData(placeId, "GameThumbnail", "384x216", false);
 

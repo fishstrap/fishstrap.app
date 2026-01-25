@@ -1,5 +1,7 @@
 <!-- @format -->
 <script lang="ts">
+    // this is unused and broken lol
+
     import { onMount } from "svelte";
     import { page } from "$app/stores";
     import Image from "$lib/component/Image.svelte";

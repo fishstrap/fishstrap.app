@@ -15,4 +15,5 @@
         window.location.href = `${window.location.origin}/v1/joingame?placeId=${placeId}${gameInstanceId ? `&gameInstanceId=${gameInstanceId}` : ""}${launchData ? `&launchData=${launchData}` : ""}`;
     });
 </script>
+<!--svelte-ignore  element_invalid_self_closing_tag-->
 <div class="bg-black" />

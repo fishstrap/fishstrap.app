@@ -1,5 +1,7 @@
 /** @format */
 
+// this is unused and broken lol
+
 import type { PageServerLoad } from "./$types";
 
 interface GameData {

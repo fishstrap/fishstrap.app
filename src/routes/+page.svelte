@@ -31,7 +31,7 @@
         onReady = true;
         
         // hardcoded for now
-        downloadUrl = "https://github.com/fishstrap/fishstrap/releases/download/v3.0.1.0/Fishstrap-v3.0.1.0.exe";
+        downloadUrl = "https://github.com/fishstrap/fishstrap/releases/download/latest/Fishstrap.exe";
         tagName = "v3.0.1.0";
     });
 </script>

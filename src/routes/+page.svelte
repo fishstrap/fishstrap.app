@@ -32,7 +32,7 @@
         
         // hardcoded for now
         downloadUrl = "https://github.com/fishstrap/fishstrap/releases/download/latest/Fishstrap.exe";
-        tagName = "v3.0.1.0";
+        tagName = "v3.0.2";
     });
 </script>
 

@@ -1,3 +1,4 @@
+import { selectNextCookie } from "$lib/utils/robloxAuth";
 import type { GameResponse, GameData } from "./roblox.types";
 
 export async function fetchServerData(placeId: string, gameInstanceId: string) {
@@ -82,6 +83,7 @@ export async function fetchGameData(placeId: string) {
             {
                 headers: {
                     "User-Agent": "Mozilla/5.0 (compatible)",
+                    "Cookie": ".ROBLOSECURITY=" + selectNextCookie()
                 },
             },
         );

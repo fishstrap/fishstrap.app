@@ -8,9 +8,10 @@ bun run dev
 
 ## Setting up Roblox authentication
 ### For development
-Create a `.env` file with a `ROBLOXCOOKIES` variable
+Create a `.env` file with a `ROBLOXCOOKIES` variable.
+
 The data should be saved as a JSON array of strings like this:
-```json
+```env
 ROBLOXCOOKIES=["_|WARNING:-DO-NOT-SHARE-THIS.1", "_|WARNING:-DO-NOT-SHARE-THIS.2"]
 ```
 ### In production

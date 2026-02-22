@@ -18,13 +18,13 @@ export const load: PageServerLoad = async ({ url }) => {
             playing: null,
         };
     }
-    
-    const gameData = await fetchGameData(placeId) as GameData;
-    const gameName: string = gameData.name;
-    const gameDescription: string = gameData.description;
+
+    const gameData = await fetchGameData(placeId) as GameData | null;
+    const gameName: string | undefined = gameData?.name;
+    const gameDescription: string | undefined = gameData?.description;
     
     const formatter = new Intl.NumberFormat("en-US", { notation: "compact" });
-    const players: string = (gameData.playing != null && !isNaN(gameData.playing)) ? formatter.format(gameData.playing) : "Unknown";
+    const players: string = (gameData?.playing != null && !isNaN(gameData.playing)) ? formatter.format(gameData.playing) : "Unknown";
     
     const gameThumbnail: string = await fetchThumbnailData(placeId, "GameThumbnail", "384x216", false);
 

@@ -1,29 +1,14 @@
 import { selectNextCookie } from "$lib/utils/robloxAuth";
-import type { GameResponse, GameData } from "./roblox.types";
+import type { AssetType, ThumbnailData, ThumbnailResponse, GenericDataResponse, UniverseResponse, UniverseData } from "./roblox.types";
+import { version } from "../../../package.json";
 
-export async function fetchServerData(placeId: string, gameInstanceId: string) {
-    try {
-        const valraResponse = await fetch(
-            `https://apis.rovalra.com/v1/server_details?place_id=${placeId}&server_ids=${gameInstanceId}`,
-            {
-                method: "GET",
-                headers: {
-                    "User-Agent": "Thumbnail Generation",
-                },
-            },
-        );
-
-        if (!valraResponse.ok) throw new Error("valra your api sucks");
-
-        const valraData = await valraResponse.json();
-        return valraData;
-    } catch (error) {
-        console.error(error);
-    }
+const defaultHeaders: {[header:string]: string} = {
+        "User-Agent": `FishstrapWeb/${version}`,
+        "Content-Type": "application/json"
 }
 
-export async function fetchThumbnailData(id: string, type: string, size: string, isCircular: boolean) {
-    const data = [
+export async function fetchThumbnailData(id: number, type: AssetType, size: string, isCircular: boolean) : Promise<string | null> {
+    const data: ThumbnailData[] = [
         {
             // generate a random request id
             // i dont even know if we need to add a request id, i just add it cause why not
@@ -32,81 +17,69 @@ export async function fetchThumbnailData(id: string, type: string, size: string,
             type: type,
             size: size,
             format: "png",
-            isCircular: isCircular,
+            isCircular: isCircular
         }
     ];
 
     try {
-        const thumbnailResponse = await fetch(
-            `https://thumbnails.roblox.com/v1/batch`,
+        const thumbnailResponse: Response = await fetch(
+            "https://thumbnails.roblox.com/v1/batch",
             {
                 method: "POST",
-                headers: {
-                    "User-Agent": "Mozilla/5.0 (compatible)",
-                    "Content-Type": "application/json",
-                },
+                headers: defaultHeaders,
                 body: JSON.stringify(data),
             },
         );
 
         if (!thumbnailResponse.ok)
-            throw new Error(thumbnailResponse.statusText);
+            throw new Error(`Unable to generate thumbnail: ${thumbnailResponse.statusText}`);
 
-        const thumbnailData: any = await thumbnailResponse.json();
-        console.log(thumbnailData);
-        const thumbnail = thumbnailData.data?.[0].imageUrl;
+        const thumbnailData: GenericDataResponse<ThumbnailResponse> = await thumbnailResponse.json();
+        const thumbnail: ThumbnailResponse | undefined = thumbnailData.data[0];
+        if (!thumbnail?.imageUrl)
+            throw new Error("Requested thumbnail was not found");
 
-        return thumbnail;
+        return thumbnail.imageUrl;
     } catch (error) {
         console.error(error);
     }
 }
 
-export async function fetchGameData(placeId: string) {
+export async function fetchGameData(placeId: string) : Promise<UniverseData | null> {
     try {
-        const universeResponse = await fetch(
+        const universeResponse: Response = await fetch(
             `https://apis.roblox.com/universes/v1/places/${placeId}/universe`,
+            { headers: defaultHeaders },
+        );
+
+        if (!universeResponse.ok) 
+            throw new Error("Failed to fetch universe id");
+
+        const universeData: UniverseResponse = await universeResponse.json();
+        const universeId: number = universeData.universeId;
+
+        const gameResponse: Response = await fetch(
+            `https://games.roblox.com/v1/games?universeIds=${universeId},1`,
             {
                 headers: {
-                    "User-Agent": "Mozilla/5.0 (compatible)",
+                    ...defaultHeaders,
+                    ...{"Cookie": ".ROBLOSECURITY=" + selectNextCookie()}
                 },
             },
         );
 
-        if (!universeResponse.ok) throw new Error("failed to fetch universe");
+        if (!gameResponse.ok) 
+            throw new Error("Failed to fetch universe data");
 
-        const universeData: any = await universeResponse.json();
-        const universeId = universeData.universeId;
-
-        const gameResponse = await fetch(
-            `https://games.roblox.com/v1/games?universeIds=${universeId}`,
-            {
-                headers: {
-                    "User-Agent": "Mozilla/5.0 (compatible)",
-                    "Cookie": ".ROBLOSECURITY=" + selectNextCookie()
-                },
-            },
-        );
-
-        if (!gameResponse.ok) throw new Error("failed to fetch game data");
-
-        const json = await gameResponse.json() as GameResponse;
-        
+        const json: GenericDataResponse<UniverseData> = await gameResponse.json();
         if (!json.data || !Array.isArray(json.data) || json.data.length === 0) {
-            console.warn('no game found');
+            console.warn('Requested universe was not found');
             return null;
         }
         
-        // is there a better way to do this???
-        const response: GameData = {
-            name: json.data.map(game => game.name).join('\n'),
-            description: json.data.map(game => game.description).join('\n'),
-            playing: json.data.map(game => game.playing).join('\n')
-        }
-        
-        return response;
+        return json.data?.[0];
     } catch (error) {
-        console.error("error fetching game data:", error);
+        console.error("Error fetching game data: ", error);
         return null;
     }
 }

@@ -2,7 +2,7 @@
 
 import type { PageServerLoad } from "./$types";
 import { fetchGameData, fetchThumbnailData } from "$lib/utils/roblox";
-import type { GameData } from "$lib/utils/roblox.types";
+import type { UniverseData } from "$lib/utils/roblox.types";
 
 export const load: PageServerLoad = async ({ url }) => {
     const placeId = url.searchParams.get("placeId");
@@ -19,14 +19,14 @@ export const load: PageServerLoad = async ({ url }) => {
         };
     }
 
-    const gameData = await fetchGameData(placeId) as GameData | null;
-    const gameName: string | undefined = gameData?.name;
+    const gameData = await fetchGameData(placeId) as UniverseData | null;
+    const gameName: string | undefined = (gameData?.name != null && gameData?.name != "") ? gameData?.name : "Roblox Experience";
     const gameDescription: string | undefined = gameData?.description;
     
     const formatter = new Intl.NumberFormat("en-US", { notation: "compact" });
-    const players: string = (gameData?.playing != null && !isNaN(gameData.playing)) ? formatter.format(gameData.playing) : "Unknown";
+    const players: string = (gameData?.playing != null && !isNaN(gameData.playing)) ? formatter.format(gameData.playing) : "?";
     
-    const gameThumbnail: string = await fetchThumbnailData(placeId, "GameThumbnail", "384x216", false);
+    const gameThumbnail: string = await fetchThumbnailData(Number.parseInt(placeId), "GameThumbnail", "384x216", false);
 
     return {
         placeId, 

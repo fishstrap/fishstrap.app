@@ -12,12 +12,12 @@ export async function GET({ url }) {
         method: "GET",
         headers: {
             "Accept": "application/vnd.github+json",
-            "Authorization": `Bearer ${PAT}`
+            "Authorization": `Bearer ${PAT}`,
+            "User-Agent": "FishstrapArtifactFetcher"
         }
     })
     
     if (!actionsResponse.ok) {
-        console.log(actionsResponse.status)
         throw new Error(`api responsed with status: ${actionsResponse.status}`)
     }
     
@@ -29,7 +29,8 @@ export async function GET({ url }) {
     const artifactResponse = await fetch(actionsData.artifacts?.[0].archive_download_url, {
         headers: {
             "Accept": "application/vnd.github+json",
-            "Authorization": `Bearer ${PAT}`
+            "Authorization": `Bearer ${PAT}`,
+            "User-Agent": "FishstrapArtifactFetcher"
         },
         redirect: "manual"
     })

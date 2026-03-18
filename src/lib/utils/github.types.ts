@@ -1,10 +1,10 @@
 /** @format */
-export interface ActionsResponse {
+export interface ArtifactResponse {
     total_count: number;
-    artifacts: ArtifactResponse[];
+    artifacts: Artifact[];
 }
 
-export interface ArtifactResponse {
+export interface Artifact {
     id: number;
     node_id: string;
     name: string;
@@ -16,13 +16,23 @@ export interface ArtifactResponse {
     created_at: string;
     updated_at: string;
     expires_at: string;
-    workflow_run: WorkflowRun;
+}
+
+export interface WorkflowRuns {
+    total_count: number;
+    workflow_runs: WorkflowRun[];
 }
 
 export interface WorkflowRun {
-    id: number;
-    repository_id: number;
-    head_repository_id: number;
     head_branch: string;
     head_sha: string;
+    display_title: string;
+    artifacts_url: string;
+}
+
+export enum HTTPCodes {
+    OK = 200,
+    BadRequest = 400,
+    NotFound = 404,
+    ServerError = 500
 }

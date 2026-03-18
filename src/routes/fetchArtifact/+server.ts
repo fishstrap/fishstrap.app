@@ -1,50 +1,107 @@
 /** @format */
+import { HTTPCodes, type ArtifactResponse, type WorkflowRun, type WorkflowRuns } from "$lib/utils/github.types.js";
 
 import { json } from "@sveltejs/kit";
 import { env } from "$env/dynamic/private";
-import type { ActionsResponse } from "$lib/utils/github.types.ts"
+import { version } from "../../../package.json";
+
+const PAT = env.GITHUB_PAT;
+const repo = "fishstrap/fishstrap";
+
+const defaultHeaders: { [header: string]: string } = {
+    "Accept": "application/vnd.github+json",
+    "Authorization": `Bearer ${PAT}`,
+    "User-Agent": `FishstrapWeb/${version}`
+}
 
 export async function GET({ url }) {
-    const PAT = env.GITHUB_PAT;
-    const repo = "fishstrap/fishstrap";
-    
-    const actionsResponse = await fetch(`https://api.github.com/repos/${repo}/actions/artifacts?per_page=1`, {
-        method: "GET",
-        headers: {
-            "Accept": "application/vnd.github+json",
-            "Authorization": `Bearer ${PAT}`,
-            "User-Agent": "FishstrapArtifactFetcher"
-        }
-    })
-    
-    if (!actionsResponse.ok) {
-        throw new Error(`api responsed with status: ${actionsResponse.status}`)
+    const workflow: string = url.searchParams.get("workflow");
+    const amount: string = url.searchParams.get("amount");
+
+    if (+amount > 10) {
+        return json({
+            "statusCode": HTTPCodes.BadRequest,
+            "message": "amount cannot be more than 10"
+        })
     }
     
-    const actionsData = await actionsResponse.json() as ActionsResponse;
+    if (amount == null || +amount <= 0) {
+        return json({
+            "statusCode": HTTPCodes.BadRequest,
+            "message": "amount cannot be null or below 0"
+        })
+    }
     
-    if (actionsData.artifacts == null)
-        throw new Error("no artifacts found");
+    let artifacts: object[];
     
-    const artifactResponse = await fetch(actionsData.artifacts?.[0].archive_download_url, {
-        headers: {
-            "Accept": "application/vnd.github+json",
-            "Authorization": `Bearer ${PAT}`,
-            "User-Agent": "FishstrapArtifactFetcher"
-        },
-        redirect: "manual"
-    })
+    if (workflow == "Release") {
+        const workflowRuns = await fetchRuns("ci-release.yml", amount);
+        artifacts = await fetchArtifactUrls(workflowRuns);
+    }
     
-    if (artifactResponse.status === 302) {
-        const downloadUrl = artifactResponse.headers.get("location");
-        const response = {
-            url: downloadUrl,
-            branch: actionsData.artifacts?.[0].workflow_run.head_branch,
-            commit: actionsData.artifacts?.[0].workflow_run.head_sha
-        };
+    if (workflow == "Debug") {
+        const workflowRuns = await fetchRuns("ci-debug.yml", amount);
+        artifacts = await fetchArtifactUrls(workflowRuns);
+    }
+    
+    if (artifacts == null) {
+        return json({
+            "statusCode": HTTPCodes.ServerError,
+            "message": "an internal server error has occured"
+        })
+    }
+    
+    return json(artifacts);
+}
+
+async function fetchRuns(id: string, amount: string): Promise<WorkflowRuns | null> {
+    const workflowResponse = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/${id}/runs?per_page=${amount}&event=push`, {
+        headers: defaultHeaders
+    });
+    
+    if (!workflowResponse.ok)
+        throw new Error(`api responded with status: ${workflowResponse.status}`);
+    
+    const workflowData = await workflowResponse.json() as WorkflowRuns;
+    
+    return workflowData;
+}
+
+async function fetchArtifactUrls(workflows: WorkflowRuns): Promise<object[] | null> {
+    let response: object[] = [];
+    
+    for (const workflow of workflows.workflow_runs) {
+        const artifactResponse = await fetch(workflow.artifacts_url, {
+            headers: defaultHeaders
+        });
         
-        return json(response);
-    } else {
-        throw new Error(`failed to get artifact.`)
+        if (!artifactResponse.ok) {
+            console.error(`api responded with status: ${artifactResponse.status}`);
+            continue;
+        }
+        
+        const artifactData = await artifactResponse.json() as ArtifactResponse;
+        
+        if (!artifactData.artifacts)
+            continue;
+        
+        const assetResponse = await fetch(artifactData.artifacts?.[0].archive_download_url, {
+            headers: defaultHeaders,
+            redirect: "manual"
+        });
+        
+        if (assetResponse.status === 302) {
+            let branch: string = workflow.head_branch;
+            let sha: string = workflow.head_sha;
+            let downloadUrl: string = assetResponse.headers.get("location");
+            
+            if (downloadUrl)
+                response.push({ [sha]: { branch: branch, url: downloadUrl, message: workflow.display_title } });
+        } else {
+            console.error(`api responded with status: ${assetResponse.status}`);
+            continue;
+        }
     }
+    
+    return response.length > 0 ? response : null;
 }

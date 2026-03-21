@@ -96,7 +96,7 @@ async function fetchArtifactUrls(workflows: WorkflowRuns): Promise<object[] | nu
             let downloadUrl: string = assetResponse.headers.get("location");
             
             if (downloadUrl)
-                response.push({ [sha]: { branch: branch, url: downloadUrl, message: workflow.display_title } });
+                response.push({ branch: branch, hash: sha, url: downloadUrl, message: workflow.display_title });
         } else {
             console.error(`api responded with status: ${assetResponse.status}`);
             continue;

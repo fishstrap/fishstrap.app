@@ -18,21 +18,32 @@ export interface Artifact {
     expires_at: string;
 }
 
-export interface WorkflowRuns {
-    total_count: number;
-    workflow_runs: WorkflowRun[];
+export interface WebhookPayload {
+    event: string;
+    payload: object;
+}
+
+export interface Payload {
+    action: string;
+    workflow_run: WorkflowRun;
+    sender: Sender;
 }
 
 export interface WorkflowRun {
+    name: string;
     head_branch: string;
     head_sha: string;
     display_title: string;
-    artifacts_url: string;
+    url: string;
+}
+
+export interface Sender {
+    login: string;
 }
 
 export enum HTTPCodes {
     OK = 200,
     BadRequest = 400,
     NotFound = 404,
-    ServerError = 500
+    ServerError = 500,
 }

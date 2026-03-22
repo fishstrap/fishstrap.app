@@ -32,9 +32,24 @@ export async function POST({ request }) {
             const artifacts = await fetchArtifactUrls(run);
 
             if (artifacts)
-                console.log("New artifacts generated:", artifacts);
+                console.log("new artifacts generated:", artifacts);
             
-            return json({ message: "Workflow processed successfully" });
+            // TODO: store said data in a Artifacts.json file with the following data format
+            // {
+            //     Release: {
+            //         main: [],
+            //         canary_downloader: [],
+            //         window_manipulation: []
+            //     },
+            //     Debug: {
+            //         main: [],
+            //         canary_downloader: [],
+            //         window_manipulation: []
+            //     }
+            // }
+            //
+            // the channel arrays will store the the artifact objects
+            return json({ message: "workflow processed successfully" });
         }
     }
     return json({ message: "event skipped..." });

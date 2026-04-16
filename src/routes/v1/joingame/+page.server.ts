@@ -19,17 +19,28 @@ export const load: PageServerLoad = async ({ url }) => {
         };
     }
 
-    const gameData = await fetchGameData(placeId) as UniverseData | null;
-    const gameName: string | undefined = (gameData?.name != null && gameData?.name != "") ? gameData?.name : "Roblox Experience";
+    const gameData = (await fetchGameData(placeId)) as UniverseData | null;
+    const gameName: string | undefined =
+        gameData?.name != null && gameData?.name != ""
+            ? gameData?.name
+            : "Roblox Experience";
     const gameDescription: string | undefined = gameData?.description;
-    
+
     const formatter = new Intl.NumberFormat("en-US", { notation: "compact" });
-    const players: string = (gameData?.playing != null && !isNaN(gameData.playing)) ? formatter.format(gameData.playing) : "?";
-    
-    const gameThumbnail: string = await fetchThumbnailData(Number.parseInt(placeId), "GameThumbnail", "384x216", false);
+    const players: string =
+        gameData?.playing != null && !isNaN(gameData.playing)
+            ? formatter.format(gameData.playing)
+            : "?";
+
+    const gameThumbnail: string = await fetchThumbnailData(
+        Number.parseInt(placeId),
+        "GameThumbnail",
+        "384x216",
+        false,
+    );
 
     return {
-        placeId, 
+        placeId,
         gameInstanceId,
         launchData,
         gameThumbnail,

@@ -4,7 +4,7 @@
 </script>
 
 <header
-    class="fixed left-4 right-4 top-4 z-1000 flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300 sm:px-6 md:left-8 md:right-8 md:py-2 lg:left-12 lg:right-12 xl:mx-auto xl:max-w-7xl">
+    class="title-bar fixed left-4 right-4 top-4 z-1000 flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300 md:left-8 md:right-8 md:py-2 lg:left-12 lg:right-12 xl:mx-auto xl:max-w-7xl">
     <div class="flex items-center gap-3">
         <div class="flex flex-col">
             <h1
@@ -49,3 +49,16 @@
         </a>
     </div>
 </header>
+
+<style>
+    @media (min-width: 0px) {
+        .title-bar {
+            visibility: hidden;
+        }
+    }
+    @media (min-width: 500px) {
+        .title-bar {
+            visibility: visible;
+        }
+    }
+</style>

@@ -23,7 +23,7 @@
             window.location.href = "/";
             return;
         }
-        
+
         onReady = true;
         setTimeout(() => {
             window.location.href = `roblox://experiences/start?placeId=${placeId}${gameInstanceId ? `&gameInstanceId=${gameInstanceId}` : ""}${launchData ? `&launchData=${launchData}` : ""}`;

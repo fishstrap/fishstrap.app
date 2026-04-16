@@ -30,7 +30,7 @@
     let imgWidth: string | number | undefined = $state();
     let imgHeight: string | number | undefined = $state();
 
-    // Function to get image dimensions
+    // function to get image dimensions
     function getImageDimensions(
         source: string,
     ): Promise<{ width: number; height: number }> {
@@ -40,13 +40,13 @@
                 resolve({ width: img.width, height: img.height });
             };
             img.onerror = () => {
-                resolve({ width: 0, height: 0 }); // Resolve with 0,0 on error to prevent blocking
+                resolve({ width: 0, height: 0 }); // resolve with 0,0 on error to prevent blocking
             };
             img.src = source;
         });
     }
 
-    // Modified preload function to simulate latency
+    // modified preload function to simulate latency
     async function preload(src: string, delay: number): Promise<void> {
         return new Promise<void>((resolve) => {
             setTimeout(() => {

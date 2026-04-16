@@ -1,13 +1,27 @@
+/** @format */
+
 import { selectNextCookie } from "$lib/utils/robloxAuth";
-import type { AssetType, ThumbnailData, ThumbnailResponse, GenericDataResponse, UniverseResponse, UniverseData } from "./roblox.types";
+import type {
+    AssetType,
+    ThumbnailData,
+    ThumbnailResponse,
+    GenericDataResponse,
+    UniverseResponse,
+    UniverseData,
+} from "./roblox.types";
 import { version } from "../../../package.json";
 
-const defaultHeaders: {[header:string]: string} = {
-        "User-Agent": `FishstrapWeb/${version}`,
-        "Content-Type": "application/json"
-}
+const defaultHeaders: { [header: string]: string } = {
+    "User-Agent": `FishstrapWeb/${version}`,
+    "Content-Type": "application/json",
+};
 
-export async function fetchThumbnailData(id: number, type: AssetType, size: string, isCircular: boolean) : Promise<string | null> {
+export async function fetchThumbnailData(
+    id: number,
+    type: AssetType,
+    size: string,
+    isCircular: boolean,
+): Promise<string | null> {
     const data: ThumbnailData[] = [
         {
             // generate a random request id
@@ -17,8 +31,8 @@ export async function fetchThumbnailData(id: number, type: AssetType, size: stri
             type: type,
             size: size,
             format: "png",
-            isCircular: isCircular
-        }
+            isCircular: isCircular,
+        },
     ];
 
     try {
@@ -32,9 +46,12 @@ export async function fetchThumbnailData(id: number, type: AssetType, size: stri
         );
 
         if (!thumbnailResponse.ok)
-            throw new Error(`Unable to generate thumbnail: ${thumbnailResponse.statusText}`);
+            throw new Error(
+                `Unable to generate thumbnail: ${thumbnailResponse.statusText}`,
+            );
 
-        const thumbnailData: GenericDataResponse<ThumbnailResponse> = await thumbnailResponse.json();
+        const thumbnailData: GenericDataResponse<ThumbnailResponse> =
+            await thumbnailResponse.json();
         const thumbnail: ThumbnailResponse | undefined = thumbnailData.data[0];
         if (!thumbnail?.imageUrl)
             throw new Error("Requested thumbnail was not found");
@@ -45,14 +62,16 @@ export async function fetchThumbnailData(id: number, type: AssetType, size: stri
     }
 }
 
-export async function fetchGameData(placeId: string) : Promise<UniverseData | null> {
+export async function fetchGameData(
+    placeId: string,
+): Promise<UniverseData | null> {
     try {
         const universeResponse: Response = await fetch(
             `https://apis.roblox.com/universes/v1/places/${placeId}/universe`,
             { headers: defaultHeaders },
         );
 
-        if (!universeResponse.ok) 
+        if (!universeResponse.ok)
             throw new Error("Failed to fetch universe id");
 
         const universeData: UniverseResponse = await universeResponse.json();
@@ -63,20 +82,20 @@ export async function fetchGameData(placeId: string) : Promise<UniverseData | nu
             {
                 headers: {
                     ...defaultHeaders,
-                    ...{"Cookie": ".ROBLOSECURITY=" + selectNextCookie()}
+                    ...{ Cookie: ".ROBLOSECURITY=" + selectNextCookie() },
                 },
             },
         );
 
-        if (!gameResponse.ok) 
-            throw new Error("Failed to fetch universe data");
+        if (!gameResponse.ok) throw new Error("Failed to fetch universe data");
 
-        const json: GenericDataResponse<UniverseData> = await gameResponse.json();
+        const json: GenericDataResponse<UniverseData> =
+            await gameResponse.json();
         if (!json.data || !Array.isArray(json.data) || json.data.length === 0) {
-            console.warn('Requested universe was not found');
+            console.warn("Requested universe was not found");
             return null;
         }
-        
+
         return json.data?.[0];
     } catch (error) {
         console.error("Error fetching game data: ", error);

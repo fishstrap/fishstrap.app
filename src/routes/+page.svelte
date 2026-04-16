@@ -29,10 +29,12 @@
 
     onMount(async () => {
         onReady = true;
-        
+
         // hardcoded for now
-        downloadUrl = "https://github.com/fishstrap/fishstrap/releases/latest/download/Fishstrap.exe";
-        tagName = "v3.0.2";
+        downloadUrl =
+            "https://github.com/fishstrap/fishstrap/releases/latest/download/Fishstrap.exe";
+
+        tagName = "v3.0.4";
     });
 </script>
 
@@ -67,7 +69,8 @@
                     <p
                         class="font-medium text-base sm:text-lg md:text-xl 2xl:text-2xl 3xl:text-3xl pointer-events-none z-100 max-w-2xl lg:max-w-none leading-relaxed">
                         Fishstrap is an alternative to the normal Roblox
-                        bootstrapper, with tons of features that cannot be found in the regular app.
+                        bootstrapper, with tons of features that cannot be found
+                        in the regular app.
                         <br />
                         <br />
 

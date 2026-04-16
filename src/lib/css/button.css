@@ -1,3 +1,5 @@
+/** @format */
+
 :root {
     --color-dark: #070640;
     --color-primary: #42b2ee;
@@ -57,7 +59,8 @@
     background-color: var(--color-primary);
     scale: 0 0;
     translate: 0 140%;
-    transition: scale 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
+    transition:
+        scale 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
         translate 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 

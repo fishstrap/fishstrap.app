@@ -20,6 +20,14 @@
     <div class="flex items-center gap-6">
         <nav class="items-center gap-6 md:flex">
             <a
+                href="https://wiki.fishstrap.app/"
+                target="_blank"
+                class="text-xs font-medium text-white/70 transition-colors hover:text-white">
+                Wiki
+            </a>
+        </nav>
+        <nav class="items-center gap-6 md:flex">
+            <a
                 href="https://github.com/fishstrap/fishstrap"
                 target="_blank"
                 class="text-xs font-medium text-white/70 transition-colors hover:text-white">

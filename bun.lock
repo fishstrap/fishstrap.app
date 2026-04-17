@@ -8,7 +8,6 @@
         "@fontsource-variable/inter": "^5.2.5",
         "@tailwindcss/vite": "^4.0.9",
         "prettier-plugin-svelte": "^3.3.3",
-        "svelte-device-info": "^1.0.6",
         "tailwindcss": "^4.0.9",
       },
       "devDependencies": {
@@ -383,8 +382,6 @@
     "stoppable": ["stoppable@1.1.0", "", {}, "sha512-KXDYZ9dszj6bzvnEMRYvxgeTHU74QBFL54XKtP3nyMuJ81CFYtABZ3bAzL2EdFUaEwJOBOgENyFj3R7oTzDyyw=="],
 
     "svelte": ["svelte@5.20.4", "", { "dependencies": { "@ampproject/remapping": "^2.3.0", "@jridgewell/sourcemap-codec": "^1.5.0", "@types/estree": "^1.0.5", "acorn": "^8.12.1", "acorn-typescript": "^1.4.13", "aria-query": "^5.3.1", "axobject-query": "^4.1.0", "clsx": "^2.1.1", "esm-env": "^1.2.1", "esrap": "^1.4.3", "is-reference": "^3.0.3", "locate-character": "^3.0.0", "magic-string": "^0.30.11", "zimmerframe": "^1.1.2" } }, "sha512-2Mo/AfObaw9zuD0u1JJ7sOVzRCGcpETEyDkLbtkcctWpCMCIyT0iz83xD8JT29SR7O4SgswuPRIDYReYF/607A=="],
-
-    "svelte-device-info": ["svelte-device-info@1.0.6", "", { "dependencies": { "tslib": "^2.6.2" } }, "sha512-G13YYkxnlz5AryOps8KFHFt8+5Ne7JiZgTxtYEXLVBF4UAwu9I1F+Xcd9rfhTZqUUtF9fm4qJpSi3I6p1JUt6Q=="],
 
     "tailwindcss": ["tailwindcss@4.0.9", "", {}, "sha512-12laZu+fv1ONDRoNR9ipTOpUD7RN9essRVkX36sjxuRUInpN7hIiHN4lBd/SIFjbISvnXzp8h/hXzmU8SQQYhw=="],
 

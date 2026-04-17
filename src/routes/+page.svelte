@@ -1,23 +1,27 @@
 <!-- @format -->
-<script>
+<script lang="ts">
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
-    import device from "svelte-device-info";
 
     import GradientText from "$lib/component/GradientText.svelte";
     import Titlebar from "$lib/component/Titlebar.svelte";
     import Link from "$lib/component/Link.svelte";
     import Image from "$lib/component/Image.svelte";
+    import Download from "$lib/svg/Download.svelte";
+    import Error from "./+error.svelte";
+    import Star from "$lib/svg/Star.svelte";
 
-    let onReady = $state(false);
-    let stars = $state(null);
-    let totalDownloads = $state(null);
-    let downloadUrl = $state(null);
-    let tagName = $state(null);
-    let copied = $state(false);
+    let onReady: boolean = $state(false);
+    let downloadUrl: string = $state(null);
+    let tagName: string = $state(null);
+    let copied: boolean = $state(false);
+    let githubStats: GithubData = $state(null);
 
-    let showBackground = true;
-    const mobile = device.isMobile || device.isTablet || device.isPhone;
+    interface GithubData {
+        stars: number;
+        total_release_downloads: number;
+        last_updated: string;
+    }
 
     function copyToClipboard() {
         navigator.clipboard.writeText("winget install Fishstrap.Fishstrap");
@@ -27,10 +31,24 @@
         }, 2000);
     }
 
+    async function getGithubStats(): Promise<GithubData | null> {
+        const workerResponse: Response = await fetch(
+            "https://worker.fishstrap.app/",
+        );
+
+        if (!workerResponse.ok)
+            console.error(`Worker data was null. ${workerResponse.statusText}`);
+
+        const workerData = (await workerResponse.json()) as GithubData;
+        console.log(workerData);
+        return workerData;
+    }
+
     onMount(async () => {
+        githubStats = await getGithubStats();
         onReady = true;
 
-        // hardcoded for now
+        // hardcoded forever
         downloadUrl =
             "https://github.com/fishstrap/fishstrap/releases/latest/download/Fishstrap.exe";
 
@@ -79,6 +97,11 @@
                             issue
                         </Link>
                         <br />
+                        Need help with an issue? Go to the <Link
+                            href="https://wiki.fishstrap.app/">
+                            wiki
+                        </Link>
+                        <br />
                         Want some mods? Join our <Link
                             content="Discord Server"
                             href="https://discord.gg/dZJSbgHx8y">
@@ -124,21 +147,30 @@
                     </div>
 
                     <div class="mt-4 pointer-events-none">
-                        <GradientText>
-                            Downloads: {totalDownloads == null
-                                ? "?"
-                                : totalDownloads} Stars:
-                            {stars == null ? "?" : stars}
-                        </GradientText>
-                    </div>
-
-                    <div class="mt-4 pointer-events-none">
                         <p class="text-sm opacity-75">
                             View the repository on <Link
                                 href="https://github.com/returnrqt/fishstrap">
                                 Github
                             </Link>
                         </p>
+                    </div>
+
+                    <div class="inline-flex gap-4 mt-4">
+                        <div
+                            class="pointer-events-none border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-base p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-2 sm:gap-2">
+                            <Download
+                                svgWidth="22"
+                                svgHeight="22" />{githubStats.total_release_downloads}
+                        </div>
+
+                        <div
+                            class="pointer-events-none border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-base p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-2 sm:gap-2">
+                            <Star
+                                svgWidth="24"
+                                svgHeight="24"
+                                className="fill-white" />
+                            {githubStats.stars}
+                        </div>
                     </div>
                 </div>
                 <div
@@ -223,7 +255,7 @@
 
     @media (min-width: 2560px) {
         .tile-grid {
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
         }
     }

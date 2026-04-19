@@ -3,17 +3,14 @@
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
 
-    import GradientText from "$lib/component/GradientText.svelte";
     import Titlebar from "$lib/component/Titlebar.svelte";
     import Link from "$lib/component/Link.svelte";
     import Image from "$lib/component/Image.svelte";
     import Download from "$lib/svg/Download.svelte";
-    import Error from "./+error.svelte";
     import Star from "$lib/svg/Star.svelte";
 
     let onReady: boolean = $state(false);
     let downloadUrl: string = $state(null);
-    let tagName: string = $state(null);
     let copied: boolean = $state(false);
     let githubStats: GithubData = $state(null);
 
@@ -47,12 +44,6 @@
     onMount(async () => {
         githubStats = await getGithubStats();
         onReady = true;
-
-        // hardcoded forever
-        downloadUrl =
-            "https://github.com/fishstrap/fishstrap/releases/latest/download/Fishstrap.exe";
-
-        tagName = "v3.0.4";
     });
 </script>
 
@@ -70,8 +61,6 @@
 
 <div
     class="font-['Inter_Variable'] transition-all min-h-screen w-full bg-black relative">
-    <Titlebar {downloadUrl} {tagName} />
-
     {#if onReady}
         <main
             in:fly={{ y: -50, duration: 600 }}

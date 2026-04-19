@@ -1,6 +1,11 @@
 <!-- @format -->
 <script lang="ts">
-    let { downloadUrl, tagName } = $props();
+    interface Props {
+        downloadUrl: string;
+        tagName: string;
+    }
+
+    let { downloadUrl, tagName }: Props = $props();
 </script>
 
 <header

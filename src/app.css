@@ -16,6 +16,72 @@
     --color-astronaut-blue-950: #0c2c45;
 }
 
+@utility text-glow-astronaut-blue-50 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-50),
+        0 0 20px var(--color-astronaut-blue-50),
+        0 0 40px var(--color-astronaut-blue-50);
+}
+@utility text-glow-astronaut-blue-100 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-100),
+        0 0 20px var(--color-astronaut-blue-100),
+        0 0 40px var(--color-astronaut-blue-100);
+}
+@utility text-glow-astronaut-blue-200 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-200),
+        0 0 20px var(--color-astronaut-blue-200),
+        0 0 40px var(--color-astronaut-blue-200);
+}
+@utility text-glow-astronaut-blue-300 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-300),
+        0 0 20px var(--color-astronaut-blue-300),
+        0 0 40px var(--color-astronaut-blue-300);
+}
+@utility text-glow-astronaut-blue-400 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-400),
+        0 0 20px var(--color-astronaut-blue-400),
+        0 0 40px var(--color-astronaut-blue-400);
+}
+@utility text-glow-astronaut-blue-500 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-500),
+        0 0 20px var(--color-astronaut-blue-500),
+        0 0 40px var(--color-astronaut-blue-500);
+}
+@utility text-glow-astronaut-blue-600 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-600),
+        0 0 20px var(--color-astronaut-blue-600),
+        0 0 40px var(--color-astronaut-blue-600);
+}
+@utility text-glow-astronaut-blue-700 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-700),
+        0 0 20px var(--color-astronaut-blue-700),
+        0 0 40px var(--color-astronaut-blue-700);
+}
+@utility text-glow-astronaut-blue-800 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-800),
+        0 0 20px var(--color-astronaut-blue-800),
+        0 0 40px var(--color-astronaut-blue-800);
+}
+@utility text-glow-astronaut-blue-900 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-900),
+        0 0 20px var(--color-astronaut-blue-900),
+        0 0 40px var(--color-astronaut-blue-900);
+}
+@utility text-glow-astronaut-blue-950 {
+    text-shadow:
+        0 0 10px var(--color-astronaut-blue-950),
+        0 0 20px var(--color-astronaut-blue-950),
+        0 0 40px var(--color-astronaut-blue-950);
+}
 /* fira-code-latin-wght-normal */
 @font-face {
     font-family: "Fira Code Variable";

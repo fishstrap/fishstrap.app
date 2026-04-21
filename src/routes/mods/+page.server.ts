@@ -1,6 +1,8 @@
 /** @format */
 
 import type { PageServerLoad } from "./$types";
+import { env } from "$env/dynamic/private";
+import { version } from "../../../package.json";
 
 enum ModType {
     BootstrapperTheme = 0,
@@ -31,13 +33,20 @@ export interface PageData {
     mods: Mod[];
 }
 
+const PAT = env.GITHUB_PAT;
+const defaultHeaders: { [header: string]: string } = {
+    Accept: "application/vnd.github+json",
+    Authorization: `Bearer ${PAT}`,
+    "User-Agent": `FishstrapWeb/${version}`,
+};
+
 export const load: PageServerLoad = async ({ fetch }): Promise<PageData> => {
     const repo = "fishstrap/mods";
     const branch = "main";
     const treeUrl = `https://api.github.com/repos/${repo}/git/trees/${branch}?recursive=1`;
 
     try {
-        const res = await fetch(treeUrl);
+        const res = await fetch(treeUrl, { headers: defaultHeaders });
         const data = await res.json();
 
         if (!data.tree) {
@@ -55,7 +64,9 @@ export const load: PageServerLoad = async ({ fetch }): Promise<PageData> => {
                 const folderName = dirPath.split("/").pop() || "";
                 const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${item.path}`;
 
-                const manifestRes = await fetch(rawUrl);
+                const manifestRes = await fetch(rawUrl, {
+                    headers: defaultHeaders,
+                });
                 const manifest: Manifest = manifestRes.ok
                     ? await manifestRes.json()
                     : {};

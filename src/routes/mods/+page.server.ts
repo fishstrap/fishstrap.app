@@ -31,7 +31,7 @@ export interface PageData {
     mods: Mod[];
 }
 
-const prerender = true;
+export const prerender = true;
 
 export const load: PageServerLoad = async ({ fetch }): Promise<PageData> => {
     const repo = "fishstrap/mods";

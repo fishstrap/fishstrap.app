@@ -1,6 +1,7 @@
 <!-- @format -->
 <script>
     import Titlebar from "$lib/component/Titlebar.svelte";
+    import Background from "$lib/component/Background.svelte";
 
     let { children } = $props();
 
@@ -12,5 +13,8 @@
         "https://github.com/fishstrap/fishstrap/releases/latest/download/Fishstrap.exe";
 </script>
 
-<Titlebar {downloadUrl} {tagName} />
-{@render children()}
+<Background />
+<div class="transition-all bg-black">
+    <Titlebar {downloadUrl} {tagName} />
+    {@render children()}
+</div>

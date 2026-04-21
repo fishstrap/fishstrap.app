@@ -3,7 +3,6 @@
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
 
-    import Titlebar from "$lib/component/Titlebar.svelte";
     import Link from "$lib/component/Link.svelte";
     import Image from "$lib/component/Image.svelte";
     import Download from "$lib/svg/Download.svelte";
@@ -59,8 +58,7 @@
     <title>| &nbsp;&nbsp;Home</title>
 </svelte:head>
 
-<div
-    class="font-['Inter_Variable'] transition-all min-h-screen w-full bg-black relative">
+<div class="font-['Inter_Variable'] min-h-screen w-full">
     {#if onReady}
         <main
             in:fly={{ y: -50, duration: 600 }}
@@ -172,26 +170,6 @@
             </section>
         </main>
     {/if}
-
-    <div class="tile-grid fixed inset-0 z-0">
-        {#each Array(550) as _, i}
-            <div
-                class="tile border border-white/25 transition-colors duration-500 ease-out hover:duration-0 hover:-translate-x-1 hover:-translate-y-1
-                hover:nth-[2n]:bg-astronaut-blue-300
-                hover:nth-[4n+1]:bg-astronaut-blue-800
-                hover:nth-[4n+3]:bg-astronaut-blue-950
-                hover:nth-[7n]:bg-astronaut-blue-700
-                hover:nth-[7n+3]:bg-astronaut-blue-600
-                hover:nth-[7n+5]:bg-astronaut-blue-900
-                hover:nth-[7n+6]:bg-astronaut-blue-500
-                hover:nth-[11n+1]:bg-astronaut-blue-200
-                hover:nth-[11n+4]:bg-astronaut-blue-600
-                hover:nth-[11n+7]:bg-astronaut-blue-950
-                hover:nth-[11n+10]:bg-astronaut-blue-100
-            ">
-            </div>
-        {/each}
-    </div>
 </div>
 
 <style>

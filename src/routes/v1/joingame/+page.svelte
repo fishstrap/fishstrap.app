@@ -3,6 +3,7 @@
     import { onMount } from "svelte";
     import { page } from "$app/stores";
     import Image from "$lib/components/ui/Image.svelte";
+    import UserRoundIcon from "@lucide/svelte/icons/user-round";
     import { fly } from "svelte/transition";
     let { data } = $props();
 
@@ -25,9 +26,9 @@
         }
 
         onReady = true;
-        setTimeout(() => {
-            window.location.href = `roblox://experiences/start?placeId=${placeId}${gameInstanceId ? `&gameInstanceId=${gameInstanceId}` : ""}${launchData ? `&launchData=${launchData}` : ""}`;
-        }, 1200);
+        // setTimeout(() => {
+        //     window.location.href = `roblox://experiences/start?placeId=${placeId}${gameInstanceId ? `&gameInstanceId=${gameInstanceId}` : ""}${launchData ? `&launchData=${launchData}` : ""}`;
+        // }, 1200);
     });
 </script>
 
@@ -54,13 +55,12 @@
     {/if}
 </svelte:head>
 
-<div class="flex h-screen w-full bg-black relative overflow-hidden">
+<div class="flex h-screen w-full relative overflow-hidden bg-(--background)/45">
     {#if onReady}
         <div class="flex w-full flex-col justify-center m-24 mb-24">
-            <div
-                class="absolute top-0 left-0 w-full h-full scale-250 bg-black opacity-50">
+            <div class="absolute top-0 left-0 w-full h-full scale-250">
                 <img
-                    class="w-full h-full blur-3xl opacity-45 animate-[spin_30s_linear_infinite]"
+                    class="w-full h-full blur-3xl opacity-45 animate-[spin_30s_linear_infinite] [-webkit-user-drag:none]"
                     src={gameThumbnail}
                     alt="" />
             </div>
@@ -70,10 +70,10 @@
                 You are being redirected to:
             </span>
             <div
-                class="flex flex-col my-4 w-[337px] max-h-[300px] rounded-lg bg-[#121215] p-4 z-20"
+                class="flex flex-col my-4 w-[337px] max-h-[300px] rounded-lg bg-(--background) p-4 z-20"
                 in:fly={{ y: 0, x: -75, duration: 600, delay: 500 }}>
                 <Image
-                    imgclass="rounded-lg"
+                    imgclass="rounded-lg [-webkit-user-drag:none]"
                     width="305"
                     height="171.567"
                     delay={500}
@@ -85,11 +85,7 @@
                         {gameName}
                     </div>
                     <div class="w-full inline-flex">
-                        <img
-                            src="/img/Player.png"
-                            width="16"
-                            height="16"
-                            alt="thumbnail" />
+                        <UserRoundIcon class="fill-(--foreground)" size="16" />
                         <span
                             class="font-[Builder_Sans_Medium] font-medium text-(--foreground) text-xs opacity-75 pl-1 pr-3">
                             {players}

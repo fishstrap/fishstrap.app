@@ -65,7 +65,7 @@
                     alt="" />
             </div>
             <span
-                class="font-[Inter_Variable] text-lg text-white/55"
+                class="font-[Inter_Variable] text-lg text-(--foreground)/55"
                 in:fly={{ y: 0, x: -75, duration: 600, delay: 200 }}>
                 You are being redirected to:
             </span>
@@ -81,7 +81,7 @@
                     src={gameThumbnail} />
                 <div class="h-[54px] w-full mt-2 text-md">
                     <div
-                        class="font-[Builder_Sans_Bold] mb-1 text-white font-bold">
+                        class="font-[Builder_Sans_Bold] mb-1 text-(--foreground) font-bold">
                         {gameName}
                     </div>
                     <div class="w-full inline-flex">
@@ -91,7 +91,7 @@
                             height="16"
                             alt="thumbnail" />
                         <span
-                            class="font-[Builder_Sans_Medium] font-medium text-white text-xs opacity-75 pl-1 pr-3">
+                            class="font-[Builder_Sans_Medium] font-medium text-(--foreground) text-xs opacity-75 pl-1 pr-3">
                             {players}
                         </span>
                     </div>

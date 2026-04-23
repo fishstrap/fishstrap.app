@@ -1,7 +1,7 @@
-<!-- @format -->
-<script>
-    import Titlebar from "$lib/component/Titlebar.svelte";
-    import Background from "$lib/component/Background.svelte";
+<script lang="ts">
+    import Titlebar from "$lib/components/ui/Titlebar.svelte";
+    import Background from "$lib/components/ui/Background.svelte";
+    import { ModeWatcher } from "mode-watcher";
 
     let { children } = $props();
 
@@ -14,7 +14,9 @@
 </script>
 
 <Background />
-<div class="transition-all bg-black">
+
+<div class="bg-(--background)">
     <Titlebar {downloadUrl} {tagName} />
     {@render children()}
 </div>
+<ModeWatcher />

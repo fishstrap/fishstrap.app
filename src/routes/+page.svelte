@@ -3,8 +3,8 @@
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
 
-    import Link from "$lib/component/Link.svelte";
-    import Image from "$lib/component/Image.svelte";
+    import Link from "$lib/components/ui/Link.svelte";
+    import Image from "$lib/components/ui/Image.svelte";
     import Download from "$lib/svg/Download.svelte";
     import Star from "$lib/svg/Star.svelte";
 
@@ -62,15 +62,19 @@
     {#if onReady}
         <main
             in:fly={{ y: -50, duration: 600 }}
-            class="text-white relative z-10 flex flex-col w-full pointer-events-none">
+            class="text-(--foreground) relative z-10 flex flex-col w-full pointer-events-none">
             <section
                 class="min-h-[calc(100vh-6rem)] mt-24 flex flex-col lg:flex-row items-center justify-center w-full max-w-[90rem] 2xl:max-w-[120rem] mx-auto pointer-events-none px-4 sm:px-6 lg:px-8 gap-8 lg:gap-16 2xl:gap-32">
                 <div
                     class="w-full lg:w-1/2 pointer-events-none flex flex-col items-center lg:items-start text-center lg:text-left">
                     <Image
                         delay={0}
-                        divclass="w-3/4 sm:w-1/2 lg:w-3/4 2xl:w-full pointer-events-none h-auto z-100 mb-8 lg:mb-12 2xl:mb-16"
-                        src="img/Logo.webp" />
+                        divclass="dark:hidden w-3/4 sm:w-1/2 lg:w-3/4 2xl:w-full pointer-events-none h-auto z-100 mb-8 lg:mb-12 2xl:mb-16"
+                        src="img/Fishstrap-Light.png" />
+                    <Image
+                        delay={0}
+                        divclass="dark:block hidden w-3/4 sm:w-1/2 lg:w-3/4 2xl:w-full pointer-events-none h-auto z-100 mb-8 lg:mb-12 2xl:mb-16"
+                        src="img/Fishstrap-Dark.png" />
                     <p
                         class="font-medium text-base sm:text-lg md:text-xl 2xl:text-2xl 3xl:text-3xl pointer-events-none z-100 max-w-2xl lg:max-w-none leading-relaxed">
                         Fishstrap is an alternative to the normal Roblox
@@ -99,7 +103,7 @@
 
                     <!--thank you Francois for the button!-->
                     <div
-                        class="flex wrapper pointer-events-auto mt-12 mb-4 justify-center items-center lg:justify-start">
+                        class="flex wrapper pointer-events-auto mt-12 mb-4 justify-center items-center lg:justify-start bg-(--muted-foreground)/25 rounded-lg">
                         <a id="downloadbutton" href={downloadUrl} class="c-btn">
                             <span class="c-btn__label">
                                 Download &nbsp; | <svg
@@ -118,17 +122,17 @@
                             </span>
                         </a>
                     </div>
-                    <span class="font-bold text-md text-white/50">
+                    <span class="font-bold text-md text-(--foreground)/50">
                         Or, Install from Winget:
                     </span>
                     <div
-                        class="pointer-events-auto mt-4 font-[consolas] border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-xs sm:text-base md:text-lg 2xl:text-xl p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-3 sm:gap-4">
+                        class="pointer-events-auto mt-4 font-[consolas] border border-(--foreground)/15 bg-(--foreground)/15 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-xs sm:text-base md:text-lg 2xl:text-xl p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-3 sm:gap-4">
                         <span class="whitespace-nowrap">
                             > winget install Fishstrap.Fishstrap
                         </span>
                         <button
                             onclick={copyToClipboard}
-                            class="text-sm bg-white/10 hover:bg-white/20 transition-alls px-2 py-1 rounded text-white/70 hover:text-white font-[Inter_Variable]">
+                            class="text-sm bg-(--foreground)/10 hover:bg-(--foreground)/15 transition-alls px-2 py-1 rounded text-(--foreground)/70 hover:text-(--foreground) font-[Inter_Variable]">
                             {copied ? "Copied!" : "Copy"}
                         </button>
                     </div>
@@ -144,18 +148,20 @@
 
                     <div class="inline-flex gap-4 mt-4">
                         <div
-                            class="pointer-events-none border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-base p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-2 sm:gap-2">
+                            class="pointer-events-none border border-(--foreground)/10 bg-(--foreground)/15 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-base p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-2 sm:gap-2">
                             <Download
+                                className="fill-(--foreground)"
                                 svgWidth="22"
-                                svgHeight="22" />{githubStats.total_release_downloads}
+                                svgHeight="22" />
+                            {githubStats.total_release_downloads}
                         </div>
 
                         <div
-                            class="pointer-events-none border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-base p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-2 sm:gap-2">
+                            class="pointer-events-none border border-(--foreground)/10 bg-(--foreground)/15 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-base p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-2 sm:gap-2">
                             <Star
                                 svgWidth="24"
                                 svgHeight="24"
-                                className="fill-white" />
+                                className="fill-(--foreground)" />
                             {githubStats.stars}
                         </div>
                     </div>

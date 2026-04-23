@@ -1,4 +1,3 @@
-<!-- @format -->
 <script lang="ts">
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
@@ -54,40 +53,45 @@
         </div>
 
         <main
-            class="flex flex-col xl:flex-row mt-24 gap-8 w-full items-center xl:items-start justify-center">
+            class="flex flex-col mt-24 gap-8 w-full items-center justify-center pb-32">
             <div
-                class="flex bg-(--background)/15 backdrop-blur-2xl gap-2 border border-(--foreground)/15 p-4 rounded-lg transition-colors z-100">
-                <Field.Set class="flex gap-4">
-                    <Field.Legend>Search</Field.Legend>
-                    <Field.Description>
-                        <Input
-                            bind:value={searchQuery}
-                            class="mt-2"
-                            type="search"
-                            name="q"
-                            placeholder="Type here to search..." />
-                    </Field.Description>
-                    <Field.Legend>Filter</Field.Legend>
-                    <Field.Content>
-                        <div class="flex gap-2 text-(--foreground)">
-                            {#each categories as category}
-                                <Button
-                                    class="w-fit"
-                                    variant="outline"
-                                    onclick={() =>
-                                        (selectedCategory =
-                                            category as string)}>
-                                    {category}
-                                </Button>
-                            {/each}
-                        </div>
-                    </Field.Content>
+                class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-max flex bg-(--background)/80 backdrop-blur-3xl shadow-2xl gap-2 border border-(--foreground)/15 p-4 rounded-2xl transition-colors z-50">
+                <Field.Set class="flex flex-col sm:flex-row gap-4 w-full">
+                    <div class="w-full sm:w-auto">
+                        <Field.Legend>Search</Field.Legend>
+                        <Field.Description>
+                            <Input
+                                bind:value={searchQuery}
+                                class="mt-3.5 w-full"
+                                type="search"
+                                name="q"
+                                placeholder="Type here to search..." />
+                        </Field.Description>
+                    </div>
+                    <div class="w-full sm:w-auto">
+                        <Field.Legend>Filter</Field.Legend>
+                        <Field.Content>
+                            <div
+                                class="flex flex-wrap gap-2 text-(--foreground) mt-2">
+                                {#each categories as category}
+                                    <Button
+                                        class="w-fit"
+                                        variant="outline"
+                                        onclick={() =>
+                                            (selectedCategory =
+                                                category as string)}>
+                                        {category}
+                                    </Button>
+                                {/each}
+                            </div>
+                        </Field.Content>
+                    </div>
                 </Field.Set>
             </div>
 
             <div
                 in:fly={{ y: -50, duration: 600, delay: 300 }}
-                class="flex flex-wrap flex-1 gap-4 max-w-428 sm:justify-center">
+                class="flex flex-wrap flex-1 gap-4 max-w-428 justify-center">
                 {#if filteredMods.length > 0}
                     {#each filteredMods as mod}
                         <Card

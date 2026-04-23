@@ -2,7 +2,7 @@
 <div class="tile-grid fixed inset-0 z-0">
     {#each Array(550) as _, i}
         <div
-            class="tile border border-white/25 transition-colors duration-500 ease-out hover:duration-0 hover:-translate-x-1 hover:-translate-y-1
+            class="tile border border-(--foreground)/25 transition-colors ease-out hover:duration-0 hover:-translate-x-1 hover:-translate-y-1 duration-500
             hover:nth-[2n]:bg-astronaut-blue-300
             hover:nth-[4n+1]:bg-astronaut-blue-800
             hover:nth-[4n+3]:bg-astronaut-blue-950

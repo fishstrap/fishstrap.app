@@ -1,9 +1,10 @@
 <!-- @format -->
 <script>
-    let { svgHeight, svgWidth } = $props();
+    let { className, svgHeight, svgWidth } = $props();
 </script>
 
 <svg
+    class={className}
     height={svgHeight}
     width={svgWidth}
     viewBox="0 0 15 15"

@@ -5,8 +5,10 @@
 
     import type { Mod } from "./+page.server.ts";
 
-    import Card from "$lib/component/Card.svelte";
-    import Search from "$lib/svg/Search.svelte";
+    import { Button } from "$lib/components/ui/button";
+    import { Input } from "$lib/components/ui/input/index.js";
+    import * as Field from "$lib/components/ui/field/index.js";
+    import Card from "$lib/components/ui/Card.svelte";
 
     let searchQuery = $state("");
     let selectedCategory = $state("All");
@@ -40,59 +42,52 @@
 </script>
 
 <div
-    class="font-['Inter_Variable'] flex bg-black w-full min-h-screen flex-col text-white">
+    class="font-['Inter_Variable'] flex bg-(--background) w-full min-h-screen flex-col text-(--foreground) justify-center">
     {#if onReady}
         <div
             class="flex flex-col mt-32 mx-auto items-center text-center max-w-3xl px-4">
             <h1 class="text-4xl font-bold">Mods</h1>
-            <p class="mt-4 text-xl text-white/75">
+            <p class="mt-4 text-xl text-(--foreground)/75">
                 Search the community database to find a mod you like. From
                 themes, to sound effects, and even bootstrapper themes.
             </p>
         </div>
 
         <main
-            class="mx-16 flex flex-col xl:flex-row w-fit mt-24 items-start gap-8">
+            class="flex flex-col xl:flex-row mt-24 gap-8 w-full items-center xl:items-start justify-center">
             <div
-                in:fly={{ y: -50, duration: 600 }}
-                class="w-full xl:w-80 shrink-0 flex flex-col gap-6 z-100">
-                <div
-                    class="flex flex-col backdrop-blur-2xl border border-white/10 bg-white/5 p-4 xl:p-6 rounded-lg w-full gap-3">
-                    <span class="text-base font-bold">Search</span>
-                    <div
-                        class="flex items-center gap-2 border border-white/10 bg-white/5 rounded-lg px-4 py-2 focus-within:border-white/30 transition-colors">
-                        <Search
-                            svgHeight="20"
-                            svgWidth="20"
-                            className="opacity-55 shrink-0" />
-                        <input
+                class="flex bg-(--background)/15 backdrop-blur-2xl gap-2 border border-(--foreground)/15 p-4 rounded-lg transition-colors z-100">
+                <Field.Set class="flex gap-4">
+                    <Field.Legend>Search</Field.Legend>
+                    <Field.Description>
+                        <Input
                             bind:value={searchQuery}
-                            class="text-sm focus:outline-none bg-transparent w-full"
+                            class="mt-2"
                             type="search"
                             name="q"
                             placeholder="Type here to search..." />
-                    </div>
-
-                    <span class="text-base font-bold mt-2">Filters</span>
-                    <div class="flex flex-wrap gap-2">
-                        {#each categories as category}
-                            <button
-                                onclick={() =>
-                                    (selectedCategory = category as string)}
-                                class="px-3 py-1.5 text-sm rounded-lg border transition-all duration-200
-                                {selectedCategory === category
-                                    ? 'bg-white text-black border-white'
-                                    : 'bg-white/5 border-white/10 text-white/75 hover:bg-white/10 hover:text-white'}">
-                                {category}
-                            </button>
-                        {/each}
-                    </div>
-                </div>
+                    </Field.Description>
+                    <Field.Legend>Filter</Field.Legend>
+                    <Field.Content>
+                        <div class="flex gap-2 text-(--foreground)">
+                            {#each categories as category}
+                                <Button
+                                    class="w-fit"
+                                    variant="outline"
+                                    onclick={() =>
+                                        (selectedCategory =
+                                            category as string)}>
+                                    {category}
+                                </Button>
+                            {/each}
+                        </div>
+                    </Field.Content>
+                </Field.Set>
             </div>
 
             <div
                 in:fly={{ y: -50, duration: 600, delay: 300 }}
-                class="flex flex-wrap flex-1 gap-4 w-fit justify-center">
+                class="flex flex-wrap flex-1 gap-4 max-w-428 sm:justify-center">
                 {#if filteredMods.length > 0}
                     {#each filteredMods as mod}
                         <Card
@@ -105,8 +100,8 @@
                     {/each}
                 {:else}
                     <div
-                        class="flex items-center justify-center h-84 w-85 backdrop-blur-2xl border border-dashed border-white/20 rounded-lg bg-white/5">
-                        <span class=" text-white/50">
+                        class="flex items-center justify-center h-84 w-85 backdrop-blur-2xl border border-dashed border-(--foreground)/20 rounded-lg bg-(--background)/5">
+                        <span class=" text-(--foreground)/50">
                             No mods found matching your search.
                         </span>
                     </div>

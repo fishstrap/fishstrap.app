@@ -7,6 +7,5 @@
     "singleQuote": false,
     "semi": true,
     "htmlWhitespaceSensitivity": "ignore",
-    "insertPragma": true,
     "objectWrap": "collapse"
 }

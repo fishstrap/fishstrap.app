@@ -26,9 +26,9 @@
         }
 
         onReady = true;
-        // setTimeout(() => {
-        //     window.location.href = `roblox://experiences/start?placeId=${placeId}${gameInstanceId ? `&gameInstanceId=${gameInstanceId}` : ""}${launchData ? `&launchData=${launchData}` : ""}`;
-        // }, 1200);
+        setTimeout(() => {
+            window.location.href = `roblox://experiences/start?placeId=${placeId}${gameInstanceId ? `&gameInstanceId=${gameInstanceId}` : ""}${launchData ? `&launchData=${launchData}` : ""}`;
+        }, 1200);
     });
 </script>
 

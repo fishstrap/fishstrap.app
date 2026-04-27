@@ -11,8 +11,8 @@
         divclass?: string;
         imgclass?: string;
         delay?: number;
-        width: string | number | undefined;
-        height: string | number | undefined;
+        width?: string | number | undefined;
+        height?: string | number | undefined;
     }
 
     let {

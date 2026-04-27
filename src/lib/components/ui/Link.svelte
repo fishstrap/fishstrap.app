@@ -2,6 +2,7 @@
 <script lang="ts">
     interface Props {
         href?: string;
+        children?: any;
     }
 
     let { children, href = "" }: Props = $props();

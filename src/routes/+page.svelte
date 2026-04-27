@@ -9,9 +9,9 @@
     import Star from "$lib/svg/Star.svelte";
 
     let onReady: boolean = $state(false);
-    let downloadUrl: string = $state(null);
+    let downloadUrl: string = $state("");
     let copied: boolean = $state(false);
-    let githubStats: GithubData = $state(null);
+    let githubStats: GithubData | null = $state(null);
 
     interface GithubData {
         stars: number;
@@ -41,7 +41,7 @@
     }
 
     onMount(async () => {
-        githubStats = await getGithubStats();
+        githubStats = (await getGithubStats()) as GithubData;
         onReady = true;
     });
 </script>
@@ -64,7 +64,7 @@
             in:fly={{ y: -50, duration: 600 }}
             class="text-(--foreground) relative z-10 flex flex-col w-full pointer-events-none">
             <section
-                class="min-h-[calc(100vh-6rem)] mt-24 flex flex-col lg:flex-row items-center justify-center w-full max-w-[90rem] 2xl:max-w-[120rem] mx-auto pointer-events-none px-4 sm:px-6 lg:px-8 gap-8 lg:gap-16 2xl:gap-32">
+                class="min-h-[calc(100vh-6rem)] mt-24 flex flex-col lg:flex-row items-center justify-center w-full max-w-360 2xl:max-w-480 mx-auto pointer-events-none px-4 sm:px-6 lg:px-8 gap-8 lg:gap-16 2xl:gap-32">
                 <div
                     class="w-full lg:w-1/2 pointer-events-none flex flex-col items-center lg:items-start text-center lg:text-left">
                     <Image
@@ -94,7 +94,6 @@
                         </Link>
                         <br />
                         Want some mods? Join our <Link
-                            content="Discord Server"
                             href="https://discord.gg/dZJSbgHx8y">
                             server
                         </Link>
@@ -103,7 +102,7 @@
 
                     <!--thank you Francois for the button!-->
                     <div
-                        class="flex wrapper pointer-events-auto mt-12 mb-4 justify-center items-center lg:justify-start bg-(--muted-foreground)/25 rounded-lg">
+                        class="flex wrapper pointer-events-none mt-12 mb-4 justify-center items-center lg:justify-start bg-(--muted-foreground)/25 rounded-lg">
                         <a id="downloadbutton" href={downloadUrl} class="c-btn">
                             <span class="c-btn__label">
                                 Download &nbsp; | <svg
@@ -153,7 +152,7 @@
                                 className="fill-(--foreground)"
                                 svgWidth="22"
                                 svgHeight="22" />
-                            {githubStats.total_release_downloads}
+                            {githubStats?.total_release_downloads}
                         </div>
 
                         <div
@@ -162,7 +161,7 @@
                                 svgWidth="24"
                                 svgHeight="24"
                                 className="fill-(--foreground)" />
-                            {githubStats.stars}
+                            {githubStats?.stars}
                         </div>
                     </div>
                 </div>
@@ -177,66 +176,3 @@
         </main>
     {/if}
 </div>
-
-<style>
-    :global(html) {
-        scrollbar-color: #27272a #09090b;
-    }
-    :global(::-webkit-scrollbar) {
-        width: 8px;
-        background-color: #09090b;
-    }
-
-    :global(::-webkit-scrollbar-thumb) {
-        background-color: #27272a;
-        border-radius: 9999px;
-    }
-
-    :global(::-webkit-scrollbar-thumb:hover) {
-        background-color: #3f3f46;
-    }
-    .tile-grid {
-        display: grid;
-        width: 100%;
-        height: 100%;
-        gap: 0;
-        opacity: 0.4;
-    }
-
-    .tile {
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 1;
-    }
-
-    /** kinda dont like how we have to do responsive design in tailwind so im just going
-        do it this way. yes its uglier compared to tailwind but i like the verbosity a bit more **/
-
-    @media (min-width: 300px) {
-        .tile-grid {
-            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(60px, 1fr));
-        }
-    }
-
-    @media (min-width: 1024px) {
-        .tile-grid {
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(90px, 1fr));
-        }
-    }
-
-    @media (min-width: 2560px) {
-        .tile-grid {
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
-        }
-    }
-
-    @media (min-width: 3060px) {
-        .tile-grid {
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(240px, 1fr));
-        }
-    }
-</style>

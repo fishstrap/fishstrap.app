@@ -34,6 +34,9 @@
         aspect-ratio: 1;
     }
 
+    /** kinda dont like how we have to do responsive design in tailwind so im just going
+        do it this way. yes its uglier compared to tailwind but i like the verbosity a bit more **/
+
     @media (min-width: 300px) {
         .tile-grid {
             grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));

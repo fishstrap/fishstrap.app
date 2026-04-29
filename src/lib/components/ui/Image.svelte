@@ -5,7 +5,7 @@
     import { bounceInOut } from "svelte/easing";
 
     interface Props {
-        src: string;
+        src?: string;
         alt?: string;
         loading?: "lazy" | "eager";
         divclass?: string;
@@ -47,7 +47,7 @@
     }
 
     // modified preload function to simulate latency
-    async function preload(src: string, delay: number): Promise<void> {
+    async function preload(src?: string, delay?: number): Promise<void> {
         return new Promise<void>((resolve) => {
             setTimeout(() => {
                 const img = new Image();
@@ -56,7 +56,8 @@
                     resolve();
                 };
                 img.onerror = () => resolve();
-                img.src = src;
+
+                if (src) img.src = src;
             }, delay);
         });
     }

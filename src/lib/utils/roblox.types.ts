@@ -1,5 +1,3 @@
-/** @format */
-
 export interface GenericDataResponse<T> {
     data: T[];
 }

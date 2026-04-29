@@ -1,4 +1,3 @@
-/** @format */
 export interface ArtifactResponse {
     total_count: number;
     artifacts: Artifact[];

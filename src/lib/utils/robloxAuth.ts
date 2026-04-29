@@ -1,5 +1,3 @@
-/** @format */
-
 import { env } from "$env/dynamic/private";
 
 export function selectNextCookie(): string {

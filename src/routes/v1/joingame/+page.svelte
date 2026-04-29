@@ -1,4 +1,3 @@
-<!-- @format -->
 <script lang="ts">
     import { onMount } from "svelte";
     import { page } from "$app/stores";
@@ -17,7 +16,7 @@
         players,
     } = data;
 
-    let onReady = $state();
+    let onReady = $state(false);
 
     onMount(() => {
         if (!placeId) {
@@ -34,14 +33,12 @@
 
 <svelte:head>
     {#if gameThumbnail}
-        <title>Join {gameName || "Experience"}!</title>
-        <meta
-            property="og:title"
-            content="Join {gameName || 'this Experience'}!" />
+        <title>Join {gameName}!</title>
+        <meta property="og:title" content="Join {gameName}!" />
         <meta
             property="og:description"
             content={gameDescription ||
-                "This link was generated with Fishstrap."} />
+                "This invite link was generated with Fishstrap."} />
         <meta property="og:image" content={gameThumbnail} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={$page.url.href} />
@@ -49,7 +46,10 @@
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={gameThumbnail} />
         <meta name="twitter:title" content={gameName} />
-        <meta name="twitter:description" content={gameDescription} />
+        <meta
+            name="twitter:description"
+            content={gameDescription ||
+                "This invite link was generated with Fishstrap."} />
 
         <meta name="theme-color" content="#00A2FF" />
     {/if}

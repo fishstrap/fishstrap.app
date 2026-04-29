@@ -32,7 +32,7 @@
 
     // function to get image dimensions
     function getImageDimensions(
-        source: string,
+        src: string | null | undefined,
     ): Promise<{ width: number; height: number }> {
         return new Promise((resolve) => {
             const img = new Image();
@@ -42,12 +42,15 @@
             img.onerror = () => {
                 resolve({ width: 0, height: 0 }); // resolve with 0,0 on error to prevent blocking
             };
-            img.src = source;
+            if (src) img.src = src;
         });
     }
 
     // modified preload function to simulate latency
-    async function preload(src?: string, delay?: number): Promise<void> {
+    async function preload(
+        src?: string | null | undefined,
+        delay?: number,
+    ): Promise<void> {
         return new Promise<void>((resolve) => {
             setTimeout(() => {
                 const img = new Image();
@@ -63,12 +66,10 @@
     }
 
     async function initializeDimensions() {
-        if (width) {
-            imgWidth = width;
-        }
-        if (height) {
-            imgHeight = height;
-        }
+        if (width) imgWidth = width;
+
+        if (height) imgHeight = height;
+
         if (!width || !height) {
             try {
                 const dimensions = await getImageDimensions(src);

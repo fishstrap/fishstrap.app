@@ -1,5 +1,3 @@
-/** @format */
-
 import type { PageServerLoad } from "./$types";
 import { env } from "$env/dynamic/private";
 import { version } from "../../../package.json";

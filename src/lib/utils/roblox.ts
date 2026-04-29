@@ -1,5 +1,3 @@
-/** @format */
-
 import { selectNextCookie } from "$lib/utils/robloxAuth";
 import type {
     AssetType,

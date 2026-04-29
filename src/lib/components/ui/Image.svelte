@@ -5,7 +5,7 @@
     import { bounceInOut } from "svelte/easing";
 
     interface Props {
-        src?: string;
+        src?: string | null | undefined;
         alt?: string;
         loading?: "lazy" | "eager";
         divclass?: string;

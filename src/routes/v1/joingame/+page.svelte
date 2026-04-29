@@ -17,7 +17,7 @@
         players,
     } = data;
 
-    let onReady = $state();
+    let onReady = $state(false);
 
     onMount(() => {
         if (!placeId) {
@@ -49,7 +49,10 @@
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={gameThumbnail} />
         <meta name="twitter:title" content={gameName} />
-        <meta name="twitter:description" content={gameDescription} />
+        <meta
+            name="twitter:description"
+            content={gameDescription ||
+                "This link was generated with Fishstrap."} />
 
         <meta name="theme-color" content="#00A2FF" />
     {/if}

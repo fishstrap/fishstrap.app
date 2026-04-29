@@ -70,7 +70,7 @@
                 You are being redirected to:
             </span>
             <div
-                class="flex flex-col my-4 w-[337px] max-h-[300px] rounded-lg bg-(--background) p-4 z-20"
+                class="flex flex-col my-4 w-84 max-h-75 rounded-lg bg-(--background) p-4 z-20"
                 in:fly={{ y: 0, x: -75, duration: 600, delay: 500 }}>
                 <Image
                     imgclass="rounded-lg [-webkit-user-drag:none]"
@@ -79,7 +79,7 @@
                     delay={500}
                     divclass="w-[305px] h-[171.567px]"
                     src={gameThumbnail} />
-                <div class="h-[54px] w-full mt-2 text-md">
+                <div class="h-13.5 w-full mt-2 text-md">
                     <div
                         class="font-[Builder_Sans_Bold] mb-1 text-(--foreground) font-bold">
                         {gameName}

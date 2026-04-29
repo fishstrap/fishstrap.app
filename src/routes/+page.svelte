@@ -9,9 +9,12 @@
     import Star from "$lib/svg/Star.svelte";
 
     let onReady: boolean = $state(false);
-    let downloadUrl: string = $state("");
     let copied: boolean = $state(false);
     let githubStats: GithubData | null = $state(null);
+
+    // never changes
+    const downloadUrl: string =
+        "https://github.com/fishstrap/fishstrap/releases/latest/download/Fishstrap.exe";
 
     interface GithubData {
         stars: number;
@@ -102,8 +105,11 @@
 
                     <!--thank you Francois for the button!-->
                     <div
-                        class="flex wrapper pointer-events-none mt-12 mb-4 justify-center items-center lg:justify-start bg-(--muted-foreground)/25 rounded-lg">
-                        <a id="downloadbutton" href={downloadUrl} class="c-btn">
+                        class="flex wrapper pointer-events-auto mt-12 mb-4 justify-center items-center lg:justify-start bg-(--muted-foreground)/25 rounded-lg">
+                        <a
+                            id="downloadbutton"
+                            href={downloadUrl}
+                            class="c-btn backdrop-blur-2xl">
                             <span class="c-btn__label">
                                 Download &nbsp; | <svg
                                     width="24"

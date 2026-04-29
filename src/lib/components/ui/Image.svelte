@@ -1,4 +1,3 @@
-<!-- @format -->
 <script lang="ts">
     import { blur } from "svelte/transition";
     import { onMount } from "svelte";

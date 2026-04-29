@@ -1,5 +1,3 @@
-/** @format */
-
 import type { PageServerLoad } from "./$types";
 import { fetchGameData, fetchThumbnailData } from "$lib/utils/roblox";
 import type { UniverseData } from "$lib/utils/roblox.types";

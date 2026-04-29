@@ -1,5 +1,3 @@
-/** @format */
-
 import { version } from "../../../package.json";
 
 export async function fetchServerData(placeId: string, gameInstanceId: string) {

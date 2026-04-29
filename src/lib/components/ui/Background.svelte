@@ -1,4 +1,3 @@
-<!-- @format -->
 <div class="tile-grid fixed inset-0 z-0">
     {#each Array(550) as _, i}
         <div

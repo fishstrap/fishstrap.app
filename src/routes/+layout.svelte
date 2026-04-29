@@ -9,6 +9,8 @@
     import "../app.css";
 
     const tagName = "v3.0.4";
+
+    // never changes
     const downloadUrl =
         "https://github.com/fishstrap/fishstrap/releases/latest/download/Fishstrap.exe";
 </script>

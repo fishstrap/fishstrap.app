@@ -105,7 +105,7 @@
                         Or, Install from Winget:
                     </span>
                     <div
-                        class="pointer-events-auto mt-4 font-[consolas] border border-(--foreground)/15 bg-(--foreground)/15 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-xs sm:text-base md:text-lg 2xl:text-xl p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-3 sm:gap-4">
+                        class="pointer-events-auto mt-4 font-mono border border-(--foreground)/15 bg-(--foreground)/15 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-xs sm:text-base md:text-lg 2xl:text-xl p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-3 sm:gap-4">
                         <span class="whitespace-nowrap">
                             > winget install Fishstrap.Fishstrap
                         </span>

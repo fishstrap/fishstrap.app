@@ -2,10 +2,12 @@
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
 
-    import Link from "$lib/components/ui/Link.svelte";
     import Image from "$lib/components/ui/Image.svelte";
-    import Download from "$lib/svg/Download.svelte";
-    import Star from "$lib/svg/Star.svelte";
+    import Link from "$lib/components/ui/Link.svelte";
+    import StarIcon from "@lucide/svelte/icons/star";
+    import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
+    import DownloadIcon from "@lucide/svelte/icons/download";
+    import * as Card from "$lib/components/ui/card";
 
     let onReady: boolean = $state(false);
     let copied: boolean = $state(false);
@@ -78,51 +80,24 @@
                         divclass="dark:block hidden w-3/4 sm:w-1/2 lg:w-3/4 2xl:w-full pointer-events-none h-auto z-100 mb-8 lg:mb-12 2xl:mb-16"
                         src="img/Fishstrap-Dark.png" />
                     <p
-                        class="font-medium text-base sm:text-lg md:text-xl 2xl:text-2xl 3xl:text-3xl pointer-events-none z-100 max-w-2xl lg:max-w-none leading-relaxed">
+                        class="font-normal text-base sm:text-lg md:text-xl 2xl:text-2xl 3xl:text-3xl pointer-events-none z-100 max-w-2xl lg:max-w-none leading-relaxed">
                         Fishstrap is an alternative to the normal Roblox
                         bootstrapper, with tons of features that cannot be found
                         in the regular app.
                         <br />
                         <br />
-
-                        Found any bugs? Submit an <Link
-                            href="https://github.com/returnrqt/fishstrap/issues">
-                            issue
-                        </Link>
-                        <br />
-                        Need help with an issue? Go to the <Link
-                            href="https://wiki.fishstrap.app/">
-                            wiki
-                        </Link>
-                        <br />
-                        Want some mods? Join our <Link
-                            href="https://discord.gg/dZJSbgHx8y">
-                            server
-                        </Link>
-                        <br />
+                        Windows 10 and above.
                     </p>
 
                     <!--thank you Francois for the button!-->
                     <div
-                        class="flex wrapper pointer-events-auto mt-12 mb-4 justify-center items-center lg:justify-start bg-(--muted-foreground)/25 rounded-lg">
+                        class="flex wrapper pointer-events-auto mt-4 mb-4 justify-center items-center lg:justify-start bg-(--muted-foreground)/25 rounded-lg">
                         <a
                             id="downloadbutton"
                             href={downloadUrl}
                             class="c-btn backdrop-blur-2xl">
                             <span class="c-btn__label">
-                                Download &nbsp; | <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 15 15"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7.50005 1.04999C7.74858 1.04999 7.95005 1.25146 7.95005 1.49999V8.41359L10.1819 6.18179C10.3576 6.00605 10.6425 6.00605 10.8182 6.18179C10.994 6.35753 10.994 6.64245 10.8182 6.81819L7.81825 9.81819C7.64251 9.99392 7.35759 9.99392 7.18185 9.81819L4.18185 6.81819C4.00611 6.64245 4.00611 6.35753 4.18185 6.18179C4.35759 6.00605 4.64251 6.00605 4.81825 6.18179L7.05005 8.41359V1.49999C7.05005 1.25146 7.25152 1.04999 7.50005 1.04999ZM2.5 10C2.77614 10 3 10.2239 3 10.5V12C3 12.5539 3.44565 13 3.99635 13H11.0012C11.5529 13 12 12.5528 12 12V10.5C12 10.2239 12.2239 10 12.5 10C12.7761 10 13 10.2239 13 10.5V12C13 13.1041 12.1062 14 11.0012 14H3.99635C2.89019 14 2 13.103 2 12V10.5C2 10.2239 2.22386 10 2.5 10Z"
-                                        fill="currentColor"
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd">
-                                    </path>
-                                </svg>
+                                Download &nbsp; | <DownloadIcon />
                             </span>
                         </a>
                     </div>
@@ -153,29 +128,91 @@
                     <div class="inline-flex gap-4 mt-4">
                         <div
                             class="pointer-events-none border border-(--foreground)/10 bg-(--foreground)/15 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-base p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-2 sm:gap-2">
-                            <Download
-                                className="fill-(--foreground)"
-                                svgWidth="22"
-                                svgHeight="22" />
+                            <DownloadIcon className="fill-(--foreground)" />
                             {githubStats?.total_release_downloads}
                         </div>
 
                         <div
                             class="pointer-events-none border border-(--foreground)/10 bg-(--foreground)/15 px-4 py-2 backdrop-blur-xl transition-all duration-300 text-base p-2 2xl:p-4 rounded-lg w-fit max-w-full self-center lg:self-start flex items-center gap-2 sm:gap-2">
-                            <Star
-                                svgWidth="24"
-                                svgHeight="24"
-                                className="fill-(--foreground)" />
+                            <StarIcon class="fill-(--foreground)" />
                             {githubStats?.stars}
                         </div>
                     </div>
                 </div>
                 <div
-                    class="hidden lg:flex w-1/2 justify-center pointer-events-none">
+                    class="hidden lg:flex lg:flex-wrap w-1/2 justify-center pointer-events-none">
                     <Image
                         delay={0}
                         divclass="max-w-full h-auto drop-shadow-2xl"
                         src="img/Showcase.webp" />
+
+                    <div
+                        class="flex flex-wrap w-full pointer-events-auto mt-4 gap-2 justify-center items-center mr-12">
+                        <a
+                            class="w-full max-w-xs"
+                            href="https://wiki.fishstrap.app/">
+                            <Card.Root class="w-full max-w-xs">
+                                <Card.Header>
+                                    <Card.Title>Fishstrap Wiki</Card.Title>
+                                    <Card.Description>
+                                        The official wiki for everything
+                                        Fishstrap.
+                                    </Card.Description>
+                                    <Card.Action>
+                                        <ExternalLinkIcon size="22" />
+                                    </Card.Action>
+                                </Card.Header>
+                            </Card.Root>
+                        </a>
+
+                        <a
+                            class="w-full max-w-xs"
+                            href="https://discord.com/invite/dZJSbgHx8y">
+                            <Card.Root class="w-full max-w-xs">
+                                <Card.Header>
+                                    <Card.Title>Discord server</Card.Title>
+                                    <Card.Description>
+                                        The official Discord server for
+                                        Fishstrap.
+                                    </Card.Description>
+                                    <Card.Action>
+                                        <ExternalLinkIcon size="22" />
+                                    </Card.Action>
+                                </Card.Header>
+                            </Card.Root>
+                        </a>
+
+                        <a
+                            class="w-full max-w-xs"
+                            href="https://github.com/fishstrap/fishstrap">
+                            <Card.Root class="w-full max-w-xs">
+                                <Card.Header>
+                                    <Card.Title>Github Repo</Card.Title>
+                                    <Card.Description>
+                                        The official Github repository for
+                                        Fishstrap.
+                                    </Card.Description>
+                                    <Card.Action>
+                                        <ExternalLinkIcon size="22" />
+                                    </Card.Action>
+                                </Card.Header>
+                            </Card.Root>
+                        </a>
+
+                        <a class="w-full max-w-xs" href="/mods">
+                            <Card.Root class="w-full max-w-xs">
+                                <Card.Header>
+                                    <Card.Title>Mods</Card.Title>
+                                    <Card.Description>
+                                        Check the page for mods you might like.
+                                    </Card.Description>
+                                    <Card.Action>
+                                        <ExternalLinkIcon size="22" />
+                                    </Card.Action>
+                                </Card.Header>
+                            </Card.Root>
+                        </a>
+                    </div>
                 </div>
             </section>
         </main>

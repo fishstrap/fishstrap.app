@@ -95,6 +95,7 @@
                 {#if filteredMods.length > 0}
                     {#each filteredMods as mod}
                         <Card
+                            className="hover:-translate-y-1 duration-300 transition-all"
                             href={mod.href}
                             title={mod.title}
                             description={mod.description}

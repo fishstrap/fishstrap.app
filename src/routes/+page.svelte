@@ -140,18 +140,18 @@
                     </div>
                 </div>
                 <div
-                    class="hidden lg:flex lg:flex-wrap w-1/2 justify-center pointer-events-none">
+                    class="lg:flex lg:flex-wrap w-full lg:w-1/2 justify-center pointer-events-none">
                     <Image
                         delay={0}
-                        divclass="max-w-full h-auto drop-shadow-2xl"
+                        divclass="hidden lg:visible lg:flex max-w-full h-auto drop-shadow-2xl"
                         src="img/Showcase.webp" />
 
                     <div
-                        class="flex flex-wrap w-full pointer-events-auto mt-4 gap-2 justify-center items-center mr-12">
+                        class="grid grid-cols-2 grid-rows-2 w-full pointer-events-auto my-4 gap-2 justify-start items-center">
                         <a
-                            class="w-full max-w-xs"
+                            class="h-full w-full duration-300 hover:-translate-y-1"
                             href="https://wiki.fishstrap.app/">
-                            <Card.Root class="w-full max-w-xs">
+                            <Card.Root class="h-full w-full">
                                 <Card.Header>
                                     <Card.Title>Fishstrap Wiki</Card.Title>
                                     <Card.Description>
@@ -166,9 +166,9 @@
                         </a>
 
                         <a
-                            class="w-full max-w-xs"
+                            class="h-full w-full duration-300 hover:-translate-y-1"
                             href="https://discord.com/invite/dZJSbgHx8y">
-                            <Card.Root class="w-full max-w-xs">
+                            <Card.Root class="h-full w-full">
                                 <Card.Header>
                                     <Card.Title>Discord server</Card.Title>
                                     <Card.Description>
@@ -183,9 +183,9 @@
                         </a>
 
                         <a
-                            class="w-full max-w-xs"
+                            class="h-full w-full duration-300 hover:-translate-y-1"
                             href="https://github.com/fishstrap/fishstrap">
-                            <Card.Root class="w-full max-w-xs">
+                            <Card.Root class="h-full w-full">
                                 <Card.Header>
                                     <Card.Title>Github Repo</Card.Title>
                                     <Card.Description>
@@ -199,8 +199,10 @@
                             </Card.Root>
                         </a>
 
-                        <a class="w-full max-w-xs" href="/mods">
-                            <Card.Root class="w-full max-w-xs">
+                        <a
+                            class="h-full w-full duration-300 hover:-translate-y-1"
+                            href="/mods">
+                            <Card.Root class="h-full w-full">
                                 <Card.Header>
                                     <Card.Title>Mods</Card.Title>
                                     <Card.Description>

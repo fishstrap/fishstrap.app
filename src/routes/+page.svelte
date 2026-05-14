@@ -143,8 +143,12 @@
                     class="lg:flex lg:flex-wrap w-full lg:w-1/2 justify-center pointer-events-none">
                     <Image
                         delay={0}
-                        divclass="hidden lg:visible lg:flex max-w-full h-auto drop-shadow-2xl"
-                        src="img/Showcase.webp" />
+                        divclass="block dark:hidden hidden lg:flex max-w-full h-auto drop-shadow-2xl"
+                        src="img/Showcase-Light.png" />
+                    <Image
+                        delay={0}
+                        divclass="hidden dark:lg:flex max-w-full h-auto drop-shadow-2xl"
+                        src="img/Showcase-Dark.png" />
 
                     <div
                         class="grid grid-cols-2 grid-rows-2 w-full pointer-events-auto my-4 gap-2 justify-start items-center">

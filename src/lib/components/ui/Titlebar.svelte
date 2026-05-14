@@ -5,6 +5,7 @@
     import DownArrowIcon from "@lucide/svelte/icons/arrow-down";
     import SunIcon from "@lucide/svelte/icons/sun";
     import MoonIcon from "@lucide/svelte/icons/moon";
+    import Image from "./Image.svelte";
 
     interface Props {
         downloadUrl: string;
@@ -18,10 +19,15 @@
     class="title-bar fixed left-4 right-4 top-4 z-1000 flex items-center justify-between rounded-full border border-(--foreground)/15 bg-(--background)/15 px-4 py-2 backdrop-blur-xl transition-all duration-300 md:left-8 md:right-8 md:py-2 lg:left-12 lg:right-12 xl:mx-auto xl:max-w-7xl">
     <div class="flex items-center gap-3">
         <div class="flex flex-col">
-            <a
-                href="/"
-                class="font-['Inter_Variable'] text-base font-bold tracking-tight text-(--foreground) sm:text-lg">
-                Fishstrap
+            <a href="/" class="flex h-full items-center justify-center">
+                <img
+                    src="img/Fishstrap-Light.png"
+                    class="dark:hidden block h-8 w-auto"
+                    alt="Logo" />
+                <img
+                    src="img/Fishstrap-Dark.png"
+                    class="dark:block hidden h-8 w-auto"
+                    alt="Logo" />
             </a>
         </div>
         <span

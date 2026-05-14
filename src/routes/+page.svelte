@@ -55,6 +55,7 @@
     <meta
         property="og:description"
         content="Fishstrap is an alternative to the default roblox bootstrapper, based on Bloxstrap." />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
         property="og:image"
         content="https://github.com/fishstrap/fishstrap/blob/main/Images/Showcase.webp?raw=true" />

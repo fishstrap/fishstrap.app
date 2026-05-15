@@ -63,7 +63,7 @@
         content="https://github.com/fishstrap/fishstrap.app/blob/dev/static/img/Showcase-Dark.png?raw=true" />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#00A2FF" />
-    <title>| &nbsp;&nbsp;Home</title>
+    <title>Fishstrap</title>
 </svelte:head>
 
 <div class="font-['Inter_Variable'] min-h-screen w-full">
@@ -77,11 +77,11 @@
                     class="w-full lg:w-1/2 pointer-events-none flex flex-col items-center lg:items-start text-center lg:text-left">
                     <Image
                         delay={0}
-                        divclass="dark:hidden w-3/4 sm:w-1/2 lg:w-3/4 2xl:w-full pointer-events-none h-auto z-100 mb-8 lg:mb-12 2xl:mb-16"
+                        divclass="dark:hidden w-3/4 sm:w-1/2 lg:w-3/4 2xl:w-full pointer-events-none h-auto z-100 mb-8 lg:mb-12 2xl:mb-8"
                         src="img/Fishstrap-Light.png" />
                     <Image
                         delay={0}
-                        divclass="dark:block hidden w-3/4 sm:w-1/2 lg:w-3/4 2xl:w-full pointer-events-none h-auto z-100 mb-8 lg:mb-12 2xl:mb-16"
+                        divclass="dark:block hidden w-3/4 sm:w-1/2 lg:w-3/4 2xl:w-full pointer-events-none h-auto z-100 mb-8 lg:mb-12 2xl:mb-8"
                         src="img/Fishstrap-Dark.png" />
                     <p
                         class="font-normal text-base sm:text-lg md:text-xl 2xl:text-2xl 3xl:text-3xl pointer-events-none z-100 max-w-2xl lg:max-w-none leading-relaxed">

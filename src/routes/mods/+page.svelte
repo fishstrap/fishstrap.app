@@ -40,6 +40,22 @@
     });
 </script>
 
+<svelte:head>
+    <meta property="og:title" content="Fishstrap" />
+    <meta
+        property="og:description"
+        content="Fishstrap is an alternative to the default roblox bootstrapper, based on Bloxstrap." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:site_name" content="Fishstrap" />
+    <meta property="og:type" content="article" />
+    <meta
+        property="og:image"
+        content="https://github.com/fishstrap/fishstrap.app/blob/dev/static/img/Showcase-Dark.png?raw=true" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#00A2FF" />
+    <title>Fishstrap</title>
+</svelte:head>
+
 <div
     class="font-['Inter_Variable'] flex bg-(--background) w-full min-h-screen flex-col text-(--foreground) justify-center">
     {#if onReady}

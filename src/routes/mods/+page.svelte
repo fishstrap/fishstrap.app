@@ -53,7 +53,7 @@
         content="https://github.com/fishstrap/fishstrap.app/blob/dev/static/img/Showcase-Dark.png?raw=true" />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#00A2FF" />
-    <title>Fishstrap</title>
+    <title>Mods</title>
 </svelte:head>
 
 <div

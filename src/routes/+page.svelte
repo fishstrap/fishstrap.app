@@ -232,100 +232,111 @@
                     </div>
                 </div>
             </section>
-            <h1 class="mx-auto mb-24 text-5xl font-semibold">Features</h1>
+            <h1
+                class="mx-auto mb-16 lg:mb-24 text-4xl lg:text-5xl font-semibold text-center">
+                Features
+            </h1>
+
             {#each features as feature}
                 <section
-                    class="flex h-1/2 w-full items-center {feature.reverse
-                        ? 'flex-row-reverse'
-                        : 'flex-row'} mb-12">
+                    class="flex flex-col w-full items-center {feature.reverse
+                        ? 'lg:flex-row-reverse'
+                        : 'lg:flex-row'} mb-16 lg:mb-24 gap-8 lg:gap-0">
                     <div
-                        class="flex w-1/2 {feature.reverse
-                            ? 'justify-start'
-                            : 'justify-end'}">
-                        <div class="flex flex-col gap-4 max-w-xl px-8">
-                            <h2 class="text-4xl font-bold lg:text-4xl mb-2">
+                        class="flex w-full lg:w-1/2 justify-center {feature.reverse
+                            ? 'lg:justify-start'
+                            : 'lg:justify-end'}">
+                        <div
+                            class="flex flex-col gap-4 max-w-xl px-6 lg:px-8 text-center lg:text-left">
+                            <h2 class="text-3xl lg:text-4xl font-bold mb-2">
                                 {feature.title}
                             </h2>
-                            <div class="text-xl text-(--foreground)">
+                            <div class="text-lg lg:text-xl text-(--foreground)">
                                 <p class="mb-2">
                                     {feature.description}
                                 </p>
                             </div>
                         </div>
                     </div>
+
                     <div
-                        class="flex items-center w-1/2 px-8 {feature.reverse
-                            ? 'justify-end'
-                            : 'justify-start'}">
+                        class="flex items-center justify-center w-full lg:w-1/2 px-6 lg:px-8 {feature.reverse
+                            ? 'lg:justify-end'
+                            : 'lg:justify-start'}">
                         <img
-                            class="block dark:hidden {feature.size} h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                            class="block dark:hidden {feature.size} max-w-full h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 hover:-translate-y-1 pointer-events-auto"
                             src="{feature.image}-Light.png"
                             alt="" />
                         <img
-                            class="hidden dark:block {feature.size} h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                            class="hidden dark:block {feature.size} max-w-full h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 hover:-translate-y-1 pointer-events-auto"
                             src="{feature.image}-Dark.png"
                             alt="" />
                     </div>
                 </section>
             {/each}
-            <section class="flex h-1/2 w-full items-center flex-row mb-12">
-                <div class="flex w-1/2 justify-end">
-                    <div class="flex flex-col gap-4 max-w-xl px-8">
-                        <h2 class="text-4xl font-bold lg:text-4xl mb-2">
+
+            <section
+                class="flex flex-col lg:flex-row w-full items-center mb-16 lg:mb-24 gap-8 lg:gap-0">
+                <div class="flex w-full lg:w-1/2 justify-center lg:justify-end">
+                    <div
+                        class="flex flex-col gap-4 max-w-xl px-6 lg:px-8 text-center lg:text-left">
+                        <h2 class="text-3xl lg:text-4xl font-bold mb-2">
                             Fishstrap Invite Links
                         </h2>
-                        <div class="text-xl text-(--foreground)">
+                        <div class="text-lg lg:text-xl text-(--foreground)">
                             <p class="mb-2">
                                 Share custom Fishstrap invite links to bring
                                 friends into your game — even if they don't have
-                                Fishstrap installed!
+                                Fishstrap installed! (try it out!)
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="flex items-center w-1/2 justify-start">
-                    <div class="flex justify-center items-start flex-col">
-                        <div>
+
+                <div
+                    class="flex items-center justify-center lg:justify-start w-full lg:w-1/2 px-6 lg:px-8">
+                    <div
+                        class="flex justify-center items-center lg:items-start flex-col max-w-full">
+                        <a
+                            href="https://roblox.com/games/1818"
+                            class="relative flex flex-col items-center lg:items-start w-fit max-w-full mb-4 transition-all duration-300 transform hover:scale-101 hover:-translate-y-1 pointer-events-auto">
                             <div
-                                class="relative flex flex-col items-start w-fit mb-4 transition-all duration-300 transform hover:scale-101 pointer-events-auto">
-                                <div
-                                    class="flex flex-col z-10 bg-(--muted-foreground)/8 border border-(--foreground)/10 rounded-lg px-4 py-4">
-                                    <img
-                                        alt="crossroads"
-                                        class="w-96 rounded-lg"
-                                        src="/img/Crossroad.jpg" />
-                                    <span class="mt-1 text-lg font-medium">
-                                        Classic: Crossroads
-                                    </span>
-                                    <span class="text-sm text-medium">
-                                        by @Roblox
-                                    </span>
-                                </div>
-
-                                <svg
-                                    class="absolute -bottom-2.25 ml-12 z-20 w-5 h-2.5 dark:text-[#161616] text-[#f4f4f4]"
-                                    viewBox="0 0 20 10"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M0,0 L10,10 L20,0"
-                                        fill="currentColor" />
-
-                                    <path
-                                        d="M0,0 L10,10 L20,0"
-                                        class="dark:stroke-[#2d2d2d] stroke-[#dcdcdc]"
-                                        stroke-width="1"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
+                                class="flex flex-col z-10 bg-(--muted-foreground)/8 border border-(--foreground)/10 rounded-lg px-4 py-4 w-full sm:w-fit max-w-full">
+                                <img
+                                    alt="crossroads"
+                                    class="w-full sm:w-96 max-w-full rounded-lg"
+                                    src="/img/Crossroad.jpg" />
+                                <span class="mt-1 text-lg font-medium">
+                                    Classic: Crossroads
+                                </span>
+                                <span class="text-sm text-medium">
+                                    by @Roblox
+                                </span>
                             </div>
-                            <a
-                                class="flex w-fit bg-(--muted-foreground)/8 border border-(--foreground)/10 text-lg px-4 py-1 rounded-full text-blue-300 hover:text-blue-400 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
-                                aria-label="joingame-link"
-                                href="https://www.fishstrap.app/v1/joingame?placeId=1818">
-                                https://www.fishstrap.app/v1/joingame?placeId=1818
-                            </a>
-                        </div>
+
+                            <svg
+                                class="absolute -bottom-2.25 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-12 z-20 w-5 h-2.5 dark:text-[#161616] text-[#f4f4f4]"
+                                viewBox="0 0 20 10"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0,0 L10,10 L20,0"
+                                    fill="currentColor" />
+                                <path
+                                    d="M0,0 L10,10 L20,0"
+                                    class="dark:stroke-[#2d2d2d] stroke-[#dcdcdc]"
+                                    stroke-width="1"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </a>
+
+                        <a
+                            class="flex w-fit max-w-full overflow-hidden text-ellipsis whitespace-nowrap bg-(--muted-foreground)/8 border border-(--foreground)/10 text-sm sm:text-lg px-4 py-1 rounded-full text-blue-300 hover:text-blue-400 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                            aria-label="joingame-link"
+                            href="https://www.fishstrap.app/v1/joingame?placeId=1818">
+                            https://www.fishstrap.app/v1/joingame?placeId=1818
+                        </a>
                     </div>
                 </div>
             </section>

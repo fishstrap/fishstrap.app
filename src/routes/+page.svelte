@@ -281,7 +281,7 @@
                 class="flex flex-col lg:flex-row w-full items-center mb-16 lg:mb-24 gap-8 lg:gap-0">
                 <div class="flex w-full lg:w-1/2 justify-center lg:justify-end">
                     <div
-                        class="flex flex-col gap-4 max-w-xl px-6 lg:px-8 text-center lg:text-left">
+                        class="flex flex-col gap-4 max-w-xl px-6 lg:px-8 text-center lg:text-end">
                         <h2 class="text-3xl lg:text-4xl font-bold mb-2">
                             Fishstrap Invite Links
                         </h2>

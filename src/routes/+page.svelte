@@ -20,7 +20,7 @@
             description:
                 "Powered by WPFUI, Fishstrap provides a clean, modern interface that takes the complexity out of customizing your experience.",
             image: "/img/Showcase-UI",
-            size: 160,
+            size: "w-160",
             reverse: false,
         },
         {
@@ -28,7 +28,7 @@
             description:
                 "Take complete control of your visual experience with customizable themes for both the Fishstrap bootstrapper and the Roblox client itself.",
             image: "/img/Theme-Showcase",
-            size: 160,
+            size: "w-160",
             reverse: true,
         },
         {
@@ -36,7 +36,7 @@
             description:
                 "Instantly view accurate, real-time server information like region and uptime, powered by the RoValra API.",
             image: "/img/Server-Info-Showcase",
-            size: 160,
+            size: "w-160",
             reverse: false,
         },
         {
@@ -44,7 +44,7 @@
             description:
                 "Custom Discord Rich Presence, to show everyone what games you're playing. Also supports BloxstrapRPC. (duh.)",
             image: "/img/RPC",
-            size: 90,
+            size: "w-90",
             reverse: true,
         },
     ];
@@ -258,11 +258,11 @@
                             ? 'justify-end'
                             : 'justify-start'}">
                         <img
-                            class="block dark:hidden w-{feature.size} h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                            class="block dark:hidden {feature.size} h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
                             src="{feature.image}-Light.png"
                             alt="" />
                         <img
-                            class="hidden dark:block w-{feature.size} h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                            class="hidden dark:block {feature.size} h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
                             src="{feature.image}-Dark.png"
                             alt="" />
                     </div>

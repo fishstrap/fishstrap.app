@@ -247,7 +247,9 @@
                             ? 'lg:justify-start'
                             : 'lg:justify-end'}">
                         <div
-                            class="flex flex-col gap-4 max-w-xl px-6 lg:px-8 text-center lg:text-left">
+                            class="flex flex-col gap-4 max-w-xl px-6 lg:px-8 text-center {feature.reverse
+                                ? 'lg:text-start'
+                                : 'lg:text-end'}">
                             <h2 class="text-3xl lg:text-4xl font-bold mb-2">
                                 {feature.title}
                             </h2>

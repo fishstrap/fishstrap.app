@@ -226,7 +226,7 @@
                 <section
                     class="flex h-1/2 w-full items-center {feature.reverse
                         ? 'flex-row-reverse'
-                        : 'flex-row'}">
+                        : 'flex-row'} mb-12">
                     <div
                         class="flex w-1/2 {feature.reverse
                             ? 'justify-start'

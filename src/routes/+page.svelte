@@ -20,6 +20,7 @@
             description:
                 "Powered by WPFUI, Fishstrap provides a clean, modern interface that takes the complexity out of customizing your experience.",
             image: "/img/Showcase-UI",
+            size: 160,
             reverse: false,
         },
         {
@@ -27,6 +28,7 @@
             description:
                 "Take complete control of your visual experience with customizable themes for both the Fishstrap bootstrapper and the Roblox client itself.",
             image: "/img/Theme-Showcase",
+            size: 160,
             reverse: true,
         },
         {
@@ -34,7 +36,16 @@
             description:
                 "Instantly view accurate, real-time server information like region and uptime, powered by the RoValra API.",
             image: "/img/Server-Info-Showcase",
+            size: 160,
             reverse: false,
+        },
+        {
+            title: "Discord Rich Presence",
+            description:
+                "Custom Discord Rich Presence, to show everyone what games you're playing. Also supports BloxstrapRPC. (duh.)",
+            image: "/img/RPC",
+            size: 90,
+            reverse: true,
         },
     ];
 
@@ -118,7 +129,7 @@
     {#if onReady}
         <main
             in:fly={{ y: -50, duration: 600 }}
-            class="text-(--foreground) relative z-10 flex flex-col w-full pointer-events-none">
+            class="text-(--foreground) relative z-10 flex flex-col w-full">
             <section
                 class="min-h-[calc(100vh-6rem)] mt-12 flex flex-col lg:flex-row items-center justify-center w-full max-w-360 2xl:max-w-480 mx-auto pointer-events-none px-4 sm:px-6 lg:px-8 gap-8 lg:gap-16 2xl:gap-32">
                 <div
@@ -247,16 +258,77 @@
                             ? 'justify-end'
                             : 'justify-start'}">
                         <img
-                            class="block dark:hidden w-160 h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                            class="block dark:hidden w-{feature.size} h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
                             src="{feature.image}-Light.png"
                             alt="" />
                         <img
-                            class="hidden dark:block w-160 h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                            class="hidden dark:block w-{feature.size} h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
                             src="{feature.image}-Dark.png"
                             alt="" />
                     </div>
                 </section>
             {/each}
+            <section class="flex h-1/2 w-full items-center flex-row mb-12">
+                <div class="flex w-1/2 justify-end">
+                    <div class="flex flex-col gap-4 max-w-xl px-8">
+                        <h2 class="text-4xl font-bold lg:text-4xl mb-2">
+                            Fishstrap Invite Links
+                        </h2>
+                        <div class="text-xl text-(--foreground)">
+                            <p class="mb-2">
+                                Share custom Fishstrap invite links to bring
+                                friends into your game — even if they don't have
+                                Fishstrap installed!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center w-1/2 justify-start">
+                    <div class="flex justify-center items-start flex-col">
+                        <div>
+                            <div
+                                class="relative flex flex-col items-start w-fit mb-4 transition-all duration-300 transform hover:scale-101 pointer-events-auto">
+                                <div
+                                    class="flex flex-col z-10 bg-(--muted-foreground)/8 border border-(--foreground)/10 rounded-lg px-4 py-4">
+                                    <img
+                                        alt="crossroads"
+                                        class="w-96 rounded-lg"
+                                        src="/img/Crossroad.jpg" />
+                                    <span class="mt-1 text-lg font-medium">
+                                        Classic: Crossroads
+                                    </span>
+                                    <span class="text-sm text-medium">
+                                        by @Roblox
+                                    </span>
+                                </div>
+
+                                <svg
+                                    class="absolute -bottom-2.25 ml-12 z-20 w-5 h-2.5 dark:text-[#161616] text-[#f4f4f4]"
+                                    viewBox="0 0 20 10"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0,0 L10,10 L20,0"
+                                        fill="currentColor" />
+
+                                    <path
+                                        d="M0,0 L10,10 L20,0"
+                                        class="dark:stroke-[#2d2d2d] stroke-[#dcdcdc]"
+                                        stroke-width="1"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <a
+                                class="flex w-fit bg-(--muted-foreground)/8 border border-(--foreground)/10 text-lg px-4 py-1 rounded-full text-blue-300 hover:text-blue-400 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                                aria-label="joingame-link"
+                                href="https://www.fishstrap.app/v1/joingame?placeId=1818">
+                                https://www.fishstrap.app/v1/joingame?placeId=1818
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     {/if}
 </div>

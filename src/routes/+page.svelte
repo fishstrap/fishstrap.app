@@ -304,7 +304,7 @@
                                 class="flex flex-col z-10 bg-(--muted-foreground)/8 border border-(--foreground)/10 rounded-lg px-4 py-4 w-full sm:w-fit max-w-full">
                                 <img
                                     alt="crossroads"
-                                    class="w-full sm:w-96 max-w-full rounded-lg"
+                                    class="w-76 rounded-lg"
                                     src="/img/Crossroad.jpg" />
                                 <span class="mt-1 text-lg font-medium">
                                     Classic: Crossroads

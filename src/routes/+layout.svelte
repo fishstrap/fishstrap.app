@@ -19,22 +19,3 @@
     {@render children()}
 </div>
 <ModeWatcher />
-
-<style>
-    :global(html) {
-        scrollbar-color: #27272a #09090b;
-    }
-    :global(::-webkit-scrollbar) {
-        width: 8px;
-        background-color: #09090b;
-    }
-
-    :global(::-webkit-scrollbar-thumb) {
-        background-color: #27272a;
-        border-radius: 9999px;
-    }
-
-    :global(::-webkit-scrollbar-thumb:hover) {
-        background-color: #3f3f46;
-    }
-</style>

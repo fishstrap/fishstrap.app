@@ -1,6 +1,5 @@
 <script lang="ts">
     import Titlebar from "$lib/components/ui/Titlebar.svelte";
-    import Background from "$lib/components/ui/Background.svelte";
     import { ModeWatcher } from "mode-watcher";
 
     let { children } = $props();
@@ -14,8 +13,6 @@
     const downloadUrl =
         "https://github.com/fishstrap/fishstrap/releases/latest/download/Fishstrap.exe";
 </script>
-
-<Background />
 
 <div class="bg-(--background)">
     <Titlebar {downloadUrl} {tagName} />

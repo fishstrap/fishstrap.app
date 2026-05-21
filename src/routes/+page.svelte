@@ -4,14 +4,62 @@
 
     import Image from "$lib/components/ui/Image.svelte";
     import Link from "$lib/components/ui/Link.svelte";
+    import * as Card from "$lib/components/ui/card";
+
     import StarIcon from "@lucide/svelte/icons/star";
     import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
     import DownloadIcon from "@lucide/svelte/icons/download";
-    import * as Card from "$lib/components/ui/card";
 
     let onReady: boolean = $state(false);
     let copied: boolean = $state(false);
     let githubStats: GithubData | null = $state(null);
+
+    const features = [
+        {
+            title: "Clean User Interface",
+            description:
+                "Powered by WPFUI, Fishstrap provides a clean, modern interface that takes the complexity out of customizing your experience.",
+            image: "/img/Showcase-UI",
+            reverse: false,
+        },
+        {
+            title: "Custom Modifications",
+            description:
+                "Take complete control of your visual experience with customizable themes for both the Fishstrap bootstrapper and the Roblox client itself.",
+            image: "/img/Theme-Showcase",
+            reverse: true,
+        },
+        {
+            title: "Accurate Server Information",
+            description:
+                "Instantly view accurate, real-time server information like region and uptime, powered by the RoValra API.",
+            image: "/img/Server-Info-Showcase",
+            reverse: false,
+        },
+    ];
+
+    const cards = [
+        {
+            href: "https://wiki.fishstrap.app/",
+            title: "Fishstrap Wiki",
+            description: "The official wiki for everything Fishstrap.",
+        },
+        {
+            href: "https://discord.com/invite/dZJSbgHx8y",
+            title: "Discord server",
+            description: "The official Discord server for Fishstrap.",
+        },
+        {
+            href: "https://github.com/fishstrap/fishstrap",
+            title: "Github Repo",
+            description: "The official Github repository for Fishstrap.",
+        },
+        {
+            href: "/mods",
+            title: "Mods",
+            description: "Check the page for mods you might like.",
+        },
+    ];
 
     // never changes
     const downloadUrl: string =
@@ -72,7 +120,7 @@
             in:fly={{ y: -50, duration: 600 }}
             class="text-(--foreground) relative z-10 flex flex-col w-full pointer-events-none">
             <section
-                class="min-h-[calc(100vh-6rem)] mt-24 flex flex-col lg:flex-row items-center justify-center w-full max-w-360 2xl:max-w-480 mx-auto pointer-events-none px-4 sm:px-6 lg:px-8 gap-8 lg:gap-16 2xl:gap-32">
+                class="min-h-[calc(100vh-6rem)] mt-12 flex flex-col lg:flex-row items-center justify-center w-full max-w-360 2xl:max-w-480 mx-auto pointer-events-none px-4 sm:px-6 lg:px-8 gap-8 lg:gap-16 2xl:gap-32">
                 <div
                     class="w-full lg:w-1/2 pointer-events-none flex flex-col items-center lg:items-start text-center lg:text-left">
                     <Image
@@ -96,10 +144,7 @@
                     <!--thank you Francois for the button!-->
                     <div
                         class="flex wrapper pointer-events-auto mt-4 mb-4 justify-center items-center lg:justify-start bg-(--muted-foreground)/25 rounded-lg">
-                        <a
-                            id="downloadbutton"
-                            href={downloadUrl}
-                            class="c-btn backdrop-blur-2xl">
+                        <a id="downloadbutton" href={downloadUrl} class="c-btn">
                             <span class="c-btn__label">
                                 Download &nbsp; | <DownloadIcon />
                             </span>
@@ -156,75 +201,62 @@
 
                     <div
                         class="grid grid-cols-2 grid-rows-2 w-full pointer-events-auto my-4 gap-2 justify-start items-center">
-                        <a
-                            class="h-full w-full duration-300 hover:-translate-y-1"
-                            href="https://wiki.fishstrap.app/">
-                            <Card.Root class="h-full w-full">
-                                <Card.Header>
-                                    <Card.Title>Fishstrap Wiki</Card.Title>
-                                    <Card.Description>
-                                        The official wiki for everything
-                                        Fishstrap.
-                                    </Card.Description>
-                                    <Card.Action>
-                                        <ExternalLinkIcon size="22" />
-                                    </Card.Action>
-                                </Card.Header>
-                            </Card.Root>
-                        </a>
-
-                        <a
-                            class="h-full w-full duration-300 hover:-translate-y-1"
-                            href="https://discord.com/invite/dZJSbgHx8y">
-                            <Card.Root class="h-full w-full">
-                                <Card.Header>
-                                    <Card.Title>Discord server</Card.Title>
-                                    <Card.Description>
-                                        The official Discord server for
-                                        Fishstrap.
-                                    </Card.Description>
-                                    <Card.Action>
-                                        <ExternalLinkIcon size="22" />
-                                    </Card.Action>
-                                </Card.Header>
-                            </Card.Root>
-                        </a>
-
-                        <a
-                            class="h-full w-full duration-300 hover:-translate-y-1"
-                            href="https://github.com/fishstrap/fishstrap">
-                            <Card.Root class="h-full w-full">
-                                <Card.Header>
-                                    <Card.Title>Github Repo</Card.Title>
-                                    <Card.Description>
-                                        The official Github repository for
-                                        Fishstrap.
-                                    </Card.Description>
-                                    <Card.Action>
-                                        <ExternalLinkIcon size="22" />
-                                    </Card.Action>
-                                </Card.Header>
-                            </Card.Root>
-                        </a>
-
-                        <a
-                            class="h-full w-full duration-300 hover:-translate-y-1"
-                            href="/mods">
-                            <Card.Root class="h-full w-full">
-                                <Card.Header>
-                                    <Card.Title>Mods</Card.Title>
-                                    <Card.Description>
-                                        Check the page for mods you might like.
-                                    </Card.Description>
-                                    <Card.Action>
-                                        <ExternalLinkIcon size="22" />
-                                    </Card.Action>
-                                </Card.Header>
-                            </Card.Root>
-                        </a>
+                        {#each cards as card}
+                            <a
+                                class="h-full w-full duration-300 hover:-translate-y-1"
+                                href={card.href}>
+                                <Card.Root class="h-full w-full">
+                                    <Card.Header>
+                                        <Card.Title>{card.title}</Card.Title>
+                                        <Card.Description>
+                                            {card.description}
+                                        </Card.Description>
+                                        <Card.Action>
+                                            <ExternalLinkIcon size="22" />
+                                        </Card.Action>
+                                    </Card.Header>
+                                </Card.Root>
+                            </a>
+                        {/each}
                     </div>
                 </div>
             </section>
+            <h1 class="mx-auto mb-24 text-5xl font-semibold">Features</h1>
+            {#each features as feature}
+                <section
+                    class="flex h-1/2 w-full items-center {feature.reverse
+                        ? 'flex-row-reverse'
+                        : 'flex-row'}">
+                    <div
+                        class="flex w-1/2 {feature.reverse
+                            ? 'justify-start'
+                            : 'justify-end'}">
+                        <div class="flex flex-col gap-4 max-w-xl px-8">
+                            <h2 class="text-4xl font-bold lg:text-4xl mb-2">
+                                {feature.title}
+                            </h2>
+                            <div class="text-xl text-(--foreground)">
+                                <p class="mb-2">
+                                    {feature.description}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center w-1/2 px-8 {feature.reverse
+                            ? 'justify-end'
+                            : 'justify-start'}">
+                        <img
+                            class="block dark:hidden w-160 h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                            src="{feature.image}-Light.png"
+                            alt="" />
+                        <img
+                            class="hidden dark:block w-160 h-auto drop-shadow-[0_10px_8px_var(--muted-foreground)]/5 transition-all duration-300 transform hover:scale-101 pointer-events-auto"
+                            src="{feature.image}-Dark.png"
+                            alt="" />
+                    </div>
+                </section>
+            {/each}
         </main>
     {/if}
 </div>

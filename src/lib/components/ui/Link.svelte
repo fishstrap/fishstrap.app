@@ -1,4 +1,3 @@
-<!--@format-->
 <script lang="ts">
     interface Props {
         href?: string;

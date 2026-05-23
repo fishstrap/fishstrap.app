@@ -21,11 +21,11 @@
         <div class="flex flex-col">
             <a href="/" class="flex h-full items-center justify-center">
                 <img
-                    src="img/Fishstrap-Light.png"
+                    src="/img/Fishstrap-Light.png"
                     class="dark:hidden block h-8 w-auto"
                     alt="Logo" />
                 <img
-                    src="img/Fishstrap-Dark.png"
+                    src="/img/Fishstrap-Dark.png"
                     class="dark:block hidden h-8 w-auto"
                     alt="Logo" />
             </a>

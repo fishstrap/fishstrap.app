@@ -110,6 +110,10 @@
 </script>
 
 <svelte:head>
+    <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1677774906590390"
+        crossorigin="anonymous"></script>
     <meta property="og:title" content="Fishstrap" />
     <meta
         property="og:description"

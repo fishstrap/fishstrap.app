@@ -5,7 +5,6 @@
     import DownArrowIcon from "@lucide/svelte/icons/arrow-down";
     import SunIcon from "@lucide/svelte/icons/sun";
     import MoonIcon from "@lucide/svelte/icons/moon";
-    import Image from "./Image.svelte";
 
     interface Props {
         downloadUrl: string;

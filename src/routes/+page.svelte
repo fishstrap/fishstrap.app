@@ -99,7 +99,6 @@
             console.error(`Worker data was null. ${workerResponse.statusText}`);
 
         const workerData = (await workerResponse.json()) as GithubData;
-        console.log(workerData);
         return workerData;
     }
 

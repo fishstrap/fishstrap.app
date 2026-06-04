@@ -38,7 +38,8 @@
         <nav class="items-center gap-6 md:flex">
             <a
                 href="/mods"
-                class="text-xs font-medium text-(--foreground)/70 transition-colors hover:text-(--foreground)">
+                class="text-xs font-medium text-(--foreground)/70 transition-colors hover:text-(--foreground)"
+                data-sveltekit-reload>
                 Mods
             </a>
         </nav>

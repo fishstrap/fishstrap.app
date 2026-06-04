@@ -214,7 +214,8 @@
                         {#each cards as card}
                             <a
                                 class="h-full w-full duration-300 hover:-translate-y-1"
-                                href={card.href}>
+                                href={card.href}
+                                data-sveltekit-reload>
                                 <Card.Root class="h-full w-full">
                                     <Card.Header>
                                         <Card.Title>{card.title}</Card.Title>

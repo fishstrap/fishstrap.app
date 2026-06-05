@@ -18,6 +18,15 @@
 
     let onReady = $state(false);
 
+    function loadAdSense(node: HTMLElement) {
+        try {
+            ((window as any).adsbygoogle =
+                (window as any).adsbygoogle || []).push({});
+        } catch (error) {
+            console.error("AdSense error:", error);
+        }
+    }
+
     onMount(() => {
         if (!placeId) {
             window.location.href = "/";
@@ -55,9 +64,10 @@
     {/if}
 </svelte:head>
 
-<div class="flex h-screen w-full relative overflow-hidden bg-(--background)/45">
+<div
+    class="flex flex-col h-screen w-full relative overflow-hidden bg-(--background)/45">
     {#if onReady}
-        <div class="flex w-full flex-col justify-center m-24 mb-24">
+        <div class="flex w-full flex-col h-full justify-center m-12 mb-24">
             <div class="absolute top-0 left-0 w-full h-full scale-250">
                 <img
                     class="w-full h-full blur-3xl opacity-45 animate-[spin_30s_linear_infinite] [-webkit-user-drag:none]"
@@ -93,6 +103,15 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="flex w-full justify-center items-end">
+            <ins
+                use:loadAdSense
+                class="adsbygoogle"
+                style="display:inline-block;width:728px;height:90px"
+                data-ad-client="ca-pub-3661497557666966"
+                data-ad-slot="1672133336">
+            </ins>
         </div>
     {/if}
 </div>

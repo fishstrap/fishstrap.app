@@ -102,6 +102,15 @@
         return workerData;
     }
 
+    function loadAdSense(node: HTMLElement) {
+        try {
+            ((window as any).adsbygoogle =
+                (window as any).adsbygoogle || []).push({});
+        } catch (error) {
+            console.error("AdSense error:", error);
+        }
+    }
+
     onMount(async () => {
         githubStats = (await getGithubStats()) as GithubData;
         onReady = true;
@@ -130,7 +139,7 @@
             in:fly={{ y: -50, duration: 600 }}
             class="text-(--foreground) relative z-10 flex flex-col w-full">
             <section
-                class="min-h-[calc(100vh-6rem)] mt-12 flex flex-col lg:flex-row items-center justify-center w-full max-w-360 2xl:max-w-480 mx-auto pointer-events-none px-4 sm:px-6 lg:px-8 gap-8 lg:gap-16 2xl:gap-32">
+                class="min-h-[calc(100vh-12rem)] mt-12 flex flex-col lg:flex-row items-center justify-center w-full max-w-360 2xl:max-w-480 mx-auto pointer-events-none px-4 sm:px-6 lg:px-8 gap-8 lg:gap-16 2xl:gap-32">
                 <div
                     class="w-full lg:w-1/2 pointer-events-none flex flex-col items-center lg:items-start text-center lg:text-left">
                     <Image
@@ -232,6 +241,15 @@
                     </div>
                 </div>
             </section>
+            <div class="flex w-full justify-center">
+                <ins
+                    class="adsbygoogle"
+                    use:loadAdSense
+                    style="display:inline-block;width:728px;height:90px"
+                    data-ad-client="ca-pub-3661497557666966"
+                    data-ad-slot="7702355061">
+                </ins>
+            </div>
             <h1
                 class="mx-auto mb-16 lg:mb-24 text-4xl lg:text-5xl font-semibold text-center">
                 Features
@@ -342,6 +360,15 @@
                     </div>
                 </div>
             </section>
+            <div class="flex w-full justify-center">
+                <ins
+                    class="adsbygoogle"
+                    use:loadAdSense
+                    style="display:inline-block;width:728px;height:90px"
+                    data-ad-client="ca-pub-3661497557666966"
+                    data-ad-slot="7913118373">
+                </ins>
+            </div>
         </main>
     {/if}
 </div>

@@ -35,6 +35,15 @@
         }),
     );
 
+    function loadAdSense(node: HTMLElement) {
+        try {
+            ((window as any).adsbygoogle =
+                (window as any).adsbygoogle || []).push({});
+        } catch (error) {
+            console.error("AdSense error:", error);
+        }
+    }
+
     onMount(async () => {
         onReady = true;
     });
@@ -129,5 +138,15 @@
                 {/if}
             </div>
         </main>
+
+        <div class="flex w-full justify-center">
+            <ins
+                use:loadAdSense
+                class="adsbygoogle"
+                style="display:inline-block;width:728px;height:90px"
+                data-ad-client="ca-pub-3661497557666966"
+                data-ad-slot="7254642823">
+            </ins>
+        </div>
     {/if}
 </div>
